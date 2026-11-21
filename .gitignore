@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+dist/
+site-netlify.zip
+.DS_Store
+Thumbs.db

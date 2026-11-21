@@ -1,0 +1,16 @@
+{# صفحة العرض. النص من src/content/offers/<العرض>.json #}
+{% extends "base.html" %}
+{% block title %}{{ o.seo_title }}{% endblock %}
+{% block description %}{{ o.card }}{% endblock %}
+{% block main %}
+{{ m.phead(o.title, lead=o.intro, name=o.name, crumbs=[["services/", "خدماتنا"]], img=o.slug) }}
+
+<section class="sec"><div class="wrap cols">
+  <div>
+    <section><h2>{{ o.fit_title }}</h2><ul class="ticks">{% for x in o.fit %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h2>كيف يسير</h2><ol class="steps long">{% for x in o.steps %}<li><p>{{ x }}</p></li>{% endfor %}</ol></section>
+  </div>
+  <aside class="side"><div><h3>المدة</h3><p>{{ site.offer_duration }}</p></div><div><h3>ما تستلمه</h3><ul class="gain">{% for x in o.receive %}<li>{{ x }}</li>{% endfor %}</ul></div></aside>
+</div></section>
+
+{% endblock %}

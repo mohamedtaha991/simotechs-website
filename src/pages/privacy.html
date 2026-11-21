@@ -1,0 +1,36 @@
+{# صفحة «سياسة الخصوصية». البنود من src/content/privacy.json: id وtitle وparas وitems (اختياري) وafter (اختياري) #}
+{% extends "base.html" %}
+{% block title %}سياسة الخصوصية | الذكاء المكاني{% endblock %}
+{% block main %}
+{{ m.note("مسودة للمراجعة القانونية: لا تُنشر قبل مراجعة مختص بنظام حماية البيانات الشخصية.") }}
+{{ m.phead("سياسة الخصوصية", lead="نلتزم بحماية بياناتك الشخصية وفق نظام حماية البيانات الشخصية في المملكة العربية السعودية. توضح هذه السياسة ما نجمعه من بيانات، وكيف نستخدمه ونحميه، وما حقوقك بشأنه.", img="privacy") }}
+
+<section class="sec"><div class="wrap">
+  <ul class="privacy-facts" aria-label="ملخص سريع">
+    <li><b>لا نبيع بياناتك</b><span>ولا نستخدمها لغير الأغراض المعلنة.</span></li>
+    <li><b>لا تتبع ولا إعلانات</b><span>لا يستخدم الموقع حاليًا ملفات تتبع أو إحصاء.</span></li>
+    <li><b>احتفاظ محدود</b><span>نحذف بيانات التواصل بعد شهرين من آخر مراسلة.</span></li>
+    <li><b>حقوقك محفوظة</b><span>اطلب الوصول أو التصحيح أو الإتلاف في أي وقت.</span></li>
+  </ul>
+
+  <div class="policy-layout">
+    <aside class="policy-toc" aria-label="محتويات السياسة">
+      <h2>محتويات السياسة</h2>
+      <ol>
+        {% for p in privacy %}<li><a href="#{{ p.id }}">{{ p.title }}</a></li>{% endfor %}
+      </ol>
+    </aside>
+    <div class="policy-body">
+      <p class="policy-meta">آخر تحديث: 20 نوفمبر 2026</p>
+      {% for p in privacy %}
+      <section id="{{ p.id }}">
+        <h2><span>{{ "%02d"|format(loop.index) }}</span>{{ p.title }}</h2>
+        {% for t in p.paras %}<p>{{ t }}</p>{% endfor %}
+        {% if p.get("items") %}<ul>{% for i in p.get("items") %}<li>{{ i }}</li>{% endfor %}</ul>{% endif %}
+        {% for t in p.get("after", []) %}<p>{{ t }}</p>{% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+  </div>
+</div></section>
+{% endblock %}

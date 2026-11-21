@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><clipPath id="cpAb"><rect x="1" y="1" width="398" height="298" rx="18"/></clipPath><g clip-path="url(#cpAb)"><rect width="400" height="300" fill="#faf7f2"/>
+<g fill="none" stroke="#b8814a" stroke-width="1.5" opacity=".35"><path d="M-10 60C80 30 150 90 250 50s120-20 170 0"/><path d="M-10 100C80 70 150 130 250 90s120-20 170 0"/><path d="M-10 250C90 220 170 280 260 245s110-15 160 5"/><path d="M-10 285C90 255 170 315 260 280s110-15 160 5"/></g>
+<g fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"><path d="M-10 190C90 170 150 150 200 150s140 30 220 10"/><path d="M200-10v320"/><path d="M60-10C90 80 130 120 200 150s120 80 150 170"/></g>
+<g fill="#b8814a" opacity=".3"><rect x="222" y="70" width="60" height="44" rx="3"/><rect x="296" y="96" width="44" height="34" rx="3"/><rect x="92" y="196" width="72" height="40" rx="3"/><rect x="222" y="190" width="40" height="52" rx="3"/><rect x="92" y="60" width="50" height="36" rx="3"/></g>
+<g fill="none" stroke="#1d6b73" stroke-width="2"><circle cx="200" cy="150" r="26" opacity=".6"/><circle cx="200" cy="150" r="50" opacity=".35"/><circle cx="200" cy="150" r="78" opacity=".18"/></g></g>
+<g transform="translate(200 150) scale(2.6)"><path d="M0 0c-7-8-11-13-11-19a11 11 0 0 1 22 0c0 6-4 11-11 19z" fill="#1d6b73"/><circle cy="-19" r="4" fill="#fff"/></g>
+<rect x="104" y="250" width="192" height="30" rx="15" fill="#fff" stroke="#e9e1d6" stroke-width="2"/><text x="200" y="270" text-anchor="middle" direction="ltr" font-family="IBM Plex Mono,Consolas,monospace" font-size="12.5" fill="#1c1813">24.7136° N · 46.6753° E</text>
+<rect x="1" y="1" width="398" height="298" rx="18" fill="none" stroke="#e9e1d6" stroke-width="2"/></svg>

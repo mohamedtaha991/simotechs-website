@@ -1,0 +1,91 @@
+{
+  "name": "الذكاء المكاني",
+  "tagline": "للحلول الرقمية",
+  "full_name": "شركة الذكاء المكاني للحلول الرقمية",
+  "legal_form": "شركة ذات مسؤولية محدودة",
+  "description": "نساعد الجهات الحكومية والشركات في السعودية على حوكمة بياناتها الجيومكانية وتحليلها وتحويلها إلى تطبيقات ولوحات تدعم القرار.",
+  "footer_about": "شركة سعودية متخصصة في الذكاء المكاني، تحوّل البيانات الجيومكانية إلى معلومات وحلول رقمية تدعم التخطيط والإدارة واتخاذ القرار.",
+  "slogan": "ذكاء مكاني يصنع قرارًا أدق",
+  "email": "info@simotechs.com",
+  "phone": "0543220558",
+  "phone_intl": "+966543220558",
+  "cr": "7055496306",
+  "hours": "الأحد إلى الخميس، 8:00 صباحًا إلى 4:00 مساءً",
+  "response": "نرد على المراسلات خلال 10 أيام عمل.",
+  "offer_duration": "30 يومًا",
+  "city": "الرياض، المملكة العربية السعودية",
+  "coords": "24.7136° N · 46.6753° E",
+  "year": 2026,
+  "nav": [
+    {
+      "key": "home",
+      "label": "الرئيسية",
+      "href": "./"
+    },
+    {
+      "key": "services",
+      "label": "خدماتنا",
+      "href": "services/"
+    },
+    {
+      "key": "industries",
+      "label": "القطاعات",
+      "href": "industries/"
+    },
+    {
+      "key": "about",
+      "label": "من نحن",
+      "href": "about/"
+    },
+    {
+      "key": "contact",
+      "label": "تواصل معنا",
+      "href": "contact/"
+    }
+  ],
+  "tracks_order": [
+    "geospatial-data",
+    "consulting",
+    "gis-solutions",
+    "remote-sensing",
+    "geoai"
+  ],
+  "offers_order": [
+    "data-readiness-assessment",
+    "data-strategy-governance",
+    "spatial-prototype"
+  ],
+  "sectors": [
+    "التخطيط الحضري",
+    "الأمانات والبلديات",
+    "العقارات وإدارة الأراضي",
+    "البنية التحتية والمرافق",
+    "النقل والخدمات اللوجستية",
+    "البيئة والاستدامة",
+    "الجهات الحكومية والتحول الرقمي",
+    "الشركات والمؤسسات الكبرى"
+  ],
+  "pictures": {
+    "geospatial-data": "datacenter",
+    "gis-solutions": "city",
+    "consulting": "consulting",
+    "remote-sensing": "satellite",
+    "geoai": "geoai-lab",
+    "data-readiness-assessment": "detect",
+    "data-strategy-governance": "blueprint",
+    "spatial-prototype": "city",
+    "about": "team",
+    "services": "network",
+    "industries": "sectors",
+    "contact": "network",
+    "privacy": "blueprint",
+    "principles": "sector-gov"
+  },
+  "track_labels": {
+    "geospatial-data": "الأساس",
+    "consulting": "قبل الاستثمار",
+    "gis-solutions": "التفعيل",
+    "remote-sensing": "الرصد",
+    "geoai": "الاستخلاص"
+  }
+}

@@ -1,0 +1,103 @@
+{# الصفحة الرئيسية #}
+{% extends "base.html" %}
+{% block title %}الذكاء المكاني للحلول الرقمية | بيانات جيومكانية وتحليلات وGIS في السعودية{% endblock %}
+
+{% block main %}
+{# الهيرو: صورة على عرض الشاشة، والعنوان، ولوحة صور تتبدل (منطقها في main.js) #}
+{# شريحة لكل مسار من المسارات الخمسة، بترتيب tracks_order وصورته من site.pictures #}
+{% set slides = tracks %}
+<section class="hero">{{ m.pic("network-wide", cls="bg", lazy=false) }}
+  <div class="wrap">
+    <div>
+      <h1><span>بيانات مكانية موثوقة.</span><span>قرارات أذكى.</span></h1>
+      <p class="lead">شريكك في الذكاء المكاني: نحوّل البيانات إلى رؤى، والرؤى إلى قرارات تصنع الأثر.</p>
+      <div class="actions"><a class="btn light" href="{{ root }}services/">استعرض خدماتنا</a></div>
+    </div>
+    <div class="media" id="media" aria-roledescription="عرض صور" aria-label="خدماتنا الخمس">
+      {% for t in slides %}
+      <figure{% if loop.first %} class="on"{% endif %} aria-hidden="{{ 'false' if loop.first else 'true' }}"><a href="{{ root }}services/{{ t.slug }}/"{% if not loop.first %} tabindex="-1"{% endif %}>{{ m.pic(t.slug, lazy=not loop.first) }}<figcaption><b>{{ t.name }}</b>{{ t.card }}</figcaption></a></figure>
+      {% endfor %}
+      <button class="pause" id="pause" type="button" aria-label="إيقاف العرض"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2h3v12H4zM9 2h3v12H9z" fill="currentColor"/></svg></button>
+      <div class="dots" aria-hidden="true">{% for s in slides %}<i{% if loop.first %} class="on"{% endif %}></i>{% endfor %}</div>
+    </div>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="center"><h2>قبل الخريطة، البيانات. وقبل الذكاء، الثقة.</h2>
+  <p>نقدّم للجهات التي تملك بيانات مكانية ولا تستفيد منها كما ينبغي: بيانات موثوقة، وتحليلات واضحة المنهجية، وحلولًا رقمية تتكامل مع أنظمتها، ومشورة مستقلة.</p></div>
+  <div class="tiles3">
+    {{ m.tile("services/", "city", "خدماتنا", "خمسة مسارات تكمّل بعضها، من البيانات الموثوقة إلى القرار") }}
+    {{ m.tile("industries/", "industries", "القطاعات", "نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها") }}
+    {{ m.tile("about/", "about", "من نحن", "شركة سعودية مقرها الرياض، تحوّل البيانات المكانية إلى قرار") }}
+  </div>
+</div></section>
+
+<section class="sec soft"><div class="wrap">
+  <div class="center"><h2>خدماتنا</h2><p>خمسة مسارات متكاملة، يُنفَّذ كل منها منفردًا أو ضمن مشروع واحد.</p></div>
+  {{ m.tracks_mosaic() }}
+</div></section>
+
+<section class="sec" id="how"><div class="wrap">
+  <div class="center"><span class="eyebrow">كيف ننجز مشاريعنا</span><h2>منهجية العمل</h2>
+  <p>خمس مراحل واضحة تنقلك من فهم الوضع الحالي إلى حل يديره فريقك بنفسه.</p></div>
+  {# كل مرحلة: [العنوان، الوصف، صورة المرحلة في assets/img] #}
+  {% set method = [
+    ["التقييم", "نفهم الوضع الحالي لبياناتك وأنظمتك واحتياجك الفعلي.", "step-1"],
+    ["التصميم", "نحدد الحل ونطاقه ومعايير قبوله معك.", "step-2"],
+    ["البناء التجريبي", "نموذج أولي محدود النطاق ترى قيمته قبل أي التزام كبير.", "step-3"],
+    ["التوسيع", "ننقل الحل إلى التشغيل الفعلي بمراحل واضحة.", "step-4"],
+    ["نقل المعرفة", "نوثّق كل شيء وندرّب فريقك ليدير الحل بنفسه.", "step-5"]
+  ] %}
+  <ol class="method">
+    {% for t, d, img in method %}
+    <li><span class="n">{{ "%02d"|format(loop.index) }}</span>
+      <div class="card">{{ m.pic(img, cls="art") }}<div class="cap"><h3>{{ t }}</h3><p>{{ d }}</p></div></div></li>
+    {% endfor %}
+  </ol>
+</div></section>
+
+{# القسم الداكن: أول خمسة قطاعات من src/content/industries.json #}
+{% set sector_pics = ["sector-municipal", "sector-gov", "sector-planning", "sector-infra", "sector-land"] %}
+{# فاصل بين منهجية العمل والقطاعات: خط متدرج وفي منتصفه شعار الشركة، يقع على حد القسمين #}
+<div class="divider" aria-hidden="true"><span class="line"></span><span class="badge"><img src="{{ assets }}img/logo.svg" alt="" width="34" height="28"></span><span class="line"></span></div>
+<section class="sec soft"><div class="wrap">
+  <div class="center"><h2>نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها</h2><p>لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها في كل قطاع، وما نبدأ به عادة.</p></div>
+  <div class="mosaic dark">
+    {% for r in industries[:5] %}{{ m.tile("industries/", sector_pics[loop.index0], "", "", r.sector) }}{% endfor %}
+  </div>
+  <p class="more"><a class="btn" href="{{ root }}industries/">استعرض كل القطاعات</a></p>
+</div></section>
+
+{# لماذا نحن: مقدمة ثابتة في جانب، وست بطاقات بأيقونات في الجانب الآخر #}
+{% set icons = {
+  "data": '<ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6M5 11.5v6c0 1.4 3.1 2.5 7 2.5"/><path d="m14.5 18 2 2 3.5-4"/>',
+  "doc": '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/>',
+  "target": '<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/>',
+  "scale": '<path d="M12 4v16M8 20h8M5 7h14M12 4l-1.5 3M12 4l1.5 3"/><path d="M5 7l-2.5 6a2.5 2.5 0 0 0 5 0zM19 7l-2.5 6a2.5 2.5 0 0 0 5 0z"/>',
+  "scope": '<circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9.5 2.5h5"/>',
+  "layers": '<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>'
+} %}
+{% set why = [
+  ["data", "البيانات قبل التطبيق", "نبدأ بتقييم جودة البيانات قبل أي تطوير."],
+  ["doc", "منهجيات موثقة", "كل تحليل مرفق بمنهجية قابلة للمراجعة."],
+  ["target", "ذكاء اصطناعي بمعايير معلنة", "نحدد مقاييس القبول قبل تدريب أي نموذج."],
+  ["scale", "حياد تجاه الموردين", "نوصي بما يناسب الجهة، لا بما نعيد بيعه."],
+  ["scope", "نطاقات واضحة وقصيرة", "عروض بنطاق ثابت تبدأ بها دون التزام طويل."],
+  ["layers", "تركيز على البيانات والتطبيقات", "لا نورّد أجهزة ولا ننفّذ بنية تحتية، فتركيزنا كله على قيمة بياناتك."]
+] %}
+{# فلسفتنا: صورة خلفية على عرض الشاشة، وفوقها المقدمة وكروت زجاجية ثابتة، والخلفية تتحرك ببطء كأنها فيديو #}
+<section class="philo">{{ m.pic("principles", cls="bg") }}<div class="wrap philo-in">
+  <div class="philo-intro">
+    <h2>الفلسفة والمبادئ</h2>
+    <p class="motto">البيانات أولًا، والقرار غايتنا</p>
+    <p>نؤمن أن كل حل مكاني يبدأ ببيانات موثوقة، ويُبنى بمنهجية معلنة، ويُقاس بأثره في القرار لا بحجم ما نسلّمه.</p>
+  </div>
+  <ul class="glass">
+    {% for ic, t, d in why %}
+    <li><span class="ic"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{{ icons[ic]|safe }}</svg></span><h3>{{ t }}</h3><p>{{ d }}</p></li>
+    {% endfor %}
+  </ul>
+</div></section>
+
+{% endblock %}

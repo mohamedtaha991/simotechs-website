@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>موقع الذكاء المكاني للحلول الرقمية</title>
+<meta name="description" content="نساعد الجهات الحكومية والشركات في السعودية على حوكمة بياناتها الجيومكانية وتحليلها وتحويلها إلى تطبيقات ولوحات تدعم القرار.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Colors: close to Esri (blue #0079c1 on white, charcoal dark bands). Layout: enterprise-platform pattern (dark image hero with media panel, mega menus, image tiles with captions on the image, tabs, mosaic, one dark band, column footer). White page by brand choice; sand marks data and place, teal marks action. */
+:root{
+  color-scheme:light;
+  --bg:#ffffff;
+  --soft:#f8f8f8;
+  --ink:#151515;
+  --ink-2:#4a4a4a;
+  --line:#e0e0e0;
+  --sand:#0079c1;
+  --sand-deep:#005e95;
+  --sand-wash:#eaf4fb;
+  --teal:#0079c1;
+  --teal-deep:#005e95;
+  --teal-glow:#56c5ff;
+  --night:#151515;
+  --night-2:#202020;
+  --f-display:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --f-body:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.35;margin:0;text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:24px}
+.mono{font-family:var(--f-mono);font-size:13px;direction:ltr;unicode-bidi:isolate}
+
+/* announcement bar */
+.promo{border-bottom:1px solid var(--line);background:var(--bg)}
+.promo .wrap{display:flex;align-items:center;gap:14px;min-height:52px;font-size:15.5px;font-weight:500}
+.promo i{width:30px;height:30px;border-radius:6px;background:var(--sand-wash);display:grid;place-items:center;flex-shrink:0}
+.promo p{flex:1}
+.promo a{flex-shrink:0;font-weight:700;color:var(--teal);text-decoration:none;border:1px solid var(--teal);padding:4px 14px;border-radius:3px;font-size:14.5px}
+.promo a:hover{background:var(--teal);color:#fff}
+@media (max-width:640px){.promo i{display:none}.promo p{font-size:14px;line-height:1.5}.promo a{font-size:13.5px;padding:3px 10px}}
+
+/* header + mega menu */
+.top{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:26px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand svg{width:38px;height:38px}
+.brand b{font-weight:800;font-size:19px;line-height:1.1;display:block}
+.brand small{display:block;font-size:12px;color:var(--ink-2);line-height:1.3}
+.nav{display:flex;align-items:stretch;gap:2px;align-self:stretch}
+.nav > a,.nav > .item > button{display:flex;align-items:center;gap:6px;height:100%;padding:0 12px;font-size:16px;font-weight:500;color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.nav > .item{display:flex}
+.nav > a:hover,.nav > .item > button:hover,.nav > .item > button[aria-expanded="true"]{border-bottom-color:var(--sand)}
+.nav [aria-current="page"]{font-weight:700;border-bottom-color:var(--teal)!important}
+.nav .chev{width:10px;height:10px;transition:transform .2s}
+.nav button[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.bar .end{margin-inline-start:auto;display:flex;align-items:center;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px var(--f-body);text-decoration:none;border-radius:3px;padding:11px 22px;min-height:46px;background:var(--teal);color:#fff;border:1px solid var(--teal);cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--teal-deep)}
+.btn.line{background:transparent;color:var(--ink);border-color:#bdbdbd}
+.btn.line:hover{background:var(--soft)}
+.btn.light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn.light:hover{background:rgba(255,255,255,.12)}
+.btn.sm{min-height:40px;padding:7px 16px;font-size:15px}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:3px;width:44px;height:44px;cursor:pointer;color:var(--ink)}
+.mega{position:absolute;inset-inline:0;top:100%;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -18px rgba(21,21,21,.35);display:none}
+.mega.open{display:block}
+.mega .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:32px;padding-block:30px 34px}
+.mega h2{font-size:13.5px;font-weight:700;color:var(--sand-deep);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.mega li a{display:block;text-decoration:none;padding:8px 10px;margin-inline:-10px;border-radius:3px}
+.mega li a:hover{background:var(--soft)}
+.mega li b{display:block;font-weight:700;font-size:16px;line-height:1.5}
+.mega li span{display:block;font-size:14px;color:var(--ink-2);line-height:1.55}
+.mega .cols2{grid-column:span 2;columns:2;column-gap:32px}
+.mega .cols2 li{break-inside:avoid}
+.mega .all{display:inline-block;margin-top:10px;font-weight:700;color:var(--teal);text-decoration:none;font-size:15px}
+.mega .all:hover{text-decoration:underline}
+.feat{background:var(--soft);padding:18px;display:grid;gap:10px;align-content:start}
+.feat .k{font-size:13px;font-weight:700;color:var(--sand-deep)}
+.feat img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.feat b{font-size:17px;line-height:1.45}
+.feat p{font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.feat a.go{font-weight:700;color:var(--teal);text-decoration:none;font-size:15px}
+@media (max-width:1060px){
+  .nav{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0 16px;max-height:calc(100vh - 140px);overflow:auto;box-shadow:0 18px 30px -18px rgba(21,21,21,.35)}
+  .nav.open{display:flex}
+  .nav > a,.nav > .item > button{height:auto;padding:14px 24px;font-size:17px;border-bottom:1px solid var(--line);width:100%;justify-content:space-between;margin:0}
+  .nav > .item{flex-direction:column}
+  .mega{position:static;box-shadow:none;border:0;background:var(--soft)}
+  .mega .wrap{grid-template-columns:1fr;gap:18px;padding-block:16px 20px}
+  .mega .cols2{grid-column:auto;columns:1}
+  .feat{display:none}
+  .menu-btn{display:grid;place-items:center}
+  .bar .end .btn{display:none}
+}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(21,21,21,.94) 0%,rgba(21,21,21,.78) 42%,rgba(21,21,21,.35) 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:56px}
+.hero h1{font-size:clamp(34px,4.6vw,58px);font-weight:800;line-height:1.3}
+.hero h1 span{display:block}
+.hero h1 span + span{color:var(--teal-glow)}
+.hero p.lead{margin-top:18px;font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.82);max-width:32em}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.media{position:relative;aspect-ratio:1/1;max-height:560px;width:100%;justify-self:end;background:#000;overflow:hidden}
+.media figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1s ease}
+.media figure.on{opacity:1}
+.media img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 6s linear}
+.media figure.on img{transform:scale(1.14)}
+.media figcaption{position:absolute;inset-inline-start:18px;bottom:18px;background:rgba(21,21,21,.78);padding:10px 14px;max-width:80%;font-size:15px;line-height:1.5}
+.media figcaption b{display:block;font-size:13px;color:var(--teal-glow);font-weight:700}
+.pause{position:absolute;top:16px;inset-inline-end:16px;z-index:3;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(21,21,21,.45);color:#fff;cursor:pointer;display:grid;place-items:center}
+.pause:hover{background:rgba(21,21,21,.75)}
+.dots{position:absolute;bottom:18px;inset-inline-end:18px;z-index:3;display:flex;gap:6px}
+.dots i{width:26px;height:3px;background:rgba(255,255,255,.35)}
+.dots i.on{background:var(--teal-glow)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:44px}.media{aspect-ratio:16/10;justify-self:stretch}.hero::after{background:rgba(21,21,21,.8)}}
+@media (prefers-reduced-motion:reduce){.media img,.media figure.on img{transition:none;transform:none}.media figure{transition:none}}
+
+/* sections */
+.sec{padding-block:80px}
+.sec.soft{background:var(--soft)}
+.center{text-align:center;max-width:780px;margin:0 auto 40px}
+.center h2,.sec-head h2{font-size:clamp(27px,3.3vw,38px)}
+.center p{margin-top:12px;color:var(--ink-2);font-size:18px}
+.sec-head{display:grid;gap:12px;margin-bottom:34px;max-width:760px}
+.sec-head p{color:var(--ink-2)}
+.note{background:var(--sand-wash);border-bottom:1px solid var(--line);font-size:14.5px;color:var(--sand-deep)}
+.note .wrap{padding-block:9px}
+
+/* image tiles */
+.tiles3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tile{position:relative;display:block;overflow:hidden;background:var(--night);color:#fff;text-decoration:none;min-height:240px}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tile:hover img{transform:scale(1.05)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(21,21,21,.92) 0%,rgba(21,21,21,.55) 40%,rgba(21,21,21,0) 75%)}
+.tile .cap{position:absolute;z-index:2;inset-inline:0;bottom:0;padding:22px 22px 20px;display:grid;gap:6px}
+.tile .chip{justify-self:start;background:rgba(21,21,21,.72);border:1px solid rgba(255,255,255,.18);font-size:13px;font-weight:700;padding:2px 10px;color:#fff}
+.tile h3{font-size:21px;line-height:1.4}
+.tile p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.6}
+.tiles3 .tile{aspect-ratio:16/11}
+@media (max-width:900px){.tiles3{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
+
+/* tabs */
+.tablist{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);margin-bottom:36px}
+.tablist button{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:12px 22px;font-size:17px;font-weight:500;color:var(--ink-2);cursor:pointer;display:flex;gap:10px;align-items:baseline}
+.tablist button i{font-style:normal;font-weight:800;color:var(--sand)}
+.tablist button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--teal)}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:center}
+.panel[hidden]{display:none}
+.panel .k{display:inline-block;font-size:13.5px;font-weight:700;color:var(--sand-deep);margin-bottom:10px}
+.panel h3{font-size:clamp(24px,2.6vw,32px)}
+.panel p{margin-top:14px;color:var(--ink-2)}
+.panel ul{margin-top:16px;display:grid;gap:6px}
+.panel li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:16.5px}
+.panel li::before{content:"";width:8px;height:8px;background:var(--sand);margin-top:10px}
+.panel .go{display:inline-block;margin-top:22px}
+.panel img{width:100%;aspect-ratio:16/10;object-fit:cover}
+@media (max-width:860px){.panel{grid-template-columns:1fr;gap:24px}.panel img{order:-1}.tablist{justify-content:flex-start}.tablist button{padding:10px 14px;font-size:15.5px}}
+
+/* mosaic */
+.mosaic{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:280px 280px;gap:16px;grid-template-areas:"a b c" "a d e"}
+.mosaic .tile:nth-child(1){grid-area:a}.mosaic .tile:nth-child(2){grid-area:b}.mosaic .tile:nth-child(3){grid-area:c}.mosaic .tile:nth-child(4){grid-area:d}.mosaic .tile:nth-child(5){grid-area:e}
+.mosaic .tile:nth-child(1) h3{font-size:clamp(24px,2.4vw,30px)}
+.mosaic.dark{grid-template-areas:"a a b" "c d e"}
+@media (max-width:980px){.mosaic,.mosaic.dark{grid-template-columns:1fr 1fr;grid-template-rows:auto;grid-template-areas:"a a" "b c" "d e"}.mosaic .tile{min-height:260px}}
+@media (max-width:560px){.mosaic,.mosaic.dark{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d" "e"}}
+
+/* dark band */
+.night{background:var(--night);color:#fff}
+.night .center p{color:rgba(255,255,255,.72)}
+.night .tile::after{background:linear-gradient(to top,rgba(21,21,21,.95) 0%,rgba(21,21,21,.7) 50%,rgba(21,21,21,.35) 100%)}
+.night .tile img{opacity:.6}
+.night .more{text-align:center;margin-top:30px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s}
+.steps li{counter-increment:s;padding:18px 18px 0;border-top:3px solid var(--sand)}
+.steps li + li{border-inline-start:1px solid var(--line)}
+.steps li::before{content:counter(s);font-size:32px;font-weight:800;color:var(--sand);display:block;line-height:1.2}
+.steps b{display:block;font-size:19px;font-weight:700;margin-top:6px}
+.steps p{font-size:15.5px;color:var(--ink-2);line-height:1.75;margin-top:4px}
+.steps.long{grid-template-columns:1fr;max-width:760px}
+.steps.long li{display:grid;grid-template-columns:44px 1fr;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);border-inline-start:0}
+.steps.long li:first-child{border-top:3px solid var(--sand)}
+.steps.long li p{font-size:17px;color:var(--ink);margin:0}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}.steps li + li{border-inline-start:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 40px}
+.why b{display:block;font-size:19px;font-weight:700;padding-top:12px;border-top:2px solid var(--ink)}
+.why p{color:var(--ink-2);font-size:16px;margin-top:6px}
+@media (max-width:860px){.why{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.why{grid-template-columns:1fr}}
+
+.link{font-weight:700;color:var(--teal);text-decoration:none}
+.link:hover{text-decoration:underline}
+
+/* closing band */
+.close{background:var(--sand-wash);border-top:1px solid var(--line)}
+.close .wrap{padding-block:56px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between}
+.close h2{font-size:clamp(24px,3vw,34px)}
+.close p{color:var(--ink-2);margin-top:6px;max-width:36em}
+
+/* inner page header */
+.phead{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.phead img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7}
+.phead::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(21,21,21,.95) 0%,rgba(21,21,21,.82) 50%,rgba(21,21,21,.45) 100%)}
+.phead .wrap{position:relative;z-index:2;padding-block:54px 50px}
+.crumbs{font-size:15px;color:rgba(255,255,255,.7);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.crumbs a{color:#fff;text-decoration:none;font-weight:500;border-bottom:1px solid rgba(255,255,255,.4)}
+.crumbs a:hover{border-bottom-color:#fff}
+.phead .name{font-size:15.5px;font-weight:700;color:var(--teal-glow);margin-bottom:6px}
+.phead h1{font-size:clamp(30px,4.2vw,50px);font-weight:800;max-width:19em}
+.phead p.lead{margin-top:16px;font-size:19px;color:rgba(255,255,255,.82);max-width:40em}
+.phead .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:56px;align-items:start}
+.cols h2{font-size:25px;margin-bottom:14px}
+.cols section + section{margin-top:44px}
+.ticks li{padding:12px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:baseline}
+.ticks li:first-child{border-top:1px solid var(--line)}
+.ticks li::before{content:"";width:8px;height:8px;background:var(--sand);align-self:center}
+.side{background:var(--soft);padding:26px;display:grid;gap:24px;position:sticky;top:96px;border-top:3px solid var(--teal)}
+.side h3{font-size:15px;font-weight:700;color:var(--sand-deep);margin-bottom:8px}
+.side li{padding:5px 0;font-size:16.5px}
+.side .gain li{font-weight:700;padding:9px 0;border-bottom:1px solid var(--line)}
+.side .gain li:last-child{border-bottom:0}
+.examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.examples li{border:1px solid var(--line);border-top:3px solid var(--sand);padding:16px 18px;font-size:16.5px;background:var(--bg)}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:36px}.side{position:static}}
+
+.group{font-size:15.5px;font-weight:700;color:var(--sand-deep);margin:30px 0 8px}
+.svcs{border-top:1px solid var(--line)}
+.svcs > *{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) auto;gap:6px 24px;padding:16px 6px;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.svcs a:hover{background:var(--bg)}
+.svcs b{font-weight:700;font-size:17px}
+.svcs span{color:var(--ink-2);font-size:16px}
+.svcs i{font-style:normal;font-size:14.5px;font-weight:700;color:var(--teal);white-space:nowrap}
+@media (max-width:760px){.svcs > *{grid-template-columns:1fr}}
+
+.where{border-top:2px solid var(--ink)}
+.where a{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:6px 24px;padding:16px 6px;border-bottom:1px solid var(--line);text-decoration:none}
+.where a:hover{background:var(--soft)}
+.where b{font-weight:500;font-size:18px}
+.where span{color:var(--teal);font-weight:700}
+@media (max-width:640px){.where a{grid-template-columns:1fr}}
+
+.ind{border-top:2px solid var(--ink)}
+.ind li{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1.3fr);gap:8px 28px;padding:20px 6px;border-bottom:1px solid var(--line)}
+.ind b{font-size:19px;font-weight:700;line-height:1.5}
+.ind p{font-size:16.5px;color:var(--ink-2)}
+.ind em{font-style:normal;display:block;font-size:13.5px;font-weight:700;color:var(--sand-deep)}
+.ind p + p{color:var(--ink)}
+@media (max-width:820px){.ind li{grid-template-columns:1fr}}
+
+.values{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:3px solid var(--sand)}
+.values li{padding:18px 16px}
+.values li + li{border-inline-start:1px solid var(--line)}
+.values b{display:block;font-size:21px;font-weight:800}
+.values p{font-size:15.5px;color:var(--ink-2);margin-top:4px;line-height:1.7}
+@media (max-width:900px){.values{grid-template-columns:1fr 1fr}.values li{border-bottom:1px solid var(--line)}.values li + li{border-inline-start:0}}
+.vm{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vm div{padding:28px;background:var(--bg);border-top:3px solid var(--teal)}
+.vm h3{font-size:15px;font-weight:700;color:var(--sand-deep)}
+.vm p{font-size:21px;line-height:1.7;margin-top:8px;font-weight:500}
+@media (max-width:700px){.vm{grid-template-columns:1fr}}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.split h2{font-size:clamp(26px,3.2vw,36px)}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:28px}}
+.prose{max-width:44em}
+.prose p + p{margin-top:16px}
+.prose p{color:var(--ink-2);font-size:18px}
+.three li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.three li:first-child{border-top:3px solid var(--sand)}
+.three b{font-size:22px;font-weight:800;color:var(--teal)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:start}
+form{display:grid;gap:16px;border:1px solid var(--line);border-top:3px solid var(--teal);padding:28px;background:var(--bg)}
+label{display:grid;gap:6px;font-size:15.5px;font-weight:700}
+label small{font-weight:400;color:var(--ink-2)}
+input[type=text],select,textarea{font:inherit;font-size:16.5px;color:var(--ink);background:var(--bg);border:1px solid #bdbdbd;border-radius:3px;padding:11px 13px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:15px;color:var(--ink-2)}
+.consent input{margin-top:7px;width:17px;height:17px;accent-color:var(--teal)}
+.msg{font-size:15.5px;padding:12px 14px;background:var(--sand-wash);color:var(--sand-deep)}
+.msg.err{background:#fbeaea;color:#8f2a2a}
+.aside{display:grid;gap:22px}
+.aside div{border-top:3px solid var(--sand);padding-top:14px}
+.aside h3{font-size:15px;font-weight:700;color:var(--sand-deep)}
+.aside p{margin-top:6px;font-size:17px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+.policy{max-width:46em;counter-reset:p}
+.policy li{counter-increment:p;padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:36px 1fr;gap:6px}
+.policy li::before{content:counter(p);color:var(--sand);font-size:21px;font-weight:800}
+.policy b{display:block;font-size:18px}
+.policy p{color:var(--ink-2);font-size:17px}
+
+/* footer */
+footer{background:var(--bg);font-size:15.5px;position:relative}
+footer::before{content:"";display:block;height:4px;background:linear-gradient(to left,#0079c1,#56c5ff)}
+.foot{display:grid;grid-template-columns:1.3fr repeat(4,minmax(0,1fr));gap:36px;padding-block:52px 36px}
+.foot .mark{display:grid;gap:14px;align-content:start}
+.foot .mark svg{width:64px;height:64px}
+.foot .mark b{font-size:20px;font-weight:800;line-height:1.3}
+.foot .mark p{color:var(--ink-2);font-size:15px}
+.foot h3{font-size:15px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.foot li{padding:4px 0;line-height:1.5}
+.foot a{text-decoration:none;color:var(--ink-2)}
+.foot a:hover{color:var(--ink);text-decoration:underline}
+.legal{border-top:1px solid var(--line)}
+.legal .wrap{padding-block:18px;color:var(--ink-2);font-size:14.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.legal a{color:var(--ink-2);text-decoration:none}
+.legal a:hover{text-decoration:underline}
+@media (max-width:980px){.foot{grid-template-columns:1fr 1fr}.foot .mark{grid-column:1/-1}}
+@media (max-width:520px){.foot{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="promo" aria-label="إعلان">
+  <div class="wrap">
+    <i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#0079c1" stroke-width="1.6"/><circle cx="9" cy="9" r="3" stroke="#56c5ff" stroke-width="1.6"/><circle cx="9" cy="9" r="1" fill="#0079c1"/></svg></i>
+    <p>ابدأ بتقييم جاهزية بياناتك المكانية: نطاق ثابت، ومؤشرات بالأرقام، وخطة تحسين مرتبة.</p>
+    <a href="#data-readiness-assessment">اطلب تقييمًا أوليًا</a>
+  </div>
+</aside>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="الذكاء المكاني، الصفحة الرئيسية">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#b8814a" stroke-width="1.6"/>
+        <path d="M5 23c5-4 10-4 15 0s10 4 15 0" stroke="#b8814a" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M8 29c4-3 8-3 12 0s8 3 12 0" stroke="#b8814a" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+        <circle cx="20" cy="13" r="3.4" fill="#1d6b73"/>
+        <path d="M20 13 11 17M20 13l9 4" stroke="#1d6b73" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span><b>الذكاء المكاني</b><small>للحلول الرقمية</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية"></nav>
+    <div class="end">
+      <a class="btn sm" href="#contact">احجز استشارة أولية</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="mark">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#b8814a" stroke-width="1.4"/>
+        <path d="M5 23c5-4 10-4 15 0s10 4 15 0" stroke="#b8814a" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M8 29c4-3 8-3 12 0s8 3 12 0" stroke="#b8814a" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        <circle cx="20" cy="13" r="3.4" fill="#1d6b73"/>
+        <path d="M20 13 11 17M20 13l9 4" stroke="#1d6b73" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <b>ذكاء مكاني يصنع قرارًا أدق</b>
+      <p>شركة سعودية متخصصة في الذكاء المكاني، تحوّل البيانات الجيومكانية إلى معلومات وحلول رقمية تدعم التخطيط والإدارة واتخاذ القرار.</p>
+    </div>
+    <div><h3>المسارات</h3><ul id="footTracks"></ul></div>
+    <div><h3>عروض البداية</h3><ul id="footOffers"></ul></div>
+    <div><h3>الشركة</h3><ul>
+      <li><a href="#about">من نحن</a></li><li><a href="#industries">القطاعات</a></li>
+      <li><a href="#services">خدماتنا</a></li><li><a href="#contact">تواصل معنا</a></li></ul></div>
+    <div><h3>التواصل</h3><ul><li>الرياض، المملكة العربية السعودية</li><li class="mono">24.7136° N · 46.6753° E</li><li><a href="#contact">احجز استشارة أولية</a></li></ul></div>
+  </div>
+  <div class="legal"><div class="wrap">
+    <span>© 2026 شركة الذكاء المكاني للحلول الرقمية، شركة ذات مسؤولية محدودة</span>
+    <span><a href="#privacy">سياسة الخصوصية</a></span>
+  </div></div>
+</footer>
+
+<script>
+const D={"tracks": [{"slug": "geospatial-data", "name": "البيانات الجيومكانية المؤسسية", "seo": "إدارة وحوكمة البيانات الجيومكانية المؤسسية | الذكاء المكاني", "title": "بيانات مكانية يمكن الاعتماد عليها", "intro": "نبني الأساس الذي تقوم عليه كل حلول الذكاء المكاني: بيانات موثوقة ومحوكمة ومصممة جيدًا. فتقل الأخطاء والازدواجية، وتصبح القرارات المبنية عليها أدق وأسرع. ونسلّم النتائج مع وثائق ومؤشرات تتابعها الجهة بنفسها.", "benefits": ["بيانات أعلى موثوقية", "تكرار وتعارض أقل", "بيئة جاهزة للذكاء الاصطناعي"], "outputs": ["استراتيجيات وسياسات", "نماذج وقواعد بيانات", "خطوط معالجة مؤتمتة", "تقارير جودة", "منتجات تحليلية"], "examples": ["تقييم جودة بيانات أراضٍ متعددة المصادر", "إطار حوكمة بيانات مكانية بين عدة إدارات", "ترحيل قاعدة بيانات جيومكانية قديمة"], "cta": "اطلب تقييم جودة أولي لبياناتك", "gate": false, "services": [{"name": "استراتيجية البيانات الجيومكانية", "desc": "نبني استراتيجية بيانات جيومكانية بخارطة طريق ومؤشرات نجاح تربط بياناتك المكانية بأهداف الجهة وأولوياتها.", "slug": "geospatial-data-strategy", "group": "الاستراتيجية والحوكمة"}, {"name": "السياسات والمعايير والإجراءات", "desc": "سياسات ومعايير وأدلة تشغيل تنظّم إنتاج البيانات الجيومكانية وتبادلها وتضمن اتساقها بين الإدارات.", "slug": "data-policies-standards", "group": "الاستراتيجية والحوكمة"}, {"name": "أطر الحوكمة والبيانات الرئيسية والمرجعية", "desc": "نصمم أطر حوكمة تحدد الملكية والأدوار والوصول وتؤسس مرجعًا مكانيًا موحدًا ومعتمدًا.", "slug": "data-governance-frameworks", "group": "الاستراتيجية والحوكمة"}, {"name": "تصميم قواعد البيانات ونماذج البيانات الجيومكانية", "desc": "نصمم قواعد بيانات جيومكانية مؤسسية ونماذج بيانات 2D و3D قابلة للتوسع تدعم تطبيقاتك وتحليلاتك.", "slug": "geospatial-database-design", "group": "التصميم والبنية المؤسسية"}, {"name": "تصميم مستودعات البيانات الجيومكانية والبنية المرجعية", "desc": "نصمم مستودعات بيانات وبنية مرجعية تجمع مصادر الجهة في طبقة موحدة جاهزة للتحليل والتطبيقات.", "slug": "geospatial-data-warehouse", "group": "التصميم والبنية المؤسسية"}, {"name": "تصميم معمارية حلول GIS والتكامل", "desc": "نصمم معمارية حلول GIS وتكاملها وننتج مواصفات البيئات التشغيلية بوضوح لتتعاقد بثقة وتتجنب إعادة العمل.", "slug": "gis-solution-architecture", "group": "التصميم والبنية المؤسسية"}, {"name": "تحويل وترحيل البيانات الجيومكانية", "desc": "نحوّل ونرحّل بياناتك الجيومكانية بين الصيغ والمراجع والأنظمة بدقة موثقة ودون فقد للمعلومات.", "slug": "data-conversion-migration", "group": "التكامل والترحيل"}, {"name": "أتمتة عمليات ETL/ELT والمعالجة وتحديث البيانات", "desc": "نؤتمت استخراج البيانات الجيومكانية وتحويلها وتحميلها بخطوط موثقة تُبقي بياناتك محدثة دون تدخل يدوي.", "slug": "geospatial-etl-automation", "group": "التكامل والترحيل"}, {"name": "خدمات تبادل البيانات وواجهات API الجيومكانية", "desc": "نطوّر واجهات API وخدمات تبادل بيانات جيومكانية آمنة بمعايير مفتوحة وصلاحيات وسجل استخدام واضح.", "slug": "geospatial-apis-data-services", "group": "التكامل والترحيل"}, {"name": "تقييم جودة البيانات الجيومكانية والمؤشرات", "desc": "نقيس جودة بياناتك الجيومكانية بدقة واكتمال واتساق وحداثة ونقدّم مؤشرات وخطة تحسين مرتبة بالأولوية.", "slug": "data-quality-assessment", "group": "ضبط الجودة والتحديث"}, {"name": "قواعد الفحص والتحقق الآلي ومعالجة الأخطاء", "desc": "قواعد فحص آلية تكتشف الأخطاء الطوبولوجية والتكرار والتعارض مبكرًا وتعالجها لتبقى بياناتك نظيفة.", "slug": "automated-data-validation", "group": "ضبط الجودة والتحديث"}, {"name": "التحديث وإدارة الإصدارات والتغيير وأطر ضمان الجودة", "desc": "ننظّم تحديث البيانات وإصداراتها وتتبع التغييرات ونضع أطر ضمان جودة دائمة تبقي بياناتك قابلة للتدقيق.", "slug": "data-update-versioning-qa", "group": "ضبط الجودة والتحديث"}, {"name": "التحليل المكاني والعمراني وتحليل الشبكات وإمكانية الوصول", "desc": "تحليل مكاني وعمراني وشبكي يقيس إمكانية الوصول ويكشف فجوات الخدمات ويوجّه قرارات المواقع بالأدلة.", "slug": "spatial-urban-network-analysis", "group": "التحليلات الجيومكانية"}, {"name": "التحليل البيئي والسكاني والاقتصادي المكاني", "desc": "نربط البيانات البيئية والسكانية والاقتصادية في تحليل مكاني واحد يدعم السياسات والاستثمار والتخطيط.", "slug": "environmental-demographic-analysis", "group": "التحليلات الجيومكانية"}, {"name": "تحليل الملاءمة والتحليل متعدد المعايير والمحاكاة المكانية", "desc": "مفاضلة شفافة بين المواقع والبدائل عبر تحليل الملاءمة متعدد المعايير ونماذج المحاكاة المكانية.", "slug": "suitability-multicriteria-modeling", "group": "التحليلات الجيومكانية"}, {"name": "التحليل الإحصائي الجغرافي والمكاني الزماني", "desc": "تحليلات إحصائية مكانية وزمانية تكشف البؤر والاتجاهات وتقيس الأثر.", "slug": null, "group": "التحليلات الجيومكانية"}, {"name": "تطوير المؤشرات والمنتجات التحليلية الجيومكانية", "desc": "نصمم مؤشرات ومنتجات تحليلية مكانية معتمدة ومتجددة التحديث تقيس الأداء وتدعم القرار عبر الزمن.", "slug": "geospatial-indicators-products", "group": "التحليلات الجيومكانية"}], "card": "استراتيجية وحوكمة وتصميم وجودة وتحليل: الأساس الذي تقوم عليه كل الحلول المكانية."}, {"slug": "consulting", "name": "الاستشارات والتحول الرقمي", "seo": "الاستشارات الجيومكانية واستشارات البيانات والتحول الرقمي | الذكاء المكاني", "title": "قرار مدروس قبل الإنفاق", "intro": "نقدم رأيًا مستقلًا يسبق الاستثمار: نقيّم الوضع، ونحدد المتطلبات، ونبني الجدوى والمواصفات، ثم نتابع التنفيذ فنيًا. ونرتب التوصيات حسب الأولوية والأثر لتسهل متابعتها.", "benefits": ["قرارات مدروسة قبل الإنفاق", "توصيات محايدة تجاه الموردين", "تنفيذ مضبوط"], "outputs": ["دراسات وتقارير", "خرائط طريق", "وثائق متطلبات", "كراسات شروط ومواصفات"], "examples": ["تقييم نضج GIS لجهة", "إعداد كراسة مواصفات لمنصة جيومكانية", "إدارة فنية لمشروع ترحيل بيانات"], "cta": "احجز استشارة أولية", "gate": false, "services": [{"name": "الاستشارات الجيومكانية واستشارات GIS المؤسسية", "desc": "استشارات مستقلة تقيّم قدراتك وتقارن الخيارات وتضع مسارًا عمليًا يربط الاستثمار بالنتائج.", "slug": "geospatial-enterprise-gis-consulting", "group": null}, {"name": "المراجعة المستقلة للبيانات والبنية والتشغيل البيني", "desc": "مراجعة فنية محايدة لقواعد بياناتك ومعماريتك وتكاملك تكشف المخاطر قبل الاعتماد أو بعد التسليم.", "slug": "independent-data-architecture-advisory", "group": null}, {"name": "استشارات التحول الرقمي", "desc": "نصمم مسار تحول رقمي مرتكز على البيانات المكانية، بأولويات ومبادرات وحوكمة واضحة الأثر والتكلفة.", "slug": "digital-transformation-advisory", "group": null}, {"name": "تحليل الأعمال وإدارة المتطلبات", "desc": "نحوّل احتياجات الأعمال إلى متطلبات واضحة قابلة للتتبع والاختبار لتبني الجهة ما تحتاجه فعلًا.", "slug": "business-analysis-requirements", "group": null}, {"name": "إعادة هندسة الإجراءات", "desc": "نعيد تصميم الإجراءات لإزالة الخطوات الزائدة ونقيس الأثر على الزمن والجهد والجودة.", "slug": null, "group": null}, {"name": "دراسات الجدوى التقنية", "desc": "دراسات جدوى تقنية تقارن البدائل وتقدّر التكلفة والعائد والمخاطر لقرار استثماري مبرر قبل التنفيذ.", "slug": "technical-feasibility-studies", "group": null}, {"name": "المواصفات الفنية ونطاقات العمل وطلبات تقديم العروض", "desc": "نعدّ مواصفات فنية ونطاقات عمل وكراسات شروط واضحة بمعايير تقييم عادلة لمشاريعك الجيومكانية والرقمية.", "slug": "technical-specifications-rfp", "group": null}, {"name": "إدارة المشاريع والإشراف الفني", "desc": "ندير مشاريعك الجيومكانية ونشرف فنيًا على الموردين لتسليم بالجودة والوقت والميزانية.", "slug": null, "group": null}], "card": "رأي مستقل ووثائق قرار واضحة: جدوى، ومتطلبات، ومواصفات فنية."}, {"slug": "gis-solutions", "name": "نظم المعلومات الجيومكانية والحلول الرقمية", "seo": "تطبيقات وحلول GIS ولوحات المعلومات المكانية | الذكاء المكاني", "title": "البيانات المكانية في يد من يحتاجها", "intro": "نحوّل البيانات المكانية إلى تطبيقات ومنصات ولوحات يستخدمها الموظف وصاحب القرار يوميًا. نحلل سير العمل، ونصمم الحل حسب احتياج الجهة، ونربطه بأنظمتها القائمة، دون ارتباط بمنتج واحد.", "benefits": ["بيانات مكانية مستخدمة في العمل اليومي", "اعتماد أقل على الملفات والخرائط الورقية", "رؤية موحدة للأصول والخدمات"], "outputs": ["تطبيقات ومنصات", "وثائق تصميم ومعمارية", "لوحات معلومات", "واجهات تكامل", "أدلة استخدام"], "examples": ["بوابة خدمات مكانية لجهة بلدية", "تطبيق ميداني لجرد الأصول", "لوحة تنفيذية لمتابعة مؤشرات مكانية"], "cta": "اطلب نموذجًا أوليًا على بياناتك", "gate": false, "services": [{"name": "تطبيقات الويب الجيومكانية", "desc": "نصمم ونطوّر تطبيقات Web GIS آمنة تحوّل بياناتك المكانية إلى أدوات عمل يومية لفرق الجهة وقياداتها.", "slug": "web-gis-applications", "group": null}, {"name": "تطبيقات GIS للأجهزة الذكية والعمل الميداني", "desc": "تطبيقات ميدانية لجمع البيانات المكانية وتحديثها دون اتصال ومزامنتها مع قاعدة بيانات الجهة.", "slug": null, "group": null}, {"name": "المنصات والبوابات الجيومكانية المؤسسية", "desc": "بوابات ومنصات جيومكانية بصلاحيات وحوكمة واضحة توحّد الوصول إلى بيانات الجهة وخرائطها وخدماتها.", "slug": null, "group": null}, {"name": "الخرائط التفاعلية ولوحات المعلومات المكانية", "desc": "لوحات معلومات وخرائط تفاعلية تعرض الأداء والمخاطر مكانيًا لصاحب القرار. حوّل مؤشراتك إلى رؤية موحدة ومحدثة.", "slug": "interactive-maps-dashboards", "group": null}, {"name": "حلول إدارة الأصول والمرافق المكانية", "desc": "حلول تربط موقع الأصل بحالته وصيانته وتكلفته لتخطيط أفضل وصيانة وقائية.", "slug": null, "group": null}, {"name": "حلول التخطيط الحضري وإدارة الأراضي", "desc": "حلول رقمية مكانية لدراسة الطلبات وتتبع الاستعمالات والملكيات وقراءة النمو العمراني.", "slug": null, "group": null}, {"name": "حلول التتبع والمراقبة المكانية", "desc": "تتبع لحظي للمركبات والفرق بتنبيهات جغرافية وتقارير أداء تدعم القرار التشغيلي.", "slug": null, "group": null}, {"name": "تكامل حلول GIS مع الأنظمة المؤسسية", "desc": "ندمج الخرائط والبيانات المكانية في أنظمتك المؤسسية ليظهر الموقع داخل سير العمل اليومي دون ازدواجية بيانات.", "slug": "gis-enterprise-integration", "group": null}, {"name": "التوأم الرقمي والنماذج ثلاثية الأبعاد", "desc": "توأم رقمي ونماذج 3D تربط الواقع المكاني بالبيانات التشغيلية وتتيح اختبار السيناريوهات قبل التنفيذ.", "slug": null, "group": null}], "card": "تطبيقات ولوحات تضع البيانات المكانية في يد فرق العمل وصنّاع القرار."}, {"slug": "remote-sensing", "name": "الاستشعار عن بعد والخدمات الفضائية", "seo": "الاستشعار عن بعد وتحليل صور الأقمار الصناعية | الذكاء المكاني", "title": "ما الذي تغيّر على الأرض؟", "intro": "نستخلص معلومات قابلة للقياس من صور الأقمار الصناعية. تحصل الجهة على خرائط وتقارير دورية تغطي مساحات واسعة بتكلفة أقل من الرصد الميداني، ومنهجية موثقة تجعل النتائج قابلة للمقارنة عبر السنوات.", "benefits": ["رصد دوري واسع التغطية", "كشف مبكر للتغيرات", "خرائط مرجعية موثقة المنهجية"], "outputs": ["خرائط تصنيف", "تقارير تغير", "طبقات مؤشرات", "منهجيات موثقة"], "examples": ["رصد التمدد العمراني سنويًا", "تقدير الغطاء النباتي لموقع", "تحديد مناطق التأثر بالسيول"], "cta": "اطلب مشروع رصد تجريبي", "gate": true, "services": [{"name": "معالجة صور الأقمار الصناعية وتجهيز المنتجات", "desc": "نحوّل الصور الخام إلى منتجات متسقة وجاهزة للتحليل والرصد بجودة موثقة.", "slug": null, "group": null}, {"name": "تصنيف الغطاء الأرضي واستخدامات الأراضي", "desc": "خرائط غطاء أرضي واستخدامات أراضٍ من الصور الفضائية بمنهجية موثقة ودقة قابلة للتحقق.", "slug": "land-cover-land-use-classification", "group": null}, {"name": "رصد التغيرات العمرانية والبيئية", "desc": "رصد دوري للتغيرات العمرانية والبيئية من الصور الفضائية مع خرائط تغير وتنبيهات وتقارير موثقة.", "slug": "change-monitoring", "group": null}, {"name": "المؤشرات الطيفية وتحليل المخاطر الطبيعية والبيئية", "desc": "مؤشرات بيئية من الصور الفضائية وتقييم للمخاطر الطبيعية يدعم الاستدامة والاستجابة.", "slug": null, "group": null}, {"name": "إنتاج الخرائط التحليلية ودمجها بقواعد البيانات", "desc": "ننتج منتجات خرائطية من الصور الفضائية وندخلها في قواعد بياناتك لتستخدمها فرقك يوميًا.", "slug": null, "group": null}], "card": "معلومات قابلة للقياس من صور الأقمار الصناعية: غطاء الأرض والتغير العمراني والبيئي."}, {"slug": "geoai", "name": "الذكاء الاصطناعي والتحليلات المتقدمة", "seo": "الذكاء الاصطناعي المكاني GeoAI | الذكاء المكاني", "title": "ذكاء اصطناعي تقيس نتائجه", "intro": "نطبّق التعلم الآلي والعميق على البيانات والصور المكانية لاكتشاف المعالم والتغيرات والتنبؤ بالأنماط. نبدأ بحالة استخدام محددة ومعيار دقة واضح، ونحدد حدود كل نموذج وآلية مراجعته البشرية.", "benefits": ["جهد يدوي أقل", "أنماط يصعب رصدها يدويًا", "قرار استباقي"], "outputs": ["نماذج مدربة", "تقارير دقة", "واجهات استخدام", "وثائق نموذج"], "examples": ["اكتشاف المباني غير المرخصة آليًا", "توقع مواقع الأعطال في الشبكات", "مساعد للاستعلام المكاني بالعربية"], "cta": "ناقش حالة استخدام GeoAI", "gate": false, "services": [{"name": "تطوير نماذج GeoAI", "desc": "نماذج تعلم آلي وعميق مخصصة للبيانات الجيومكانية، مختبرة وموثقة وقابلة للنشر.", "slug": null, "group": null}, {"name": "اكتشاف وتصنيف المعالم من الصور", "desc": "نستخرج المباني والطرق والمنشآت من الصور الجوية والفضائية بنماذج رؤية حاسوبية ودقة موثقة.", "slug": null, "group": null}, {"name": "الكشف الآلي عن التغيرات المكانية", "desc": "نماذج تكتشف التغيرات تلقائيًا وتوجّه الرقابة إلى المواقع الأعلى أولوية.", "slug": null, "group": null}, {"name": "التحليلات التنبؤية المكانية", "desc": "نماذج تنبؤ تقدّر الطلب والمخاطر والنمو بدقة قابلة للقياس لتخطيط استباقي للموارد.", "slug": null, "group": null}, {"name": "المساعدات والوكلاء الذكيون الجيومكانيون", "desc": "مساعدون يجيبون بالعربية عن أسئلة مكانية وينفذون التحليل على بيانات جهتك بضوابط وصول واضحة.", "slug": null, "group": null}, {"name": "أتمتة معالجة البيانات المكانية بالذكاء الاصطناعي", "desc": "نؤتمت مطابقة العناوين وتصنيف الطبقات وكشف الشذوذ ليتفرغ محللوك للعمل ذي القيمة.", "slug": null, "group": null}, {"name": "GeoAI للتخطيط الحضري والأراضي والأصول", "desc": "حلول لرصد المخالفات وتقدير الصيانة وتحليل الطلب في التخطيط الحضري والأصول.", "slug": null, "group": null}, {"name": "حلول دعم القرار المكاني الذكي", "desc": "أنظمة تقارن البدائل والمخاطر وتُظهر مبررات التوصية بشفافية لصاحب القرار.", "slug": null, "group": null}], "card": "نماذج GeoAI لحالات استخدام محددة بمعايير دقة تُتفق عليها قبل البدء."}], "offers": [{"slug": "data-readiness-assessment", "name": "تقييم جاهزية البيانات المكانية وجودتها", "seo": "تقييم جاهزية وجودة البيانات المكانية | الذكاء المكاني", "title": "قبل أن تبني على بياناتك، اعرف حالتها", "intro": "أغلب مشاريع المنصات واللوحات والذكاء الاصطناعي تتعثر بسبب البيانات لا التقنية. هذا التقييم يقيس جودة بياناتك بمنهجية موثقة، ويخبرك أين تضع جهد التحسين أولًا.", "fitTitle": "مناسب لك إذا", "fit": ["تستعد لإطلاق خدمة إلكترونية أو منصة تعتمد على بيانات مكانية.", "سترحّل بياناتك إلى نظام جديد.", "تسمع شكاوى متكررة من أخطاء أو تضارب في الطبقات."], "steps": ["نحدد معك مجموعات البيانات المشمولة وأبعاد الجودة وقواعد القياس.", "نأخذ عينات وننفذ فحوصًا مكانية ووصفية وزمنية.", "نقارن البيانات بمصادر مرجعية حيث تتوفر.", "نحسب المؤشرات ونحلل أسباب الفجوات.", "نعرض النتائج وخطة التحسين على فريقك."], "receive": ["تقرير تقييم الجودة", "مؤشرات ولوحة جودة", "سجل المشكلات", "خطة تحسين مرتبة بالأولوية", "منهجية قياس تعيد تطبيقها بنفسك"], "cta": "اطلب تقييمًا أوليًا", "short": "تقييم جاهزية البيانات وجودتها", "card": "اعرف أين تقف بياناتك المكانية: دقة واكتمال واتساق وحداثة، مع خطة تحسين مرتبة."}, {"slug": "data-strategy-governance", "name": "استراتيجية وحوكمة البيانات المكانية", "seo": "استراتيجية وحوكمة البيانات الجيومكانية | الذكاء المكاني", "title": "من يملك البيانات؟ وما النسخة المعتمدة؟", "intro": "حين تنتج عدة إدارات طبقات مكانية دون مرجعية واحدة، تتكرر الجهود وتتعارض الأرقام. نبني معك استراتيجية تحدد الأولويات، وإطار حوكمة يحدد من يملك كل مجموعة بيانات ومن يحدّثها ومن يصل إليها.", "fitTitle": "مناسب لك إذا", "fit": ["لديك أكثر من إدارة تنتج أو تستخدم بيانات مكانية.", "تخطط لاستثمارات في منصات أو ذكاء اصطناعي وتريد أساسًا واضحًا.", "تحتاج مواءمة بياناتك مع المتطلبات والمعايير الوطنية."], "steps": ["نقيّم حالة البيانات والنضج الحالي وفجوات الاستخدام.", "نعقد ورش عمل مع الإدارات المعنية.", "نحدد البيانات الأساسية وملّاكها والأدوار وسياسات الوصول.", "نصمم خارطة الطريق والمبادرات ومؤشرات النجاح.", "نعرض الاستراتيجية والإطار على القيادة للاعتماد."], "receive": ["وثيقة الاستراتيجية", "تقييم النضج", "خارطة الطريق والمبادرات", "إطار الحوكمة ومصفوفة الأدوار", "سياسة تصنيف الوصول", "مؤشرات الأداء", "عرض تنفيذي للقيادة"], "cta": "اطلب تقييم النضج", "short": "استراتيجية وحوكمة البيانات", "card": "خارطة طريق تربط بياناتك بأهداف الجهة، وإطار يحدد الملكية والأدوار والوصول."}, {"slug": "spatial-prototype", "name": "نموذج أولي لتطبيق أو لوحة مكانية", "seo": "نموذج أولي لتطبيق GIS أو لوحة معلومات مكانية | الذكاء المكاني", "title": "شاهد القيمة على بياناتك أولًا", "intro": "بدل مشروع طويل بنتائج غير مؤكدة، نبني نموذجًا أوليًا محدود النطاق يجيب عن سؤال عمل واحد. تراه يعمل، ويجربه فريقك، ثم تقرر التوسع على أساس ما رأيت.", "fitTitle": "أمثلة على النماذج الأولية", "fit": ["لوحة تتابع البلاغات وزمن الاستجابة حسب الحي.", "تطبيق ويب لعرض الأراضي والاستعمالات والاستعلام عن الاشتراطات.", "لوحة متابعة مشاريع تنموية مكانيًا وزمنيًا."], "steps": ["نحدد معك سؤال القرار والمؤشرات والمستخدمين.", "نجهّز البيانات اللازمة ونصمم نموذجها.", "نبني التطبيق أو اللوحة ونعرض النسخة الأولى.", "نجربه مع المستخدمين ونعدّل.", "نسلّمك النموذج وتوصيات التوسع."], "receive": ["نموذج أولي يعمل على بياناتك", "قاموس المؤشرات", "وثائق الربط والتحديث", "توصيات الانتقال إلى النسخة الكاملة"], "cta": "اطلب نموذجًا أوليًا", "short": "نموذج أولي لتطبيق أو لوحة مكانية", "card": "تطبيق ويب أو لوحة معلومات تعمل على بياناتك الفعلية خلال أسابيع، لتختبر القيمة قبل التوسع."}], "services": [{"slug": "web-gis-applications", "name": "تطبيقات الويب الجيومكانية", "seo": "تطوير تطبيقات الويب الجيومكانية Web GIS | الذكاء المكاني", "intro": "تطبيق ويب يضع الخريطة والبيانات المكانية في متناول موظفيك من المتصفح مباشرة. نبدأ من سير العمل الفعلي، لا من الأداة.", "offer": ["تحليل الاحتياجات وسير العمل وتصميم تجربة المستخدم", "واجهات خرائط مع أدوات البحث والاستعلام والقياس والطباعة", "أدوات تحرير وإدارة طبقات حسب الصلاحيات", "ربط التطبيق بخدمات الخرائط والبيانات المؤسسية", "اختبار الأداء والأمان، والتدريب على الاستخدام"], "benefits": ["وصول أسرع إلى المعلومة المكانية", "مصدر واحد للحقيقة المكانية داخل الجهة", "عمل ميداني ومكتبي أكفأ"], "outputs": ["تطبيق مختبَر", "وثيقة المتطلبات والتصميم", "الكود المصدري ووثائقه", "دليل المستخدم والمشرف"], "examples": ["بوابة خرائط لطلبات الخدمات البلدية تتابع حالة كل طلب", "تطبيق لعرض الأراضي والاستعمالات والاستعلام عن الاشتراطات"], "cta": "احجز جلسة تحليل احتياجات", "track": "gis-solutions"}, {"slug": "interactive-maps-dashboards", "name": "الخرائط التفاعلية ولوحات المعلومات المكانية", "seo": "الخرائط التفاعلية ولوحات المعلومات المكانية | الذكاء المكاني", "intro": "لوحة واحدة تجيب عن أسئلة القرار بخريطة وأرقام محدثة تلقائيًا، بدل تقارير دورية تُجمع يدويًا.", "offer": ["تحديد المؤشرات وأسئلة القرار مع أصحاب المصلحة", "تصميم نموذج البيانات الذي يغذي اللوحة وربط مصادرها وتحديثها آليًا", "تصميم التمثيل البصري والخرائط", "لوحات للقيادات وأخرى للمشغلين، ونسخ للجمهور عند الحاجة", "التحقق من صحة المؤشرات واختبار الأداء"], "benefits": ["قرار أسرع مبني على بيانات محدثة", "مصدر واحد للأرقام المكانية", "جهد أقل في إعداد التقارير"], "outputs": ["لوحات معلومات مكانية", "قاموس المؤشرات", "خرائط تفاعلية منشورة", "وثائق الربط والتحديث", "دليل المستخدم"], "examples": ["لوحة قيادة تتابع البلاغات وزمن الاستجابة حسب الحي", "لوحة متابعة مشاريع تنموية مكانيًا وزمنيًا"], "cta": "اطلب لوحة تجريبية", "track": "gis-solutions"}, {"slug": "gis-enterprise-integration", "name": "تكامل حلول GIS مع الأنظمة المؤسسية", "seo": "تكامل نظم المعلومات الجغرافية مع الأنظمة المؤسسية | الذكاء المكاني", "intro": "بدل أن ينتقل الموظف بين نظام الصيانة والخريطة، نضع الموقع داخل النظام الذي يعمل عليه. ونوحّد المعرّفات بين الأنظمة حتى لا تُدخل البيانات مرتين.", "offer": ["حصر الأنظمة وسيناريوهات التكامل ونقاط الألم", "تصميم نمط التكامل المناسب", "تطوير موصلات ومكونات خرائط مضمّنة", "مواءمة المعرّفات والمفاتيح المشتركة بين الأنظمة", "اختبار التكامل وسيناريوهات الأعطال، والدعم في الفترة التجريبية"], "benefits": ["لا ازدواجية في الإدخال", "اتساق أعلى بين الأنظمة", "استفادة أكبر من بياناتك المكانية الحالية"], "outputs": ["مكونات وموصلات تكامل", "وثيقة تصميم التكامل", "جدول مواءمة المعرّفات", "تقرير الاختبار", "دليل التشغيل"], "examples": ["عرض موقع طلب الصيانة داخل نظام الصيانة مع الأصول المحيطة", "ربط نظام التراخيص بخريطة الاشتراطات للتحقق التلقائي"], "cta": "احجز مراجعة للتكامل", "track": "gis-solutions"}, {"slug": "geospatial-data-strategy", "name": "استراتيجية البيانات الجيومكانية", "seo": "استراتيجية البيانات الجيومكانية | الذكاء المكاني", "intro": "تحدد الاستراتيجية ما البيانات التي تحتاجها جهتك فعلًا، وبأي ترتيب تستثمر فيها، وكيف تقيس العائد. فلا تتكرر المشاريع بين الإدارات.", "offer": ["تقييم حالة البيانات والنضج الحالي وفجوات الاستخدام", "ربط أهداف الجهة بالقيمة المكانية المطلوبة", "خارطة طريق ومبادرات وميزانية تقديرية", "مؤشرات نجاح وآلية قياسها", "مواءمة مع المتطلبات والمعايير الوطنية ذات الصلة"], "benefits": ["أولويات استثمار موحدة", "جهود غير مكررة", "بيانات مرتبطة بنتائج الأعمال"], "outputs": ["وثيقة الاستراتيجية", "تقييم النضج", "خارطة الطريق والمبادرات", "مؤشرات الأداء", "عرض تنفيذي للقيادة"], "examples": ["استراتيجية بيانات مكانية لأمانة تحدد البيانات الأساسية وملّاكها", "استراتيجية لشركة مرافق لتوحيد بيانات الأصول"], "cta": "اطلب تقييم نضج البيانات", "track": "geospatial-data"}, {"slug": "data-policies-standards", "name": "السياسات والمعايير والإجراءات", "seo": "سياسات ومعايير وإجراءات البيانات الجيومكانية | الذكاء المكاني", "intro": "حين تتبع كل إدارة طريقتها في الترميز والتحديث، يصعب تبادل البيانات. نكتب لك مرجعية واحدة واضحة يعمل بها الجميع ويرجع إليها المدققون.", "offer": ["مراجعة الممارسات والسياسات القائمة", "معايير الترميز والمواصفات والبيانات الوصفية والمراجع المكانية", "إجراءات الإنتاج والتحديث والنشر", "أدلة تشغيل البيانات الجيومكانية", "التدريب على الاعتماد والتطبيق"], "benefits": ["بيانات متسقة بين الإدارات", "تبادل وإعادة استخدام أسهل", "مرجعية واضحة للمدققين وصنّاع القرار"], "outputs": ["حزمة السياسات", "معايير البيانات والبيانات الوصفية", "إجراءات التشغيل", "دليل تشغيل البيانات", "خطة الاعتماد"], "examples": ["معيار موحد لترميز الطبقات وبياناتها الوصفية", "إجراء اعتماد الطبقات وتحديثها قبل نشرها"], "cta": "ناقش احتياجات الحوكمة", "track": "geospatial-data"}, {"slug": "data-governance-frameworks", "name": "أطر الحوكمة والبيانات الرئيسية والمرجعية", "seo": "أطر حوكمة البيانات الجيومكانية والبيانات المرجعية | الذكاء المكاني", "intro": "الحوكمة تجيب عن سؤالين: من المسؤول عن كل مجموعة بيانات؟ وما النسخة المرجعية التي يعتمد عليها الجميع؟", "offer": ["هيكل الحوكمة ولجانها وأدوارها (المالك، المشرف، المستخدم)", "ملكية مجموعات البيانات ومسؤوليات الإدارات", "تصنيف البيانات وسياسات الوصول", "إطار البيانات الرئيسية والمرجعية المكانية", "آليات حل التعارض واعتماد التغيير، ومؤشرات الالتزام"], "benefits": ["مسؤوليات واضحة وقابلة للمساءلة", "حماية أفضل للبيانات الحساسة", "مرجع مكاني معتمد يقلل التعارض"], "outputs": ["إطار الحوكمة وهيكله", "مصفوفة الملكية والأدوار", "سياسة تصنيف الوصول", "إطار البيانات المرجعية", "لوحة متابعة الالتزام"], "examples": ["لجنة حوكمة بيانات مكانية بين إدارات أمانة مع طبقات مرجعية موحدة", "سياسة وصول لطبقات حساسة حسب الجهة والدور"], "cta": "اطلب تقييم الحوكمة", "track": "geospatial-data"}, {"slug": "geospatial-database-design", "name": "تصميم قواعد البيانات ونماذج البيانات الجيومكانية", "seo": "تصميم قواعد البيانات الجيومكانية ونماذج البيانات | الذكاء المكاني", "intro": "قاعدة بيانات مصممة جيدًا تمنع إعادة العمل لاحقًا. نبدأ من أسئلة الاستخدام، ثم نصمم النموذج الذي يجيب عنها.", "offer": ["تحليل المتطلبات الجيومكانية وأسئلة الاستخدام", "النموذج المفاهيمي والمنطقي والمادي", "الأنواع الهندسية والمراجع الإحداثية والعلاقات والقواعد", "نماذج ثلاثية الأبعاد للمباني والبنية", "الفهارس والأداء والصلاحيات، وقاموس البيانات"], "benefits": ["أساس بيانات متين", "استعلام وتحليل أسرع", "جاهزية أعلى للتكامل"], "outputs": ["نماذج البيانات", "قاموس البيانات", "سكربتات إنشاء القاعدة", "وثيقة التصميم", "تقرير مراجعة الأداء"], "examples": ["قاعدة بيانات أراضٍ وملكيات تدعم الاستعلام ومراجعة التغييرات", "نموذج بيانات موحد لشبكة مرافق"], "cta": "ناقش تصميم قاعدة بياناتك", "track": "geospatial-data"}, {"slug": "geospatial-data-warehouse", "name": "تصميم مستودعات البيانات الجيومكانية والبنية المرجعية", "seo": "تصميم مستودعات البيانات الجيومكانية والبنية المرجعية | الذكاء المكاني", "intro": "مصدر واحد للتحليل عبر الإدارات، يحفظ التاريخ ويوفر على كل مشروع جديد جهد تجهيز البيانات من الصفر.", "offer": ["تقييم المصادر والاستخدامات التحليلية", "تصميم طبقات المستودع (الخام، المنظم، التحليلي)", "البيانات المرجعية والأرشفة والتاريخ", "متطلبات الأداء والسعة كوثيقة مواصفات", "تدفقات التحديث وخطة التنفيذ التدريجي"], "benefits": ["مصدر موحد للتحليل", "تحليل تاريخي وزمني", "كلفة أقل لإعداد البيانات"], "outputs": ["وثيقة معمارية المستودع", "نموذج الطبقات", "مواصفات الأداء والسعة", "مخطط تدفق البيانات", "خطة التنفيذ"], "examples": ["مستودع يجمع طبقات البلدية والمرافق للتحليل عبر الإدارات", "بنية مرجعية للعناوين ونقاط الاهتمام"], "cta": "اطلب جلسة تصميم", "track": "geospatial-data"}, {"slug": "gis-solution-architecture", "name": "تصميم معمارية حلول GIS والتكامل", "seo": "تصميم معمارية حلول GIS والتكامل المؤسسي | الذكاء المكاني", "intro": "نصمم المعمارية المنطقية للتطبيقات والخدمات والبيانات، ونكتب مواصفات البيئات بوضوح قبل أن تتعاقد مع مزودي البنية. لا نورّد البنية ولا نجهّزها.", "offer": ["تحليل الوضع القائم والمتطلبات الوظيفية وغير الوظيفية", "معمارية التطبيقات والخدمات والبيانات، والأمن والصلاحيات", "مواصفات البيئات (السعة والأداء والتوفر) كوثيقة متطلبات", "تقييم بدائل التنفيذ ومراجعة المعمارية", "الإشراف على التكامل من منظور التطبيقات والبيانات"], "benefits": ["مخاطر أقل في التصميم", "متطلبات واضحة عند التعاقد", "حل قابل للتوسع والتكامل"], "outputs": ["وثيقة المعمارية", "مواصفات البيئات", "مخطط التكامل", "تقييم الخيارات", "تقرير مراجعة المعمارية"], "examples": ["معمارية منصة GIS مؤسسية ومتطلبات بيئاتها قبل طرح المنافسة", "مراجعة معمارية لحل قائم يعاني من بطء الأداء"], "cta": "اطلب مراجعة معمارية", "track": "geospatial-data"}, {"slug": "data-conversion-migration", "name": "تحويل وترحيل البيانات الجيومكانية", "seo": "تحويل وترحيل البيانات الجيومكانية | الذكاء المكاني", "intro": "ملفات CAD ورسومات ممسوحة ومراجع إحداثية مختلفة؟ ننقلها إلى قاعدة بيانات واحدة بمرحلة تجريبية أولًا، ثم نثبت بالمطابقة أن شيئًا لم يضع.", "offer": ["جرد البيانات والمصادر والصيغ والمراجع الإحداثية", "قواعد التحويل ومطابقة الحقول", "تحويل ملفات CAD والأشكال ونقاط GNSS والرسومات الممسوحة", "إعادة إسقاط الإحداثيات بما فيها المراجع المحلية", "ترحيل تجريبي ثم كامل، مع المطابقة وخطة الرجوع"], "benefits": ["ترحيل آمن دون فقد", "اتساق مكاني بين المصادر", "انتقال أسرع بين الأنظمة"], "outputs": ["تقرير جرد البيانات", "قواعد التحويل", "البيانات المرحّلة", "تقرير المطابقة والجودة", "سجل التغييرات"], "examples": ["ترحيل خرائط مرافق قديمة بصيغة CAD إلى قاعدة بيانات مؤسسية", "توحيد طبقات عدة جهات على مرجع إحداثي واحد"], "cta": "اطلب تقييم الترحيل", "track": "geospatial-data"}, {"slug": "geospatial-etl-automation", "name": "أتمتة عمليات ETL/ELT والمعالجة وتحديث البيانات", "seo": "أتمتة ETL/ELT ومعالجة البيانات الجيومكانية | الذكاء المكاني", "intro": "التحديث اليدوي بطيء ويصعب تدقيقه. نبني خطوط معالجة تعمل بجدول محدد، وتسجّل كل خطوة، وتنبّه فريقك عند أي خلل.", "offer": ["تحليل دورة حياة البيانات ومصادر التحديث", "تصميم خطوط المعالجة ومخططات التدفق", "تطوير عمليات ETL/ELT آلية مع مراقبة ومعالجة للأخطاء", "جدولة التحديث، وسجل الأحداث، وإنذارات الفشل", "اختبار الأداء وتدريب الفريق"], "benefits": ["تحديث أسرع وأخطاء أقل", "اعتماد أقل على التدخل اليدوي", "سجل تدقيق لكل عملية"], "outputs": ["خطوط معالجة آلية", "مستودع الكود", "لوحة مراقبة التشغيل", "دليل التشغيل", "تقرير الأداء"], "examples": ["خط آلي ينقل بيانات التراخيص الجديدة إلى الطبقة المكانية يوميًا", "معالجة دورية لبيانات الأسطول وتحويلها إلى مؤشرات"], "cta": "اطلب دراسة أتمتة", "track": "geospatial-data"}, {"slug": "geospatial-apis-data-services", "name": "خدمات تبادل البيانات وواجهات API الجيومكانية", "seo": "خدمات البيانات وواجهات API الجيومكانية | الذكاء المكاني", "intro": "ننشر بياناتك كخدمات يستهلكها الآخرون بصلاحيات محددة، بدل تبادل الملفات بالبريد.", "offer": ["تحديد البيانات المتاحة للتبادل والجهات المستهلكة", "تصميم عقود الخدمات (OpenAPI)", "تطوير خدمات OGC وواجهات REST", "المصادقة والصلاحيات وسياسات الاستخدام", "التوثيق للمطورين، وقياس الاستخدام، واختبار الحمل والأمن"], "benefits": ["بيانات قابلة لإعادة الاستخدام", "تكامل أسرع مع الجهات والأنظمة", "وصول مضبوط واستهلاك متتبع"], "outputs": ["واجهات API وخدمات OGC", "مواصفات OpenAPI", "دليل المطور", "سياسة الاستخدام والصلاحيات", "تقرير الاختبار"], "examples": ["خدمة تتيح لجهات مرخصة الاستعلام عن الطبقات المرجعية", "واجهة تغذي تطبيقًا خارجيًا بمواقع الخدمات"], "cta": "ناقش واجهات بياناتك", "track": "geospatial-data"}, {"slug": "data-quality-assessment", "name": "تقييم جودة البيانات الجيومكانية والمؤشرات", "seo": "تقييم جودة البيانات الجيومكانية ومؤشراتها | الذكاء المكاني", "intro": "حالة بياناتك بالأرقام لا بالانطباع. هذه الخدمة هي أساس عرض «تقييم جاهزية البيانات»، ويمكن أن تمتد لتشمل كل مجموعات بياناتك.", "offer": ["أبعاد الجودة وقواعد القياس لكل مجموعة بيانات", "فحوص مكانية ووصفية وزمنية على عينات", "مقارنة بمصادر مرجعية وحقلية", "مؤشرات الجودة ولوحة متابعة", "تحليل الأسباب وتوصيات مرتبة وخطة قياس دورية"], "benefits": ["وضوح حالة البيانات بالأرقام", "إنفاق موجّه لأكثر المشكلات أثرًا", "ثقة أعلى قبل القرار"], "outputs": ["تقرير تقييم الجودة", "مؤشرات ولوحة جودة", "سجل المشكلات", "خطة التحسين", "منهجية القياس"], "examples": ["قياس جودة بيانات الأراضي قبل إطلاق خدمة إلكترونية", "تقييم بيانات أصول شبكة قبل ترحيلها"], "cta": "اطلب تقييم جودة أولي", "track": "geospatial-data"}, {"slug": "automated-data-validation", "name": "قواعد الفحص والتحقق الآلي ومعالجة الأخطاء", "seo": "الفحص والتحقق الآلي للبيانات الجيومكانية | الذكاء المكاني", "intro": "نحوّل متطلبات الجودة إلى قواعد تعمل آليًا قبل نشر أي بيانات، فيتفرغ المراجعون للحالات التي تحتاج حكمًا بشريًا.", "offer": ["قواعد قابلة للتنفيذ: طوبولوجيا، نطاقات، علاقات، تكرار", "فحوص آلية وتقارير أخطاء", "تصنيف الأخطاء ومسارات التصحيح الآلي واليدوي", "ربط الفحوص بخطوط المعالجة قبل النشر", "لوحة متابعة الأخطاء وتدريب المراجعين"], "benefits": ["اكتشاف مبكر للأخطاء", "مراجعة يدوية أقل", "بيانات منشورة أكثر موثوقية"], "outputs": ["مكتبة قواعد التحقق", "نصوص الفحص والتصحيح", "تقارير الأخطاء", "لوحة المتابعة", "دليل المراجعة"], "examples": ["فحص تلقائي لطبقة مبانٍ يرصد التداخل والفجوات", "كشف تكرار نقاط العناوين وتعارض معرّفاتها"], "cta": "اطلب دراسة أتمتة الفحص", "track": "geospatial-data"}, {"slug": "data-update-versioning-qa", "name": "التحديث وإدارة الإصدارات والتغيير وأطر ضمان الجودة", "seo": "إدارة الإصدارات والتحديث وضمان جودة البيانات الجيومكانية | الذكاء المكاني", "intro": "الجودة لا تنتهي بانتهاء المشروع. نضع دورة تحديث ومراجعة واعتماد تحفظ سجل كل تغيير ومصدره.", "offer": ["دورة التحديث والصلاحيات وجداول النشر", "إدارة الإصدارات والتفريع والدمج للبيانات", "سجل التغييرات ومصادرها وأسبابها", "إجراءات ضمان الجودة وأدوار المراجعة والموافقة", "تقارير التغيير والتدقيق"], "benefits": ["بيانات محدثة وقابلة للتدقيق", "أخطاء نسخ أقل", "جودة مستمرة بعد المشروع"], "outputs": ["إطار ضمان الجودة", "إجراءات التحديث والإصدار", "سجل التغييرات", "قوالب المراجعة", "دليل التشغيل"], "examples": ["إصدارات طبقات الأراضي مع اعتماد التغييرات بعد المراجعة", "سجل تغيير لشبكة مرافق يوثق كل تعديل ومصدره"], "cta": "ناقش إطار الجودة", "track": "geospatial-data"}, {"slug": "spatial-urban-network-analysis", "name": "التحليل المكاني والعمراني وتحليل الشبكات وإمكانية الوصول", "seo": "التحليل المكاني والعمراني وتحليل الشبكات | الذكاء المكاني", "intro": "كم دقيقة يحتاج ساكن الحي ليصل إلى أقرب مركز صحي؟ وأي الأحياء أقل خدمة؟ نجيب عن هذه الأسئلة بالقياس ونناقش النتائج مع صاحب القرار.", "offer": ["صياغة أسئلة التحليل وجمع البيانات المناسبة", "تحليل الكثافة والتوزيع والتجمعات", "تحليل شبكات الطرق وأزمنة الوصول ومناطق الخدمة", "تحديد فجوات الخدمات وتحليل التغطية", "مقارنة الأحياء بمؤشرات عمرانية، والخرائط والتقارير"], "benefits": ["توزيع خدمات مبني على القياس", "كشف مبكر للفجوات", "إنفاق أذكى على المواقع الجديدة"], "outputs": ["تقرير تحليلي", "خرائط مناطق الخدمة والتغطية", "طبقات تحليلية", "لوحة مؤشرات", "منهجية موثقة"], "examples": ["تغطية المراكز الصحية بزمن الوصول", "إمكانية الوصول إلى محطات النقل العام"], "cta": "اطلب دراسة تحليلية", "track": "geospatial-data"}, {"slug": "environmental-demographic-analysis", "name": "التحليل البيئي والسكاني والاقتصادي المكاني", "seo": "التحليل البيئي والسكاني والاقتصادي المكاني | الذكاء المكاني", "intro": "نجمع بيانات من مصادر معتمدة على وحدات مكانية موحدة، فترى العلاقة بين السكان والنشاط الاقتصادي والبيئة في مكان واحد.", "offer": ["تجميع بيانات سكانية واقتصادية وبيئية وربطها بوحدات مكانية موحدة", "تحليل التوزيع السكاني والطلب على الخدمات", "تحليل النشاط الاقتصادي والتركز والأثر المكاني", "تحليل العوامل البيئية والتعرض للمخاطر", "مؤشرات ومنتجات تحليلية وعروض للقيادة"], "benefits": ["رؤية متكاملة عبر القطاعات", "استثمار موجّه للمناطق الأعلى أثرًا", "سياسات مرتبطة بالواقع الجغرافي"], "outputs": ["تقرير تحليلي مكاني", "مؤشرات", "خرائط تحليلية", "قاعدة بيانات التحليل", "ملخص تنفيذي"], "examples": ["توزيع السكان والطلب على المدارس في ضواحٍ متنامية", "العلاقة بين الأنشطة الاقتصادية والمخاطر البيئية في منطقة"], "cta": "ناقش سؤالك التحليلي", "track": "geospatial-data"}, {"slug": "suitability-multicriteria-modeling", "name": "تحليل الملاءمة والتحليل متعدد المعايير والمحاكاة المكانية", "seo": "تحليل الملاءمة المكانية والتحليل متعدد المعايير والمحاكاة | الذكاء المكاني", "intro": "أين نضع المرفق الجديد؟ نحدد المعايير وأوزانها مع أصحاب المصلحة، ثم ننتج مفاضلة يمكن الدفاع عنها أمام أي لجنة.", "offer": ["تحديد الأهداف والمعايير وأوزانها مع أصحاب المصلحة", "إعداد الطبقات المعيارية وتوحيد مقاييسها", "التحليل متعدد المعايير (AHP والوزن الموزون)", "نماذج محاكاة للنمو أو الحركة عند الحاجة", "تحليل الحساسية واختبار السيناريوهات"], "benefits": ["مفاضلة شفافة وقابلة للدفاع", "اختبار السيناريوهات قبل الالتزام", "مخاطر أقل في اختيار المواقع"], "outputs": ["نموذج الملاءمة", "خرائط الملاءمة والسيناريوهات", "تقرير الحساسية", "أدوات النموذج", "توثيق المنهجية"], "examples": ["اختيار مواقع لمرافق خدمية بمعايير الكثافة والوصول", "محاكاة أثر مشروع تطويري على الحركة والخدمات"], "cta": "اطلب دراسة مفاضلة مواقع", "track": "geospatial-data"}, {"slug": "geospatial-indicators-products", "name": "تطوير المؤشرات والمنتجات التحليلية الجيومكانية", "seo": "المؤشرات والمنتجات التحليلية الجيومكانية | الذكاء المكاني", "intro": "مؤشر يُحسب بالطريقة نفسها كل سنة يصبح أساسًا للمتابعة والمقارنة. نعرّف المؤشر ومنهجيته ونؤتمت حسابه وتحديثه.", "offer": ["تعريف المؤشرات ومنهجية حسابها ومصادر بياناتها", "نموذج بيانات المؤشرات ووحدات القياس المكانية", "الحساب الآلي والتحديث الدوري وضبط الجودة", "منتجات النشر: خرائط وتقارير وخدمات", "صحائف وصف المؤشرات وتدريب الفريق"], "benefits": ["أرقام معتمدة قابلة للمقارنة عبر الزمن", "أساس للمتابعة", "منتجات تُستخدم عبر الإدارات"], "outputs": ["مجموعة مؤشرات مكانية", "صحائف وصف", "خطوط حساب آلي", "خرائط وتقارير دورية", "خدمات بيانات للمؤشرات"], "examples": ["مؤشر جودة الحياة على مستوى الحي يُحدّث سنويًا", "مؤشر تغطية الخدمات الصحية والتعليمية بزمن الوصول"], "cta": "اطلب تصميم مؤشرات", "track": "geospatial-data"}, {"slug": "land-cover-land-use-classification", "name": "تصنيف الغطاء الأرضي واستخدامات الأراضي", "seo": "تصنيف الغطاء الأرضي واستخدامات الأراضي بالأقمار الصناعية | الذكاء المكاني", "intro": "خريطة حديثة لاستخدامات الأراضي تغطي مساحات واسعة بتكلفة أقل من المسح التقليدي، مع تقرير دقة يقول لك بالضبط إلى أي حد تعتمد عليها.", "offer": ["تصميم نظام التصنيف والفئات بالتشاور معك", "جمع عينات التدريب والتحقق", "التصنيف الموجّه أو غير الموجّه أو بالتعلم الآلي", "تقييم الدقة بمصفوفة الخطأ ومعاملات الاتفاق", "خرائط وإحصاءات حسب الوحدات الإدارية، وتوثيق المنهجية"], "benefits": ["خريطة أراضٍ حديثة يمكن الاعتماد عليها", "توفير في كلفة المسح", "تصنيف قابل للتكرار دوريًا"], "outputs": ["خريطة الغطاء أو الاستخدام", "تقرير الدقة", "إحصاءات المساحات", "المنهجية والعينات", "طبقات جاهزة للنشر"], "examples": ["خريطة غطاء أرضي لمحافظة لدعم الدراسات التخطيطية", "تقدير مساحات الأراضي الزراعية والعمرانية وتغيرها بين سنتين"], "cta": "اطلب عرض مشروع تصنيف", "track": "remote-sensing"}, {"slug": "change-monitoring", "name": "رصد التغيرات العمرانية والبيئية", "seo": "رصد التغيرات العمرانية والبيئية بالصور الفضائية | الذكاء المكاني", "intro": "ما الذي تغيّر منذ آخر مرة؟ نرصد التوسع العمراني والتغير البيئي دوريًا، وننبّهك حين يتجاوز التغير عتبة تحددها أنت.", "offer": ["تحديد مناطق الرصد وأنواع التغير المطلوبة", "تجهيز السلاسل الزمنية وكشف التغيرات وقياس أحجامها", "التحقق بعينات ميدانية أو صور عالية الدقة", "تقارير دورية ولوحات رصد وقواعد تنبيه", "تحليل الاتجاهات التاريخية"], "benefits": ["كشف مبكر للتوسع والتغير", "كلفة رصد ميداني أقل", "سجل زمني موثق"], "outputs": ["خرائط التغير", "تقارير الرصد الدورية", "إحصاءات المساحات المتغيرة", "لوحة رصد", "منهجية وعتبات التنبيه"], "examples": ["رصد توسع عمراني غير مخطط حول مدينة عبر سنوات", "متابعة الغطاء النباتي في منطقة محمية"], "cta": "اطلب مشروع رصد تجريبي", "track": "remote-sensing"}, {"slug": "geospatial-enterprise-gis-consulting", "name": "الاستشارات الجيومكانية واستشارات GIS المؤسسية", "seo": "الاستشارات الجيومكانية واستشارات GIS المؤسسية | الذكاء المكاني", "intro": "قبل أن تختار منصة أو توسّع فريق GIS، اعرف أين تقف اليوم وما الخطوة التي تعطي أكبر أثر. نقدّم تقييمًا مستقلًا ومسارًا واقعيًا.", "offer": ["تقييم قدرات GIS والبيانات والتطبيقات والفرق", "مقارنة خيارات المنصات والنماذج التشغيلية", "تحديد فجوات القدرات والمخاطر", "مسار تطوير بمراحل ومؤشرات", "مراجعة العروض الفنية ومرافقة التنفيذ عند الطلب"], "benefits": ["قرارات استثمار مبنية على تقييم مستقل", "مخاطر أقل في اختيار الحلول", "مسار تطوير قابل للتنفيذ"], "outputs": ["تقرير التقييم", "مقارنة الخيارات", "خارطة تطوير القدرات", "مذكرة قرار للقيادة", "تقرير مراجعة العروض"], "examples": ["تقييم قدرات GIS في أمانة وأولويات التطوير لثلاث سنوات", "مراجعة عرض فني لمنصة جيومكانية قبل الترسية"], "cta": "احجز استشارة أولية", "track": "consulting"}, {"slug": "independent-data-architecture-advisory", "name": "المراجعة المستقلة للبيانات والبنية والتشغيل البيني", "seo": "المراجعة المستقلة للبيانات الجيومكانية والبنية والتشغيل البيني | الذكاء المكاني", "intro": "سلّمك مورد قاعدة بيانات أو منصة؟ نتحقق مستقلًا من التزامها بالمواصفات وجودتها قبل الاستلام النهائي. مخرجاتنا هنا تقييم وتوصيات، لا تنفيذ.", "offer": ["مراجعة تصميم قواعد البيانات والنماذج ومعايير التسمية", "تقييم معمارية التكامل والتشغيل البيني مع الأنظمة والجهات", "التحقق المستقل من أعمال الموردين", "تقييم أطر إدارة جودة البيانات القائمة", "تقرير المخاطر والتوصيات المرتبة وجلسات عرض مع الإدارة"], "benefits": ["رأي فني محايد قبل الاعتماد", "كشف مبكر للمخاطر", "حماية استثمارك في البيانات والأنظمة"], "outputs": ["تقرير المراجعة المستقلة", "سجل المخاطر", "توصيات مرتبة", "مصفوفة الالتزام بالمواصفات", "عرض تنفيذي"], "examples": ["مراجعة قاعدة بيانات مرافق قبل الاستلام النهائي", "تقييم جاهزية بيانات جهة للتكامل مع منصة وطنية"], "cta": "اطلب مراجعة مستقلة", "track": "consulting"}, {"slug": "digital-transformation-advisory", "name": "استشارات التحول الرقمي", "seo": "استشارات التحول الرقمي المرتكز على البيانات المكانية | الذكاء المكاني", "intro": "كثير من الخدمات الحكومية والتشغيلية مرتبطة بموقع. نصمم برنامج تحول يبدأ من هذه الخدمات ويرتب المبادرات حسب الأثر والتكلفة.", "offer": ["تقييم الجاهزية الرقمية وأولويات الخدمات", "فرص التحول المعتمد على الموقع والبيانات", "تصميم المبادرات ونماذج العمل المستهدفة", "تقدير الأثر والتكلفة وترتيب التنفيذ", "نموذج الحوكمة وإدارة التغيير، والمواءمة مع الاستراتيجيات الوطنية"], "benefits": ["برنامج تحول واضح الأولويات", "استثمار رقمي مرتبط بأهداف الجهة", "مبادرات غير مشتتة"], "outputs": ["خارطة التحول الرقمي", "تقييم الجاهزية", "وثائق المبادرات والأثر", "نموذج حوكمة البرنامج", "عرض القيادة"], "examples": ["خارطة تحول لأمانة ترتكز على البيانات المكانية والخدمات الإلكترونية", "برنامج تحول لشركة مرافق يربط الأصول والصيانة والخدمة"], "cta": "ابدأ تقييم الجاهزية الرقمية", "track": "consulting"}, {"slug": "business-analysis-requirements", "name": "تحليل الأعمال وإدارة المتطلبات", "seo": "تحليل الأعمال وإدارة المتطلبات للحلول الرقمية والجيومكانية | الذكاء المكاني", "intro": "أغلب إعادة العمل في المشاريع تبدأ من متطلبات غامضة. نجمع المتطلبات من المستخدمين الفعليين ونكتبها بمعايير قبول تُقاس عند التسليم.", "offer": ["تحليل أصحاب المصلحة وعملياتهم الحالية", "جمع المتطلبات بالمقابلات وورش العمل", "المتطلبات الوظيفية وغير الوظيفية وقصص المستخدم ومعايير القبول", "مصفوفة التتبع وإدارة التغيير في المتطلبات", "نماذج أولية للواجهات، ومراجعة التنفيذ مقابل المتطلبات"], "benefits": ["نطاق واضح وإعادة عمل أقل", "رضا أعلى للمستخدمين", "تتبع كامل من الحاجة إلى التسليم"], "outputs": ["وثيقة متطلبات الأعمال والنظام", "مصفوفة التتبع", "قصص المستخدم ومعايير القبول", "نماذج أولية", "خطة اختبار القبول"], "examples": ["متطلبات منصة جيومكانية لأمانة قبل طرح المنافسة", "متطلبات تطبيق ميداني لفرق التفتيش وربطه بالأنظمة القائمة"], "cta": "اطلب ورشة متطلبات", "track": "consulting"}, {"slug": "technical-feasibility-studies", "name": "دراسات الجدوى التقنية", "seo": "دراسات الجدوى التقنية للمشاريع الجيومكانية والرقمية | الذكاء المكاني", "intro": "نبني أم نشتري؟ منصة مشتركة أم حلول منفصلة؟ نقارن البدائل بالأرقام ونقدّم توصية مبررة قبل أن تلتزم بالميزانية.", "offer": ["تعريف المشكلة والأهداف ومعايير النجاح", "تحليل الوضع الحالي والمتطلبات", "تحديد البدائل التقنية وتقييمها", "تقدير التكاليف التقريبية والعوائد والمخاطر", "توصية مبررة وخطة تنفيذ وعرض للقيادة"], "benefits": ["قرار استثماري مبرر بالأرقام", "تفادي مشاريع غير مناسبة", "مقارنة شفافة بين البدائل"], "outputs": ["دراسة الجدوى", "مقارنة البدائل", "تقدير التكلفة والعائد", "سجل المخاطر", "عرض تنفيذي"], "examples": ["جدوى منصة بيانات مكانية مشتركة بين عدة إدارات", "مقارنة بدائل البناء والشراء لحل إدارة أصول مكانية"], "cta": "اطلب دراسة جدوى", "track": "consulting"}, {"slug": "technical-specifications-rfp", "name": "المواصفات الفنية ونطاقات العمل وطلبات تقديم العروض", "seo": "إعداد المواصفات الفنية ونطاقات العمل وطلبات العروض RFP | الذكاء المكاني", "intro": "كراسة شروط واضحة تعطيك عروضًا قابلة للمقارنة وتقلل النزاعات لاحقًا. نكتب المواصفات وندعم لجنة التقييم حتى الترسية.", "offer": ["تحديد المتطلبات والمخرجات ومعايير القبول", "المواصفات الفنية للحلول والبيانات والتكامل والبيئات التشغيلية", "نطاق العمل والجدول والمراحل", "معايير التقييم الفني والمالي", "الإجابة عن استفسارات الموردين ودعم لجنة التقييم"], "benefits": ["عروض قابلة للمقارنة", "نزاعات وتغييرات أقل لاحقًا", "اختيار مورد بأسس موثقة"], "outputs": ["كراسة الشروط والمواصفات", "نطاق العمل", "نموذج معايير التقييم", "مصفوفة الاستفسارات", "تقرير دعم التقييم الفني"], "examples": ["كراسة شروط لمنصة جيومكانية حكومية بمعايير تقييم واضحة", "نطاق عمل لمشروع ترحيل بيانات بين نظامين"], "cta": "اطلب إعداد كراسة", "track": "consulting"}], "industries": [["الأمانات والبلديات", "طلبات خدمات موزعة، وبيانات أصول متفاوتة، ومتابعة ميدانية مستمرة", "بوابة طلبات مكانية، ولوحة بلاغات حسب الحي، وتحليل توزيع الخدمات"], ["الجهات الحكومية والتحول الرقمي", "تعدد الجهات والمصادر، وضعف التشغيل البيني", "إطار حوكمة بيانات مكانية، ومنصة بيانات مشتركة، ومواءمة مع المعايير الوطنية"], ["التخطيط الحضري والتنمية العمرانية", "بيانات عمرانية متعددة ومتقادمة، وصعوبة قياس أثر القرارات", "تحليل ملاءمة الأراضي، ورصد التمدد العمراني، وسيناريوهات الكثافة"], ["البنية التحتية والمرافق العامة", "أصول موزعة، وبيانات شبكات غير مكتملة، وأولويات صيانة غير واضحة", "تقييم جودة بيانات الأصول، ونمذجة الشبكات، وربط GIS بأنظمة الصيانة"], ["العقارات وإدارة الأراضي", "ازدواج سجلات الأراضي أو تعارضها، وتقييم المواقع يدويًا", "اختيار مواقع التطوير، ومراجعة تعارض الاستخدامات، وقاعدة بيانات أراضٍ موحدة"], ["النقل والخدمات اللوجستية", "مصادر حركة متعددة، والحاجة إلى تحسين المسارات والتغطية", "تحليل مناطق الخدمة والوصول، ومواقع المراكز، ولوحات تشغيل مكانية"], ["البيئة والاستدامة", "الحاجة إلى رصد واسع ودوري، ومنهجيات ضعيفة التوثيق", "رصد الغطاء النباتي، ومؤشرات بيئية دورية، وتحليل المخاطر الطبيعية"], ["الطاقة والتعدين", "مواقع شاسعة ومعزولة، وبيانات متفرقة بين الأقسام", "مستودع بيانات موحد، ورصد التغير حول المنشآت، ولوحة مكانية للأصول"], ["الزراعة والمياه", "مراقبة الاستخدام الزراعي والمائي على نطاق واسع", "تصنيف الأراضي الزراعية، وتحليل الغطاء النباتي، ونمذجة الإجهاد المائي"], ["السياحة والتنمية الإقليمية", "تحليل التوزيع الإقليمي للوجهات والخدمات", "إمكانية الوصول للوجهات، ولوحة مؤشرات إقليمية، وملاءمة المواقع"], ["الاتصالات", "تخطيط الانتشار وتحليل الطلب المكاني", "تحليل فجوات التغطية، وأتمتة تحديث البيانات، وواجهات API"], ["الأمن والسلامة وإدارة الطوارئ", "صورة مكانية موحدة بين جهات متعددة، مع حساسية البيانات", "لوحة تشغيلية مكانية، وسياسات وصول للطبقات الحساسة، وتبادل بيانات آمن"], ["الشركات والمؤسسات الكبرى", "بيانات مكانية غير مستغلة، وقرارات مواقع مبنية على الحدس", "تحليل مواقع الفروع، ولوحات مكانية للعمليات، وتكامل GIS مع الأنظمة المؤسسية"]], "values": [["الدقة", "نعلن حدود النتائج وهامش الخطأ بوضوح."], ["الاستقلالية", "توصياتنا بلا مصلحة في منتج بعينه."], ["الابتكار المنضبط", "ذكاء اصطناعي بمقاييس قبول تُحدد مسبقًا."], ["الأمانة", "لا نعد بما لا نملكه."], ["الأثر", "نقيس النجاح بالقرار الذي يُتخذ، لا بالتسليم."]], "where": [{"q": "هل بياناتنا المكانية موثوقة؟", "a": "البيانات الجيومكانية المؤسسية", "slug": "geospatial-data"}, {"q": "أي منصة نختار؟ وكيف نكتب المواصفات؟", "a": "الاستشارات والتحول الرقمي", "slug": "consulting"}, {"q": "كيف تصل البيانات لفرق العمل وصاحب القرار؟", "a": "نظم المعلومات الجيومكانية والحلول الرقمية", "slug": "gis-solutions"}, {"q": "ما الذي تغيّر على الأرض؟", "a": "الاستشعار عن بعد", "slug": "remote-sensing"}, {"q": "هل يمكن أتمتة العمل أو التنبؤ؟", "a": "الذكاء الاصطناعي والتحليلات المتقدمة", "slug": "geoai"}], "privacy": [["من نحن", "شركة الذكاء المكاني للحلول الرقمية، شركة ذات مسؤولية محدودة مقرها الرياض، سجل تجاري [—]."], ["البيانات التي نجمعها", "ما تدخله في نموذج التواصل (الاسم، الجهة، وسيلة التواصل، الاحتياج)، وبيانات تصفح عامة عبر أدوات الإحصاء [تُذكر الأداة المستخدمة]."], ["لماذا نجمعها", "للرد على طلبك، ولتحسين الموقع. لا نبيع بياناتك ولا نستخدمها لأغراض أخرى دون موافقتك."], ["المشاركة", "لا نشارك بياناتك إلا مع مزودي الخدمات اللازمين لتشغيل الموقع والبريد [تُذكر أسماؤهم ومواقع الاستضافة]، أو حين يلزمنا النظام."], ["مدة الاحتفاظ", "نحتفظ ببيانات التواصل [—] شهرًا ثم نحذفها، ما لم تتحول إلى علاقة تعاقدية."], ["حقوقك", "لك أن تطلب الاطلاع على بياناتك أو تصحيحها أو حذفها، وأن تسحب موافقتك، بالكتابة إلى [البريد]."], ["ملفات تعريف الارتباط", "نستخدم الضروري منها فقط، ونطلب موافقتك قبل أي ملفات إحصائية أو تسويقية."], ["التواصل", "لأي سؤال عن هذه السياسة: [البريد]."]], "titles": {"home": "الذكاء المكاني للحلول الرقمية | بيانات جيومكانية وتحليلات وGIS في السعودية", "about": "من نحن | الذكاء المكاني للحلول الرقمية", "services": "خدماتنا | بيانات جيومكانية وGIS واستشعار عن بعد وGeoAI واستشارات", "industries": "القطاعات التي نخدمها | الذكاء المكاني", "contact": "تواصل معنا | الذكاء المكاني", "privacy": "سياسة الخصوصية | الذكاء المكاني"}};
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TR=Object.fromEntries(D.tracks.map(t=>[t.slug,t]));
+const OF=Object.fromEntries(D.offers.map(o=>[o.slug,o]));
+const SV=Object.fromEntries(D.services.map(s=>[s.slug,s]));
+const SHORT={"geospatial-data":"البيانات الجيومكانية","gis-solutions":"الحلول الرقمية","consulting":"الاستشارات","remote-sensing":"الاستشعار عن بعد","geoai":"الذكاء الاصطناعي المكاني"};
+const IMG={"geospatial-data":"dunes","gis-solutions":"city","consulting":"blueprint","remote-sensing":"landcover","geoai":"detect",
+  "data-readiness-assessment":"detect","data-strategy-governance":"blueprint","spatial-prototype":"city",home:"network-wide",services:"network",industries:"landcover",about:"dunes",contact:"network",privacy:"blueprint"};
+const LABEL={"geospatial-data":"الأساس","consulting":"قبل الاستثمار","gis-solutions":"التفعيل","remote-sensing":"الرصد","geoai":"الاستخلاص"};
+const img=(k,alt)=>`<img src="img/${IMG[k]||k}.jpg" alt="${esc(alt||"")}" loading="lazy" decoding="async">`;
+const btn=(label,cls)=>`<a class="btn ${cls||""}" href="#contact">${esc(label)}</a>`;
+const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
+const tile=(href,im,chip,h,p)=>`<a class="tile" href="#${href}">${img(im)}<span class="cap">${chip?`<span class="chip">${esc(chip)}</span>`:""}<h3>${esc(h)}</h3>${p?`<p>${esc(p)}</p>`:""}</span></a>`;
+const closing=(h,p,label)=>`<section class="close"><div class="wrap"><div><h2>${esc(h)}</h2>${p?`<p>${esc(p)}</p>`:""}</div>${btn(label)}</div></section>`;
+const note=t=>`<div class="note"><div class="wrap">${esc(t)}</div></div>`;
+function phead(o){
+  return `<section class="phead">${img(o.img||"network")}<div class="wrap">
+  ${o.crumbs?`<nav class="crumbs" aria-label="مسار الصفحة">${o.crumbs.map(c=>`<a href="#${c[0]}">${esc(c[1])}</a>`).join('<span aria-hidden="true">/</span>')}</nav>`:""}
+  ${o.name?`<p class="name">${esc(o.name)}</p>`:""}
+  <h1>${esc(o.title)}</h1>${o.lead?`<p class="lead">${esc(o.lead)}</p>`:""}
+  ${o.cta?`<div class="actions">${btn(o.cta)}</div>`:""}</div></section>`.replace('<img ','<img class="bg" ');
+}
+
+/* mega menus */
+const chev=`<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const feat=(k,im,h,p,href,go)=>`<article class="feat"><span class="k">${esc(k)}</span>${img(im)}<b>${esc(h)}</b><p>${esc(p)}</p><a class="go" href="#${href}">${esc(go)}</a></article>`;
+const MENUS=[
+ {id:"services",label:"خدماتنا",body:()=>`
+   <div><h2>المسارات</h2><ul>${D.tracks.slice(0,3).map(t=>`<li><a href="#${t.slug}"><b>${esc(SHORT[t.slug])}</b><span>${esc(t.title)}</span></a></li>`).join("")}</ul></div>
+   <div><h2>&nbsp;</h2><ul>${D.tracks.slice(3).map(t=>`<li><a href="#${t.slug}"><b>${esc(SHORT[t.slug])}</b><span>${esc(t.title)}</span></a></li>`).join("")}</ul><a class="all" href="#services">كل الخدمات</a></div>
+   <div><h2>ابدأ من هنا</h2><ul>${D.offers.map(o=>`<li><a href="#${o.slug}"><b>${esc(o.short)}</b><span>نطاق ثابت ومخرجات محددة</span></a></li>`).join("")}</ul></div>
+   ${feat("عرض مميز","data-readiness-assessment","قبل أن تبني على بياناتك، اعرف حالتها","دقة واكتمال واتساق وحداثة، مع خطة تحسين مرتبة بالأولوية.","data-readiness-assessment","تفاصيل التقييم")}`},
+ {id:"industries",label:"القطاعات",body:()=>`
+   <div class="cols2"><h2>القطاعات التي نخدمها</h2><ul>${D.industries.map(r=>`<li><a href="#industries"><b>${esc(r[0])}</b></a></li>`).join("")}</ul><a class="all" href="#industries">كل القطاعات</a></div>
+   <div><h2>من أين أبدأ؟</h2><ul>${D.where.slice(0,3).map(w=>`<li><a href="#${w.slug}"><b>${esc(w.q)}</b><span>${esc(w.a)}</span></a></li>`).join("")}</ul></div>
+   ${feat("لا تجد قطاعك؟","industries","لكل قطاع أسئلته المكانية الخاصة","أخبرنا بسؤالك المكاني ونقترح الخطوة الأولى.","contact","ناقش حالتك")}`},
+ {id:"about",label:"من نحن",body:()=>`
+   <div><h2>الشركة</h2><ul>
+     <li><a href="#about"><b>من نحن</b><span>نحوّل البيانات المكانية إلى قرار</span></a></li>
+     <li><a href="#about"><b>الرؤية والرسالة وقيمنا</b><span>الدقة، الاستقلالية، الأمانة</span></a></li>
+     <li><a href="#about"><b>حدود عملنا</b><span>بيانات وتحليلات وتطبيقات واستشارات</span></a></li></ul></div>
+   <div><h2>طريقة العمل</h2><ul>
+     <li><a href="#home"><b>كيف نعمل</b><span>تقييم، تصميم، بناء تجريبي، توسيع، نقل معرفة</span></a></li>
+     <li><a href="#services"><b>من أين أبدأ؟</b><span>اختر السؤال الأقرب لما يشغلك</span></a></li></ul></div>
+   <div><h2>تواصل</h2><ul>
+     <li><a href="#contact"><b>تواصل معنا</b><span>الرياض، المملكة العربية السعودية</span></a></li>
+     <li><a href="#privacy"><b>سياسة الخصوصية</b><span>كيف نتعامل مع بياناتك</span></a></li></ul></div>
+   ${feat("رسالتنا","about","قبل الخريطة، البيانات. وقبل الذكاء، الثقة.","بيانات موثوقة، وتحليلات واضحة المنهجية، وحلول تتكامل مع أنظمة الجهة.","about","تعرّف علينا")}`}
+];
+const nav=document.getElementById("nav"), mb=document.getElementById("menuBtn");
+nav.innerHTML=`<a href="#home" data-g="home">الرئيسية</a>`+MENUS.map(m=>`<div class="item"><button type="button" aria-expanded="false" aria-controls="mm-${m.id}" data-g="${m.id}">${m.label}${chev}</button><div class="mega" id="mm-${m.id}"><div class="wrap">${m.body()}</div></div></div>`).join("")+`<a href="#contact" data-g="contact">تواصل معنا</a>`;
+function closeMenus(except){nav.querySelectorAll(".item > button").forEach(b=>{if(b!==except){b.setAttribute("aria-expanded","false");b.nextElementSibling.classList.remove("open")}})}
+nav.querySelectorAll(".item > button").forEach(b=>{
+  b.addEventListener("click",()=>{const o=b.getAttribute("aria-expanded")!=="true";closeMenus(b);b.setAttribute("aria-expanded",o);b.nextElementSibling.classList.toggle("open",o)});
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".top"))closeMenus()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMenus();nav.classList.remove("open");mb.setAttribute("aria-expanded","false")}});
+mb.addEventListener("click",()=>{const o=nav.classList.toggle("open");mb.setAttribute("aria-expanded",o)});
+
+const PAGES={
+home(){
+  const slides=[["city","التفعيل","تطبيقات ومنصات ولوحات معلومات"],["detect","الاستخلاص","استخراج المعالم من الصور الجوية"],["landcover","الرصد","تصنيف الغطاء الأرضي من صور الأقمار الصناعية"],["dunes","الثقة","بيانات محوكمة وموثوقة الجودة"]];
+  const order=["geospatial-data","consulting","gis-solutions","remote-sensing","geoai"];
+  const sect=[0,1,2,3,4].map(i=>D.industries[i]);
+  const simg=["city","blueprint","landcover","network","dunes"];
+  return `<section class="hero">${img("network-wide").replace('<img ','<img class="bg" ')}
+  <div class="wrap">
+    <div>
+      <h1><span>بيانات مكانية موثوقة.</span><span>قرارات أذكى.</span></h1>
+      <p class="lead">نساعد الجهات الحكومية والشركات في السعودية على حوكمة بياناتها الجيومكانية وتحليلها وتحويلها إلى حلول رقمية تدعم القرار.</p>
+      <div class="actions">${btn("احجز استشارة أولية")}<a class="btn light" href="#services">استعرض خدماتنا</a></div>
+    </div>
+    <div class="media" id="media" aria-roledescription="عرض صور" aria-label="من البيانات إلى القرار">
+      ${slides.map((s,i)=>`<figure class="${i?"":"on"}" aria-hidden="${i?"true":"false"}"><img src="img/${s[0]}.jpg" alt="" ${i?'loading="lazy"':''} decoding="async"><figcaption><b>${s[1]}</b>${s[2]}</figcaption></figure>`).join("")}
+      <button class="pause" id="pause" type="button" aria-label="إيقاف العرض"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path id="pIcon" d="M4 2h3v12H4zM9 2h3v12H9z" fill="currentColor"/></svg></button>
+      <div class="dots" aria-hidden="true">${slides.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>قبل الخريطة، البيانات. وقبل الذكاء، الثقة.</h2>
+    <p>نقدّم للجهات التي تملك بيانات مكانية ولا تستفيد منها كما ينبغي: بيانات موثوقة، وتحليلات واضحة المنهجية، وحلولًا رقمية تتكامل مع أنظمتها، ومشورة مستقلة.</p></div>
+    <div class="tiles3">
+      ${tile("services","city","","خدماتنا","خمسة مسارات تكمّل بعضها، من البيانات الموثوقة إلى القرار")}
+      ${tile("industries","landcover","","القطاعات","نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها")}
+      ${tile("about","dunes","","من نحن","شركة سعودية مقرها الرياض، تحوّل البيانات المكانية إلى قرار")}
+    </div>
+  </div></section>
+
+  <section class="sec soft"><div class="wrap">
+    <div class="center"><h2>ابدأ من هنا</h2><p>ثلاثة عروض بنطاق ثابت تبدأ بها دون التزام طويل، ثم تبني عليها.</p></div>
+    <div class="tablist" role="tablist" aria-label="عروض البداية">${D.offers.map((o,i)=>`<button type="button" role="tab" id="t${i}" aria-controls="p${i}" aria-selected="${i?"false":"true"}" tabindex="${i?-1:0}"><i>${i+1}</i>${esc(o.short)}</button>`).join("")}</div>
+    ${D.offers.map((o,i)=>`<div class="panel" role="tabpanel" id="p${i}" aria-labelledby="t${i}" ${i?"hidden":""}>
+      <div><span class="k">عرض بنطاق ثابت</span><h3>${esc(o.title)}</h3><p>${esc(o.intro)}</p>
+      <ul>${li(o.receive.slice(0,3))}</ul>
+      <a class="btn go" href="#${o.slug}">${esc(o.cta)}</a></div>
+      ${img(o.slug)}</div>`).join("")}
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>خدماتنا</h2><p>خمسة مسارات تكمّل بعضها. ابدأ بالمسار الذي يخدم سؤالك اليوم، ونربطه بالباقي عند الحاجة.</p></div>
+    <div class="mosaic">${order.map(k=>{const t=TR[k];return tile(k,k,LABEL[k],t.name,t.card)}).join("")}</div>
+  </div></section>
+
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>كيف نعمل</h2></div>
+    <ol class="steps">
+      <li><b>تقييم</b><p>نفهم الوضع الحالي لبياناتك وأنظمتك واحتياجك الفعلي.</p></li>
+      <li><b>تصميم</b><p>نحدد الحل ونطاقه ومعايير قبوله معك.</p></li>
+      <li><b>بناء تجريبي</b><p>نموذج أولي محدود النطاق ترى قيمته قبل أي التزام كبير.</p></li>
+      <li><b>توسيع</b><p>ننقل الحل إلى التشغيل الفعلي بمراحل واضحة.</p></li>
+      <li><b>نقل المعرفة</b><p>نوثّق كل شيء وندرّب فريقك ليدير الحل بنفسه.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="sec night"><div class="wrap">
+    <div class="center"><h2>نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها</h2><p>لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها، وما يمكن أن نبدأ به معك.</p></div>
+    <div class="mosaic dark">${sect.map((r,i)=>tile("industries",simg[i],r[0],r[1],"نبدأ بـ: "+r[2])).join("")}</div>
+    <p class="more"><a class="btn light" href="#industries">استعرض كل القطاعات</a></p>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="sec-head"><h2>لماذا الذكاء المكاني</h2></div>
+    <ul class="why">
+      <li><b>البيانات قبل التطبيق</b><p>نبدأ بتقييم جودة البيانات قبل أي تطوير.</p></li>
+      <li><b>منهجيات موثقة</b><p>كل تحليل مرفق بمنهجية قابلة للمراجعة.</p></li>
+      <li><b>ذكاء اصطناعي بمعايير معلنة</b><p>نحدد مقاييس القبول قبل تدريب أي نموذج.</p></li>
+      <li><b>حياد تجاه الموردين</b><p>نوصي بما يناسب الجهة، لا بما نعيد بيعه.</p></li>
+      <li><b>نطاقات واضحة وقصيرة</b><p>عروض بنطاق ثابت تبدأ بها دون التزام طويل.</p></li>
+      <li><b>تركيز على البيانات والتطبيقات</b><p>لا نورّد أجهزة ولا ننفّذ بنية تحتية، فتركيزنا كله على قيمة بياناتك.</p></li>
+    </ul>
+  </div></section>
+  ${closing("ابدأ بتقييم سريع لبياناتك المكانية","أخبرنا باحتياجك في ثلاث خانات، ونعود إليك بمقترح للخطوة الأولى.","احجز استشارة أولية")}`;
+},
+
+services(){
+  return phead({img:"network",title:"من البيانات الموثوقة إلى القرار",lead:"ننظّم خدماتنا في خمسة مسارات تكمّل بعضها. ابدأ بالمسار الذي يخدم سؤالك اليوم، ونربطه بالباقي عند الحاجة."})+
+  `<section class="sec"><div class="wrap">
+    <div class="center"><h2>المسارات الخمسة</h2></div>
+    <div class="mosaic">${["geospatial-data","consulting","gis-solutions","remote-sensing","geoai"].map(k=>{const t=TR[k];return tile(k,k,t.services.length+" خدمة",t.name,t.card)}).join("")}</div>
+  </div></section>
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>من أين أبدأ؟</h2><p>اختر السؤال الأقرب لما يشغلك.</p></div>
+    <div class="where">${D.where.map(w=>`<a href="#${w.slug}"><b>${esc(w.q)}</b><span>${esc(w.a)}</span></a>`).join("")}</div>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>عروض البداية</h2><p>نطاق ثابت ومخرجات محددة.</p></div>
+    <div class="tiles3">${D.offers.map(o=>tile(o.slug,o.slug,"عرض بنطاق ثابت",o.short,o.card)).join("")}</div>
+  </div></section>`+
+  closing("لست متأكدًا من البداية؟","صف لنا احتياجك ونقترح الخطوة الأولى.","احجز استشارة أولية");
+},
+
+track(t){
+  let list="",g=null;
+  const row=s=>s.slug?`<a href="#${s.slug}"><b>${esc(s.name)}</b><span>${esc(s.desc)}</span><i>تفاصيل الخدمة</i></a>`:`<div><b>${esc(s.name)}</b><span>${esc(s.desc)}</span><i></i></div>`;
+  if(t.services.some(s=>s.group)){
+    t.services.forEach(s=>{if(s.group!==g){if(g!==null)list+="</div>";g=s.group;list+=`<h3 class="group">${esc(g)}</h3><div class="svcs">`}list+=row(s)});
+    list+="</div>";
+  }else list=`<div class="svcs">${t.services.map(row).join("")}</div>`;
+  return (t.gate?note("معاينة داخلية: تُنشر صفحات هذا المسار بعد التحقق من الترخيص التنظيمي."):"")+
+  phead({img:t.slug,crumbs:[["services","خدماتنا"]],name:t.name,title:t.title,lead:t.intro,cta:t.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>أمثلة على ما نعمله</h2><ul class="ticks">${li(t.examples)}</ul></section>
+      <section><h2>المخرجات</h2><ul class="ticks">${li(t.outputs)}</ul></section>
+    </div>
+    <aside class="side"><div><h3>ما تحصل عليه</h3><ul class="gain">${li(t.benefits)}</ul></div></aside>
+  </div></section>
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>خدمات المسار</h2></div>${list}
+  </div></section>`+closing(t.cta,"",t.cta);
+},
+
+offer(o){
+  return phead({img:o.slug,crumbs:[["services","خدماتنا"]],name:o.name,title:o.title,lead:o.intro,cta:o.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>${esc(o.fitTitle)}</h2><ul class="ticks">${li(o.fit)}</ul></section>
+      <section><h2>كيف يسير</h2><ol class="steps long">${o.steps.map(s=>`<li><p>${esc(s)}</p></li>`).join("")}</ol></section>
+    </div>
+    <aside class="side"><div><h3>ما تستلمه</h3><ul class="gain">${li(o.receive)}</ul></div></aside>
+  </div></section>`+closing(o.short,"نطاق ثابت ومخرجات محددة، ونبدأ بجلسة قصيرة لتحديد المطلوب.",o.cta);
+},
+
+service(s){
+  const t=TR[s.track];
+  const grp=(t.services.find(y=>y.slug===s.slug)||{}).group;
+  const sib=t.services.filter(x=>x.slug&&x.slug!==s.slug&&x.group===grp);
+  return (t.gate?note("معاينة داخلية: تُنشر هذه الصفحة بعد التحقق من الترخيص التنظيمي."):"")+
+  phead({img:t.slug,crumbs:[["services","خدماتنا"],[t.slug,SHORT[t.slug]]],title:s.name,lead:s.intro,cta:s.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>ما نقدمه</h2><ul class="ticks">${li(s.offer)}</ul></section>
+      <section><h2>أمثلة</h2><ul class="examples">${li(s.examples)}</ul></section>
+    </div>
+    <aside class="side">
+      <div><h3>ما تحصل عليه</h3><ul class="gain">${li(s.benefits)}</ul></div>
+      <div><h3>المخرجات</h3><ul>${li(s.outputs)}</ul></div>
+    </aside>
+  </div></section>
+  ${sib.length?`<section class="sec soft"><div class="wrap"><div class="sec-head"><h2>خدمات قريبة</h2></div><div class="svcs">${sib.map(x=>`<a href="#${x.slug}"><b>${esc(x.name)}</b><span>${esc(x.desc)}</span><i>تفاصيل الخدمة</i></a>`).join("")}</div></div></section>`:""}`+
+  closing(s.cta,"",s.cta);
+},
+
+industries(){
+  return phead({img:"landcover",title:"حيث يصنع المكان فرقًا في القرار",lead:"لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها، وما يمكن أن نبدأ به معك."})+
+  `<section class="sec"><div class="wrap"><ul class="ind">${D.industries.map(r=>`<li><b>${esc(r[0])}</b><p><em>التحدي</em>${esc(r[1])}</p><p><em>ما نبدأ به</em>${esc(r[2])}</p></li>`).join("")}</ul></div></section>`+
+  closing("لا تجد قطاعك؟","أخبرنا بسؤالك المكاني.","ناقش حالتك");
+},
+
+about(){
+  return phead({img:"dunes",title:"نحوّل البيانات المكانية إلى قرار",lead:"شركة الذكاء المكاني للحلول الرقمية شركة سعودية مقرها الرياض، تعمل حيث تلتقي البيانات الجيومكانية بالتحليلات والذكاء الاصطناعي والتحول الرقمي."})+
+  `<section class="sec"><div class="wrap split">
+    <div class="prose"><h2>من نحن</h2>
+      <p style="margin-top:14px">نساعد الجهات الحكومية والشركات على بناء بيانات مكانية موثوقة ومحوكمة. ثم نستخلص منها المعرفة بالتحليل والاستشعار عن بعد والذكاء الاصطناعي المكاني، ونحوّلها إلى تطبيقات ومنصات تدعم العمل اليومي والقرار.</p>
+      <p>نؤمن أن القيمة انتقلت من امتلاك الخرائط والبرامج إلى موثوقية البيانات وسرعة تحويلها إلى قرار. لذلك نبني عملنا على ثلاث طبقات.</p></div>
+    <ol class="three">
+      <li><b>الثقة</b><span>استراتيجية البيانات وحوكمتها وتصميمها وجودتها، والمشورة المستقلة.</span></li>
+      <li><b>الاستخلاص</b><span>التحليلات المكانية والاستشعار عن بعد والذكاء الاصطناعي المكاني.</span></li>
+      <li><b>التفعيل</b><span>التطبيقات والمنصات ولوحات المعلومات والتكامل.</span></li>
+    </ol>
+  </div></section>
+  <section class="sec soft"><div class="wrap vm">
+    <div><h3>الرؤية</h3><p>أن نكون المرجع الموثوق في تحويل البيانات المكانية إلى قرارات أذكى في المملكة والمنطقة.</p></div>
+    <div><h3>الرسالة</h3><p>نمكّن الجهات من الاعتماد على بيانات مكانية موثوقة، ونقدم تحليلات وحلولًا رقمية مبنية على منهجيات واضحة وقابلة للمراجعة.</p></div>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="sec-head"><h2>قيمنا</h2></div>
+    <ul class="values">${D.values.map(v=>`<li><b>${esc(v[0])}</b><p>${esc(v[1])}</p></li>`).join("")}</ul>
+  </div></section>
+  <section class="sec soft"><div class="wrap prose">
+    <h2>حدود عملنا</h2>
+    <p style="margin-top:14px">نركّز على البيانات والتحليلات والتطبيقات والاستشارات. نصمم المعمارية المنطقية للحلول ونكتب مواصفات بيئات التشغيل، لكننا لا نورّد الخوادم أو معدات الشبكات، ولا ننشئ مراكز بيانات، ولا نقدّم الاستضافة أو صيانة الأجهزة. هذا التركيز يبقي توصياتنا في مصلحة بياناتك.</p>
+  </div></section>`+closing("لنبدأ من بياناتك","","تواصل معنا");
+},
+
+contact(){
+  return phead({img:"network",title:"لنبدأ بسؤالك",lead:"أخبرنا باحتياجك في ثلاث خانات، ونعود إليك بمقترح للخطوة الأولى."})+
+  `<section class="sec"><div class="wrap contact">
+    <form id="lead" novalidate>
+      <label for="fName">الاسم<input type="text" id="fName" required autocomplete="name" placeholder="الاسم الكامل"></label>
+      <label for="fOrg">الجهة<input type="text" id="fOrg" required autocomplete="organization" placeholder="اسم الجهة أو الشركة"></label>
+      <label for="fReach">البريد أو الجوال<input type="text" id="fReach" required placeholder="لنعود إليك عليه"></label>
+      <label for="fType">نوع الاحتياج <small>(اختياري)</small>
+        <select id="fType"><option value="">اختر</option>${["تقييم بيانات","استراتيجية وحوكمة","تطبيق أو لوحة","تحليل","استشارة أو مواصفات","غير ذلك"].map(x=>`<option>${x}</option>`).join("")}</select></label>
+      <label for="fNeed">الاحتياج<textarea id="fNeed" required placeholder="مثال: نريد تقييم جودة بيانات الأصول قبل بناء لوحة معلومات"></textarea></label>
+      <label class="consent" for="fOk"><input type="checkbox" id="fOk"><span>أوافق على معالجة بياناتي للرد على طلبي حسب <a class="link" href="#privacy">سياسة الخصوصية</a>.</span></label>
+      <button class="btn" type="submit" style="justify-self:start">أرسل طلبك</button>
+      <p class="msg" id="fMsg" role="status" hidden></p>
+    </form>
+    <div class="aside">
+      <div><h3>المقر</h3><p>الرياض، المملكة العربية السعودية</p></div>
+      <div><h3>للجهات الحكومية</h3><p>نتعامل مع المنافسات والمشتريات الحكومية، ونلتزم بسرية بياناتكم من أول تواصل. يمكننا توقيع اتفاقية عدم إفصاح قبل استلام أي بيانات.</p></div>
+    </div>
+  </div></section>`;
+},
+
+privacy(){
+  return note("مسودة للمراجعة القانونية: لا تُنشر قبل مراجعة مختص بنظام حماية البيانات الشخصية، واستكمال الخانات بين الأقواس.")+
+  phead({img:"blueprint",title:"سياسة الخصوصية"})+
+  `<section class="sec"><div class="wrap"><ol class="policy">${D.privacy.map(p=>`<li><div><b>${esc(p[0])}</b><p>${esc(p[1])}</p></div></li>`).join("")}</ol></div></section>`;
+}
+};
+
+const app=document.getElementById("app");
+document.getElementById("footTracks").innerHTML=D.tracks.map(t=>`<li><a href="#${t.slug}">${SHORT[t.slug]}</a></li>`).join("");
+document.getElementById("footOffers").innerHTML=D.offers.map(o=>`<li><a href="#${o.slug}">${esc(o.short)}</a></li>`).join("");
+let timer=null;
+function setupHome(){
+  const m=document.getElementById("media"); if(!m)return;
+  const figs=[...m.querySelectorAll("figure")], dots=[...m.querySelectorAll(".dots i")], pb=document.getElementById("pause");
+  let i=0, playing=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const show=n=>{i=(n+figs.length)%figs.length;figs.forEach((f,k)=>{f.classList.toggle("on",k===i);f.setAttribute("aria-hidden",k===i?"false":"true")});dots.forEach((d,k)=>d.classList.toggle("on",k===i))};
+  const icon=()=>{pb.setAttribute("aria-label",playing?"إيقاف العرض":"تشغيل العرض");pb.querySelector("path").setAttribute("d",playing?"M4 2h3v12H4zM9 2h3v12H9z":"M4 2l10 6-10 6z")};
+  const run=()=>{clearInterval(timer);if(playing)timer=setInterval(()=>show(i+1),5000)};
+  pb.addEventListener("click",()=>{playing=!playing;icon();run()});
+  icon();run();
+  const tabs=[...document.querySelectorAll('[role="tab"]')];
+  const sel=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute("aria-controls")).hidden=!on})};
+  tabs.forEach((t,k)=>{t.addEventListener("click",()=>sel(t));t.addEventListener("keydown",e=>{const d=e.key==="ArrowLeft"?1:e.key==="ArrowRight"?-1:0;if(d){const n=tabs[(k+d+tabs.length)%tabs.length];sel(n);n.focus()}})});
+}
+function route(){
+  clearInterval(timer);
+  const k=(location.hash||"#home").slice(1);
+  let html,title,group=k;
+  if(TR[k]){html=PAGES.track(TR[k]);title=TR[k].seo;group="services"}
+  else if(OF[k]){html=PAGES.offer(OF[k]);title=OF[k].seo;group="services"}
+  else if(SV[k]){html=PAGES.service(SV[k]);title=SV[k].seo;group="services"}
+  else if(PAGES[k]&&!["track","offer","service"].includes(k)){html=PAGES[k]();title=D.titles[k]}
+  else{html=PAGES.home();title=D.titles.home;group="home"}
+  app.innerHTML=html;
+  document.title=title;
+  nav.querySelectorAll("[data-g]").forEach(a=>{a.dataset.g===group?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  closeMenus();nav.classList.remove("open");mb.setAttribute("aria-expanded","false");
+  if(group==="home")setupHome();
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+app.addEventListener("submit",e=>{
+  if(e.target.id!=="lead")return;
+  e.preventDefault();
+  const m=document.getElementById("fMsg"), v=id=>document.getElementById(id).value.trim();
+  if(!v("fName")||!v("fOrg")||!v("fNeed")){m.className="msg err";m.textContent="لم يُرسَل الطلب. تأكد من تعبئة الاسم والجهة والاحتياج، ثم حاول مرة أخرى.";m.hidden=false;return}
+  if(!v("fReach")){m.className="msg err";m.textContent="لم يُرسَل الطلب. أضف بريدًا أو رقم جوال لنعود إليك عليه.";m.hidden=false;return}
+  if(!document.getElementById("fOk").checked){m.className="msg err";m.textContent="لم يُرسَل الطلب. وافق على سياسة الخصوصية أولًا.";m.hidden=false;return}
+  m.className="msg";m.textContent="هذه نسخة معاينة: النموذج غير مربوط بعد ببريد الشركة، فلم يُرسَل شيء.";m.hidden=false;
+});
+route();
+</script>
+</body>
+</html>

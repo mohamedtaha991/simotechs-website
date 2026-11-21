@@ -1,0 +1,61 @@
+{# صفحة «من نحن». القيم من src/content/values.json #}
+{% extends "base.html" %}
+{% block title %}من نحن | الذكاء المكاني للحلول الرقمية{% endblock %}
+{% block main %}
+{{ m.phead("احترافية في المجال الجيومكاني، وابتكار يصنع الفرق", lead="شركة سعودية متخصصة في الذكاء المكاني، نقدّم خدمات وحلولًا ومنتجات جيومكانية تحوّل البيانات إلى قرار.", img="about") }}
+
+<section class="sec"><div class="wrap about-story">
+  <div class="prose about-intro">
+    <span class="eyebrow">عن الشركة</span>
+    <h2>خبرة متخصصة تحوّل المكان إلى قيمة</h2>
+    <p>الذكاء المكاني للحلول الرقمية شركة سعودية مقرها الرياض، متخصصة في المجال الجيومكاني. نجمع بين الخبرة العميقة والابتكار لنقدّم خدمات وحلولًا ومنتجات تساعد الجهات الحكومية والشركات على فهم المكان واتخاذ قرارات أدق.</p>
+    <p>نعمل بمنهجيات واضحة ومعايير احترافية، ونبني ما نقدّمه ليكون موثوقًا وقابلًا للتطوير ويحقق أثرًا يمكن قياسه.</p>
+  </div>
+  <figure class="about-photo">
+    {{ m.pic("about", alt="فريق متخصص يناقش البيانات والخرائط الجيومكانية", lazy=false) }}
+  </figure>
+</div></section>
+
+<section class="vision-mission">
+  {{ m.pic("sector-gov", cls="bg", alt="مدينة مترابطة بالبيانات والتقنيات المكانية") }}
+  <div class="wrap">
+    <div class="vm">
+      <article>
+        <h3>الرؤية</h3>
+        <p>أن نكون الاسم الموثوق في الذكاء المكاني، بخدمات ومنتجات جيومكانية رائدة تصنع قرارات أدق وقيمة مستدامة في المملكة والمنطقة.</p>
+      </article>
+      <article>
+        <h3>الرسالة</h3>
+        <p>نبتكر ونقدّم حلولًا وخدمات ومنتجات جيومكانية باحترافية عالية، تحوّل البيانات المكانية إلى معرفة وقرارات تخدم عملاءنا وتدعم التنمية.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec"><div class="wrap">
+  <div class="center values-head">
+    <span class="eyebrow">قيمنا</span>
+    <h2>ما نلتزم به في كل ما نقدّمه</h2>
+  </div>
+  <ul class="values">
+    {% for v in values %}
+    <li>
+      <span class="value-icon" aria-hidden="true">
+        {% if loop.index == 1 %}<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="m8 12 2.5 2.5L16 9M8 19h8"/></svg>
+        {% elif loop.index == 2 %}<svg viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M8.5 14.5A7 7 0 1 1 16 14c-1 .7-1 1.7-1 3H9c0-1.1 0-1.8-.5-2.5Z"/><path d="M12 6v5M9.5 8.5 12 11l2.5-2.5"/></svg>
+        {% elif loop.index == 3 %}<svg viewBox="0 0 24 24"><path d="m12 3 7 3v5c0 4.5-2.8 8-7 10-4.2-2-7-5.5-7-10V6z"/><path d="m9 12 2 2 4-5"/></svg>
+        {% else %}<svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V5M16 20v-7M22 20H2"/><path d="m4 7 6-4 6 5 5-5"/></svg>{% endif %}
+      </span>
+      <b>{{ v.name }}</b>
+      <p>{{ v.text }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div></section>
+
+<section class="close"><div class="wrap">
+  <div><h2>لكل مشروع جيومكاني نقطة بداية صحيحة</h2><p>نتعرف على احتياجك، ونحدد المسار المناسب، ثم نبني الحل.</p></div>
+  <a class="btn" href="{{ root }}contact/">تواصل معنا</a>
+</div></section>
+
+{% endblock %}

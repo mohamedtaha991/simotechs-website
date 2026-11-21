@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>موقع الذكاء المكاني للحلول الرقمية</title>
+<meta name="description" content="نساعد الجهات الحكومية والشركات في السعودية على حوكمة بياناتها الجيومكانية وتحليلها وتحويلها إلى تطبيقات ولوحات تدعم القرار.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Colors: close to Esri (blue #0079c1 on white, charcoal dark bands). Layout: enterprise-platform pattern (dark image hero with media panel, mega menus, image tiles with captions on the image, tabs, mosaic, one dark band, column footer). White page by brand choice; sand marks data and place, teal marks action. */
+:root{
+  color-scheme:light;
+  --bg:#ffffff;
+  --soft:#f8f8f8;
+  --ink:#151515;
+  --ink-2:#4a4a4a;
+  --line:#e0e0e0;
+  --sand:#0079c1;
+  --sand-deep:#005e95;
+  --sand-wash:#eaf4fb;
+  --teal:#0079c1;
+  --teal-deep:#005e95;
+  --teal-glow:#56c5ff;
+  --night:#151515;
+  --night-2:#202020;
+  --f-display:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --f-body:"Tajawal",Tahoma,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:90px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17.5px;line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.35;margin:0;text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+img{max-width:100%;display:block}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{max-width:var(--max);margin:0 auto;padding-inline:24px}
+.mono{font-family:var(--f-mono);font-size:13px;direction:ltr;unicode-bidi:isolate}
+
+/* announcement bar */
+.promo{border-bottom:1px solid var(--line);background:var(--bg)}
+.promo .wrap{display:flex;align-items:center;gap:14px;min-height:52px;font-size:15.5px;font-weight:500}
+.promo i{width:30px;height:30px;border-radius:6px;background:var(--sand-wash);display:grid;place-items:center;flex-shrink:0}
+.promo p{flex:1}
+.promo a{flex-shrink:0;font-weight:700;color:var(--teal);text-decoration:none;border:1px solid var(--teal);padding:4px 14px;border-radius:3px;font-size:14.5px}
+.promo a:hover{background:var(--teal);color:#fff}
+@media (max-width:640px){.promo i{display:none}.promo p{font-size:14px;line-height:1.5}.promo a{font-size:13.5px;padding:3px 10px}}
+
+/* header + mega menu */
+.top{position:sticky;top:0;z-index:60;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:26px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand svg{width:38px;height:38px}
+.brand b{font-weight:800;font-size:19px;line-height:1.1;display:block}
+.brand small{display:block;font-size:12px;color:var(--ink-2);line-height:1.3}
+.nav{display:flex;align-items:stretch;gap:2px;align-self:stretch}
+.nav > a,.nav > .item > button{display:flex;align-items:center;gap:6px;height:100%;padding:0 12px;font-size:16px;font-weight:500;color:var(--ink);text-decoration:none;background:none;border:0;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.nav > .item{display:flex}
+.nav > a:hover,.nav > .item > button:hover,.nav > .item > button[aria-expanded="true"]{border-bottom-color:var(--sand)}
+.nav [aria-current="page"]{font-weight:700;border-bottom-color:var(--teal)!important}
+.nav .chev{width:10px;height:10px;transition:transform .2s}
+.nav button[aria-expanded="true"] .chev{transform:rotate(180deg)}
+.bar .end{margin-inline-start:auto;display:flex;align-items:center;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 16px var(--f-body);text-decoration:none;border-radius:3px;padding:11px 22px;min-height:46px;background:var(--teal);color:#fff;border:1px solid var(--teal);cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--teal-deep)}
+.btn.line{background:transparent;color:var(--ink);border-color:#bdbdbd}
+.btn.line:hover{background:var(--soft)}
+.btn.light{background:transparent;color:#fff;border-color:rgba(255,255,255,.6)}
+.btn.light:hover{background:rgba(255,255,255,.12)}
+.btn.sm{min-height:40px;padding:7px 16px;font-size:15px}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:3px;width:44px;height:44px;cursor:pointer;color:var(--ink)}
+.mega{position:absolute;inset-inline:0;top:100%;background:var(--bg);border-top:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 18px 30px -18px rgba(21,21,21,.35);display:none}
+.mega.open{display:block}
+.mega .wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:32px;padding-block:30px 34px}
+.mega h2{font-size:13.5px;font-weight:700;color:var(--sand-deep);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.mega li a{display:block;text-decoration:none;padding:8px 10px;margin-inline:-10px;border-radius:3px}
+.mega li a:hover{background:var(--soft)}
+.mega li b{display:block;font-weight:700;font-size:16px;line-height:1.5}
+.mega li span{display:block;font-size:14px;color:var(--ink-2);line-height:1.55}
+.mega .cols2{grid-column:span 2;columns:2;column-gap:32px}
+.mega .cols2 li{break-inside:avoid}
+.mega .all{display:inline-block;margin-top:10px;font-weight:700;color:var(--teal);text-decoration:none;font-size:15px}
+.mega .all:hover{text-decoration:underline}
+.feat{background:var(--soft);padding:18px;display:grid;gap:10px;align-content:start}
+.feat .k{font-size:13px;font-weight:700;color:var(--sand-deep)}
+.feat img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.feat b{font-size:17px;line-height:1.45}
+.feat p{font-size:14.5px;color:var(--ink-2);line-height:1.65}
+.feat a.go{font-weight:700;color:var(--teal);text-decoration:none;font-size:15px}
+@media (max-width:1060px){
+  .nav{display:none;position:absolute;top:100%;inset-inline:0;flex-direction:column;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 0 16px;max-height:calc(100vh - 140px);overflow:auto;box-shadow:0 18px 30px -18px rgba(21,21,21,.35)}
+  .nav.open{display:flex}
+  .nav > a,.nav > .item > button{height:auto;padding:14px 24px;font-size:17px;border-bottom:1px solid var(--line);width:100%;justify-content:space-between;margin:0}
+  .nav > .item{flex-direction:column}
+  .mega{position:static;box-shadow:none;border:0;background:var(--soft)}
+  .mega .wrap{grid-template-columns:1fr;gap:18px;padding-block:16px 20px}
+  .mega .cols2{grid-column:auto;columns:1}
+  .feat{display:none}
+  .menu-btn{display:grid;place-items:center}
+  .bar .end .btn{display:none}
+}
+
+/* hero */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(21,21,21,.94) 0%,rgba(21,21,21,.78) 42%,rgba(21,21,21,.35) 100%)}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:56px}
+.hero h1{font-size:clamp(34px,4.6vw,58px);font-weight:800;line-height:1.3}
+.hero h1 span{display:block}
+.hero h1 span + span{color:var(--teal-glow)}
+.hero p.lead{margin-top:18px;font-size:clamp(17px,1.6vw,20px);color:rgba(255,255,255,.82);max-width:32em}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.media{position:relative;aspect-ratio:1/1;max-height:560px;width:100%;justify-self:end;background:#000;overflow:hidden}
+.media figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1s ease}
+.media figure.on{opacity:1}
+.media img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 6s linear}
+.media figure.on img{transform:scale(1.14)}
+.media figcaption{position:absolute;inset-inline-start:18px;bottom:18px;background:rgba(21,21,21,.78);padding:10px 14px;max-width:80%;font-size:15px;line-height:1.5}
+.media figcaption b{display:block;font-size:13px;color:var(--teal-glow);font-weight:700}
+.pause{position:absolute;top:16px;inset-inline-end:16px;z-index:3;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.85);background:rgba(21,21,21,.45);color:#fff;cursor:pointer;display:grid;place-items:center}
+.pause:hover{background:rgba(21,21,21,.75)}
+.dots{position:absolute;bottom:18px;inset-inline-end:18px;z-index:3;display:flex;gap:6px}
+.dots i{width:26px;height:3px;background:rgba(255,255,255,.35)}
+.dots i.on{background:var(--teal-glow)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:44px}.media{aspect-ratio:16/10;justify-self:stretch}.hero::after{background:rgba(21,21,21,.8)}}
+@media (prefers-reduced-motion:reduce){.media img,.media figure.on img{transition:none;transform:none}.media figure{transition:none}}
+
+/* sections */
+.sec{padding-block:80px}
+.sec.soft{background:var(--soft)}
+.center{text-align:center;max-width:780px;margin:0 auto 40px}
+.center h2,.sec-head h2{font-size:clamp(27px,3.3vw,38px)}
+.center p{margin-top:12px;color:var(--ink-2);font-size:18px}
+.sec-head{display:grid;gap:12px;margin-bottom:34px;max-width:760px}
+.sec-head p{color:var(--ink-2)}
+.note{background:var(--sand-wash);border-bottom:1px solid var(--line);font-size:14.5px;color:var(--sand-deep)}
+.note .wrap{padding-block:9px}
+
+/* image tiles */
+.tiles3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.tile{position:relative;display:block;overflow:hidden;background:var(--night);color:#fff;text-decoration:none;min-height:240px}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tile:hover img{transform:scale(1.05)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(21,21,21,.92) 0%,rgba(21,21,21,.55) 40%,rgba(21,21,21,0) 75%)}
+.tile .cap{position:absolute;z-index:2;inset-inline:0;bottom:0;padding:22px 22px 20px;display:grid;gap:6px}
+.tile .chip{justify-self:start;background:rgba(21,21,21,.72);border:1px solid rgba(255,255,255,.18);font-size:13px;font-weight:700;padding:2px 10px;color:#fff}
+.tile h3{font-size:21px;line-height:1.4}
+.tile p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.6}
+.tiles3 .tile{aspect-ratio:16/11}
+@media (max-width:900px){.tiles3{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
+
+/* tabs */
+.tablist{display:flex;justify-content:center;flex-wrap:wrap;gap:0;border-bottom:1px solid var(--line);margin-bottom:36px}
+.tablist button{background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:12px 22px;font-size:17px;font-weight:500;color:var(--ink-2);cursor:pointer;display:flex;gap:10px;align-items:baseline}
+.tablist button i{font-style:normal;font-weight:800;color:var(--sand)}
+.tablist button[aria-selected="true"]{color:var(--ink);font-weight:700;border-bottom-color:var(--teal)}
+.panel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:48px;align-items:center}
+.panel[hidden]{display:none}
+.panel .k{display:inline-block;font-size:13.5px;font-weight:700;color:var(--sand-deep);margin-bottom:10px}
+.panel h3{font-size:clamp(24px,2.6vw,32px)}
+.panel p{margin-top:14px;color:var(--ink-2)}
+.panel ul{margin-top:16px;display:grid;gap:6px}
+.panel li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:16.5px}
+.panel li::before{content:"";width:8px;height:8px;background:var(--sand);margin-top:10px}
+.panel .go{display:inline-block;margin-top:22px}
+.panel img{width:100%;aspect-ratio:16/10;object-fit:cover}
+@media (max-width:860px){.panel{grid-template-columns:1fr;gap:24px}.panel img{order:-1}.tablist{justify-content:flex-start}.tablist button{padding:10px 14px;font-size:15.5px}}
+
+/* mosaic */
+.mosaic{display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-template-rows:280px 280px;gap:16px;grid-template-areas:"a b c" "a d e"}
+.mosaic .tile:nth-child(1){grid-area:a}.mosaic .tile:nth-child(2){grid-area:b}.mosaic .tile:nth-child(3){grid-area:c}.mosaic .tile:nth-child(4){grid-area:d}.mosaic .tile:nth-child(5){grid-area:e}
+.mosaic .tile:nth-child(1) h3{font-size:clamp(24px,2.4vw,30px)}
+.mosaic.dark{grid-template-areas:"a a b" "c d e"}
+@media (max-width:980px){.mosaic,.mosaic.dark{grid-template-columns:1fr 1fr;grid-template-rows:auto;grid-template-areas:"a a" "b c" "d e"}.mosaic .tile{min-height:260px}}
+@media (max-width:560px){.mosaic,.mosaic.dark{grid-template-columns:1fr;grid-template-areas:"a" "b" "c" "d" "e"}}
+
+/* dark band */
+.night{background:var(--night);color:#fff}
+.night .center p{color:rgba(255,255,255,.72)}
+.night .tile::after{background:linear-gradient(to top,rgba(21,21,21,.95) 0%,rgba(21,21,21,.7) 50%,rgba(21,21,21,.35) 100%)}
+.night .tile img{opacity:.6}
+.night .more{text-align:center;margin-top:30px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;counter-reset:s}
+.steps li{counter-increment:s;padding:18px 18px 0;border-top:3px solid var(--sand)}
+.steps li + li{border-inline-start:1px solid var(--line)}
+.steps li::before{content:counter(s);font-size:32px;font-weight:800;color:var(--sand);display:block;line-height:1.2}
+.steps b{display:block;font-size:19px;font-weight:700;margin-top:6px}
+.steps p{font-size:15.5px;color:var(--ink-2);line-height:1.75;margin-top:4px}
+.steps.long{grid-template-columns:1fr;max-width:760px}
+.steps.long li{display:grid;grid-template-columns:44px 1fr;align-items:baseline;padding:14px 0;border-top:1px solid var(--line);border-inline-start:0}
+.steps.long li:first-child{border-top:3px solid var(--sand)}
+.steps.long li p{font-size:17px;color:var(--ink);margin:0}
+@media (max-width:900px){.steps{grid-template-columns:1fr 1fr}.steps li + li{border-inline-start:0}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+.why{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 40px}
+.why b{display:block;font-size:19px;font-weight:700;padding-top:12px;border-top:2px solid var(--ink)}
+.why p{color:var(--ink-2);font-size:16px;margin-top:6px}
+@media (max-width:860px){.why{grid-template-columns:1fr 1fr}}
+@media (max-width:540px){.why{grid-template-columns:1fr}}
+
+.link{font-weight:700;color:var(--teal);text-decoration:none}
+.link:hover{text-decoration:underline}
+
+/* closing band */
+.close{background:var(--sand-wash);border-top:1px solid var(--line)}
+.close .wrap{padding-block:56px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between}
+.close h2{font-size:clamp(24px,3vw,34px)}
+.close p{color:var(--ink-2);margin-top:6px;max-width:36em}
+
+/* inner page header */
+.phead{position:relative;background:var(--night);color:#fff;overflow:hidden}
+.phead img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7}
+.phead::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(21,21,21,.95) 0%,rgba(21,21,21,.82) 50%,rgba(21,21,21,.45) 100%)}
+.phead .wrap{position:relative;z-index:2;padding-block:54px 50px}
+.crumbs{font-size:15px;color:rgba(255,255,255,.7);display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.crumbs a{color:#fff;text-decoration:none;font-weight:500;border-bottom:1px solid rgba(255,255,255,.4)}
+.crumbs a:hover{border-bottom-color:#fff}
+.phead .name{font-size:15.5px;font-weight:700;color:var(--teal-glow);margin-bottom:6px}
+.phead h1{font-size:clamp(30px,4.2vw,50px);font-weight:800;max-width:19em}
+.phead p.lead{margin-top:16px;font-size:19px;color:rgba(255,255,255,.82);max-width:40em}
+.phead .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:56px;align-items:start}
+.cols h2{font-size:25px;margin-bottom:14px}
+.cols section + section{margin-top:44px}
+.ticks li{padding:12px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:baseline}
+.ticks li:first-child{border-top:1px solid var(--line)}
+.ticks li::before{content:"";width:8px;height:8px;background:var(--sand);align-self:center}
+.side{background:var(--soft);padding:26px;display:grid;gap:24px;position:sticky;top:96px;border-top:3px solid var(--teal)}
+.side h3{font-size:15px;font-weight:700;color:var(--sand-deep);margin-bottom:8px}
+.side li{padding:5px 0;font-size:16.5px}
+.side .gain li{font-weight:700;padding:9px 0;border-bottom:1px solid var(--line)}
+.side .gain li:last-child{border-bottom:0}
+.examples{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.examples li{border:1px solid var(--line);border-top:3px solid var(--sand);padding:16px 18px;font-size:16.5px;background:var(--bg)}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:36px}.side{position:static}}
+
+.group{font-size:15.5px;font-weight:700;color:var(--sand-deep);margin:30px 0 8px}
+.svcs{border-top:1px solid var(--line)}
+.svcs > *{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) auto;gap:6px 24px;padding:16px 6px;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.svcs a:hover{background:var(--bg)}
+.svcs b{font-weight:700;font-size:17px}
+.svcs span{color:var(--ink-2);font-size:16px}
+.svcs i{font-style:normal;font-size:14.5px;font-weight:700;color:var(--teal);white-space:nowrap}
+@media (max-width:760px){.svcs > *{grid-template-columns:1fr}}
+
+.where{border-top:2px solid var(--ink)}
+.where a{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:6px 24px;padding:16px 6px;border-bottom:1px solid var(--line);text-decoration:none}
+.where a:hover{background:var(--soft)}
+.where b{font-weight:500;font-size:18px}
+.where span{color:var(--teal);font-weight:700}
+@media (max-width:640px){.where a{grid-template-columns:1fr}}
+
+.ind{border-top:2px solid var(--ink)}
+.ind li{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr) minmax(0,1.3fr);gap:8px 28px;padding:20px 6px;border-bottom:1px solid var(--line)}
+.ind b{font-size:19px;font-weight:700;line-height:1.5}
+.ind p{font-size:16.5px;color:var(--ink-2)}
+.ind em{font-style:normal;display:block;font-size:13.5px;font-weight:700;color:var(--sand-deep)}
+.ind p + p{color:var(--ink)}
+@media (max-width:820px){.ind li{grid-template-columns:1fr}}
+
+.values{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border-top:3px solid var(--sand)}
+.values li{padding:18px 16px}
+.values li + li{border-inline-start:1px solid var(--line)}
+.values b{display:block;font-size:21px;font-weight:800}
+.values p{font-size:15.5px;color:var(--ink-2);margin-top:4px;line-height:1.7}
+@media (max-width:900px){.values{grid-template-columns:1fr 1fr}.values li{border-bottom:1px solid var(--line)}.values li + li{border-inline-start:0}}
+.vm{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.vm div{padding:28px;background:var(--bg);border-top:3px solid var(--teal)}
+.vm h3{font-size:15px;font-weight:700;color:var(--sand-deep)}
+.vm p{font-size:21px;line-height:1.7;margin-top:8px;font-weight:500}
+@media (max-width:700px){.vm{grid-template-columns:1fr}}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+.split h2{font-size:clamp(26px,3.2vw,36px)}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:28px}}
+.prose{max-width:44em}
+.prose p + p{margin-top:16px}
+.prose p{color:var(--ink-2);font-size:18px}
+.three li{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.three li:first-child{border-top:3px solid var(--sand)}
+.three b{font-size:22px;font-weight:800;color:var(--teal)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px;align-items:start}
+form{display:grid;gap:16px;border:1px solid var(--line);border-top:3px solid var(--teal);padding:28px;background:var(--bg)}
+label{display:grid;gap:6px;font-size:15.5px;font-weight:700}
+label small{font-weight:400;color:var(--ink-2)}
+input[type=text],select,textarea{font:inherit;font-size:16.5px;color:var(--ink);background:var(--bg);border:1px solid #bdbdbd;border-radius:3px;padding:11px 13px;width:100%}
+textarea{min-height:120px;resize:vertical}
+.consent{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:15px;color:var(--ink-2)}
+.consent input{margin-top:7px;width:17px;height:17px;accent-color:var(--teal)}
+.msg{font-size:15.5px;padding:12px 14px;background:var(--sand-wash);color:var(--sand-deep)}
+.msg.err{background:#fbeaea;color:#8f2a2a}
+.aside{display:grid;gap:22px}
+.aside div{border-top:3px solid var(--sand);padding-top:14px}
+.aside h3{font-size:15px;font-weight:700;color:var(--sand-deep)}
+.aside p{margin-top:6px;font-size:17px}
+@media (max-width:860px){.contact{grid-template-columns:1fr}}
+
+.policy{max-width:46em;counter-reset:p}
+.policy li{counter-increment:p;padding:18px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:36px 1fr;gap:6px}
+.policy li::before{content:counter(p);color:var(--sand);font-size:21px;font-weight:800}
+.policy b{display:block;font-size:18px}
+.policy p{color:var(--ink-2);font-size:17px}
+
+/* footer */
+footer{background:var(--bg);font-size:15.5px;position:relative}
+footer::before{content:"";display:block;height:4px;background:linear-gradient(to left,#0079c1,#56c5ff)}
+.foot{display:grid;grid-template-columns:1.3fr repeat(4,minmax(0,1fr));gap:36px;padding-block:52px 36px}
+.foot .mark{display:grid;gap:14px;align-content:start}
+.foot .mark svg{width:64px;height:64px}
+.foot .mark b{font-size:20px;font-weight:800;line-height:1.3}
+.foot .mark p{color:var(--ink-2);font-size:15px}
+.foot h3{font-size:15px;font-weight:700;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.foot li{padding:4px 0;line-height:1.5}
+.foot a{text-decoration:none;color:var(--ink-2)}
+.foot a:hover{color:var(--ink);text-decoration:underline}
+.legal{border-top:1px solid var(--line)}
+.legal .wrap{padding-block:18px;color:var(--ink-2);font-size:14.5px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.legal a{color:var(--ink-2);text-decoration:none}
+.legal a:hover{text-decoration:underline}
+@media (max-width:980px){.foot{grid-template-columns:1fr 1fr}.foot .mark{grid-column:1/-1}}
+@media (max-width:520px){.foot{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="promo" aria-label="إعلان">
+  <div class="wrap">
+    <i aria-hidden="true"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#0079c1" stroke-width="1.6"/><circle cx="9" cy="9" r="3" stroke="#56c5ff" stroke-width="1.6"/><circle cx="9" cy="9" r="1" fill="#0079c1"/></svg></i>
+    <p>ابدأ بتقييم جاهزية بياناتك المكانية: نطاق ثابت، ومؤشرات بالأرقام، وخطة تحسين مرتبة.</p>
+    <a href="#data-readiness-assessment">اطلب تقييمًا أوليًا</a>
+  </div>
+</aside>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#home" aria-label="الذكاء المكاني، الصفحة الرئيسية">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#b8814a" stroke-width="1.6"/>
+        <path d="M5 23c5-4 10-4 15 0s10 4 15 0" stroke="#b8814a" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M8 29c4-3 8-3 12 0s8 3 12 0" stroke="#b8814a" stroke-width="1.6" stroke-linecap="round" opacity=".55"/>
+        <circle cx="20" cy="13" r="3.4" fill="#1d6b73"/>
+        <path d="M20 13 11 17M20 13l9 4" stroke="#1d6b73" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      <span><b>الذكاء المكاني</b><small>للحلول الرقمية</small></span>
+    </a>
+    <nav class="nav" id="nav" aria-label="القائمة الرئيسية"></nav>
+    <div class="end">
+      <a class="btn sm" href="#contact">احجز استشارة أولية</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<footer>
+  <div class="wrap foot">
+    <div class="mark">
+      <svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#b8814a" stroke-width="1.4"/>
+        <path d="M5 23c5-4 10-4 15 0s10 4 15 0" stroke="#b8814a" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M8 29c4-3 8-3 12 0s8 3 12 0" stroke="#b8814a" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        <circle cx="20" cy="13" r="3.4" fill="#1d6b73"/>
+        <path d="M20 13 11 17M20 13l9 4" stroke="#1d6b73" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      <b>ذكاء مكاني يصنع قرارًا أدق</b>
+      <p>شركة سعودية متخصصة في الذكاء المكاني، تحوّل البيانات الجيومكانية إلى معلومات وحلول رقمية تدعم التخطيط والإدارة واتخاذ القرار.</p>
+    </div>
+    <div><h3>المسارات</h3><ul id="footTracks"></ul></div>
+    <div><h3>عروض البداية</h3><ul id="footOffers"></ul></div>
+    <div><h3>الشركة</h3><ul>
+      <li><a href="#about">من نحن</a></li><li><a href="#industries">القطاعات</a></li>
+      <li><a href="#services">خدماتنا</a></li><li><a href="#contact">تواصل معنا</a></li></ul></div>
+    <div><h3>التواصل</h3><ul><li>الرياض، المملكة العربية السعودية</li><li class="mono">24.7136° N · 46.6753° E</li><li><a href="#contact">احجز استشارة أولية</a></li></ul></div>
+  </div>
+  <div class="legal"><div class="wrap">
+    <span>© 2026 شركة الذكاء المكاني للحلول الرقمية، شركة ذات مسؤولية محدودة</span>
+    <span><a href="#privacy">سياسة الخصوصية</a></span>
+  </div></div>
+</footer>
+
+<script>
+const D=/*DATA*/;
+const esc=t=>String(t).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const TR=Object.fromEntries(D.tracks.map(t=>[t.slug,t]));
+const OF=Object.fromEntries(D.offers.map(o=>[o.slug,o]));
+const SV=Object.fromEntries(D.services.map(s=>[s.slug,s]));
+const SHORT={"geospatial-data":"البيانات الجيومكانية","gis-solutions":"الحلول الرقمية","consulting":"الاستشارات","remote-sensing":"الاستشعار عن بعد","geoai":"الذكاء الاصطناعي المكاني"};
+const IMG={"geospatial-data":"dunes","gis-solutions":"city","consulting":"blueprint","remote-sensing":"landcover","geoai":"detect",
+  "data-readiness-assessment":"detect","data-strategy-governance":"blueprint","spatial-prototype":"city",home:"network-wide",services:"network",industries:"landcover",about:"dunes",contact:"network",privacy:"blueprint"};
+const LABEL={"geospatial-data":"الأساس","consulting":"قبل الاستثمار","gis-solutions":"التفعيل","remote-sensing":"الرصد","geoai":"الاستخلاص"};
+const img=(k,alt)=>`<img src="img/${IMG[k]||k}.jpg" alt="${esc(alt||"")}" loading="lazy" decoding="async">`;
+const btn=(label,cls)=>`<a class="btn ${cls||""}" href="#contact">${esc(label)}</a>`;
+const li=a=>a.map(x=>`<li>${esc(x)}</li>`).join("");
+const tile=(href,im,chip,h,p)=>`<a class="tile" href="#${href}">${img(im)}<span class="cap">${chip?`<span class="chip">${esc(chip)}</span>`:""}<h3>${esc(h)}</h3>${p?`<p>${esc(p)}</p>`:""}</span></a>`;
+const closing=(h,p,label)=>`<section class="close"><div class="wrap"><div><h2>${esc(h)}</h2>${p?`<p>${esc(p)}</p>`:""}</div>${btn(label)}</div></section>`;
+const note=t=>`<div class="note"><div class="wrap">${esc(t)}</div></div>`;
+function phead(o){
+  return `<section class="phead">${img(o.img||"network")}<div class="wrap">
+  ${o.crumbs?`<nav class="crumbs" aria-label="مسار الصفحة">${o.crumbs.map(c=>`<a href="#${c[0]}">${esc(c[1])}</a>`).join('<span aria-hidden="true">/</span>')}</nav>`:""}
+  ${o.name?`<p class="name">${esc(o.name)}</p>`:""}
+  <h1>${esc(o.title)}</h1>${o.lead?`<p class="lead">${esc(o.lead)}</p>`:""}
+  ${o.cta?`<div class="actions">${btn(o.cta)}</div>`:""}</div></section>`.replace('<img ','<img class="bg" ');
+}
+
+/* mega menus */
+const chev=`<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const feat=(k,im,h,p,href,go)=>`<article class="feat"><span class="k">${esc(k)}</span>${img(im)}<b>${esc(h)}</b><p>${esc(p)}</p><a class="go" href="#${href}">${esc(go)}</a></article>`;
+const MENUS=[
+ {id:"services",label:"خدماتنا",body:()=>`
+   <div><h2>المسارات</h2><ul>${D.tracks.slice(0,3).map(t=>`<li><a href="#${t.slug}"><b>${esc(SHORT[t.slug])}</b><span>${esc(t.title)}</span></a></li>`).join("")}</ul></div>
+   <div><h2>&nbsp;</h2><ul>${D.tracks.slice(3).map(t=>`<li><a href="#${t.slug}"><b>${esc(SHORT[t.slug])}</b><span>${esc(t.title)}</span></a></li>`).join("")}</ul><a class="all" href="#services">كل الخدمات</a></div>
+   <div><h2>ابدأ من هنا</h2><ul>${D.offers.map(o=>`<li><a href="#${o.slug}"><b>${esc(o.short)}</b><span>نطاق ثابت ومخرجات محددة</span></a></li>`).join("")}</ul></div>
+   ${feat("عرض مميز","data-readiness-assessment","قبل أن تبني على بياناتك، اعرف حالتها","دقة واكتمال واتساق وحداثة، مع خطة تحسين مرتبة بالأولوية.","data-readiness-assessment","تفاصيل التقييم")}`},
+ {id:"industries",label:"القطاعات",body:()=>`
+   <div class="cols2"><h2>القطاعات التي نخدمها</h2><ul>${D.industries.map(r=>`<li><a href="#industries"><b>${esc(r[0])}</b></a></li>`).join("")}</ul><a class="all" href="#industries">كل القطاعات</a></div>
+   <div><h2>من أين أبدأ؟</h2><ul>${D.where.slice(0,3).map(w=>`<li><a href="#${w.slug}"><b>${esc(w.q)}</b><span>${esc(w.a)}</span></a></li>`).join("")}</ul></div>
+   ${feat("لا تجد قطاعك؟","industries","لكل قطاع أسئلته المكانية الخاصة","أخبرنا بسؤالك المكاني ونقترح الخطوة الأولى.","contact","ناقش حالتك")}`},
+ {id:"about",label:"من نحن",body:()=>`
+   <div><h2>الشركة</h2><ul>
+     <li><a href="#about"><b>من نحن</b><span>نحوّل البيانات المكانية إلى قرار</span></a></li>
+     <li><a href="#about"><b>الرؤية والرسالة وقيمنا</b><span>الدقة، الاستقلالية، الأمانة</span></a></li>
+     <li><a href="#about"><b>حدود عملنا</b><span>بيانات وتحليلات وتطبيقات واستشارات</span></a></li></ul></div>
+   <div><h2>طريقة العمل</h2><ul>
+     <li><a href="#home"><b>كيف نعمل</b><span>تقييم، تصميم، بناء تجريبي، توسيع، نقل معرفة</span></a></li>
+     <li><a href="#services"><b>من أين أبدأ؟</b><span>اختر السؤال الأقرب لما يشغلك</span></a></li></ul></div>
+   <div><h2>تواصل</h2><ul>
+     <li><a href="#contact"><b>تواصل معنا</b><span>الرياض، المملكة العربية السعودية</span></a></li>
+     <li><a href="#privacy"><b>سياسة الخصوصية</b><span>كيف نتعامل مع بياناتك</span></a></li></ul></div>
+   ${feat("رسالتنا","about","قبل الخريطة، البيانات. وقبل الذكاء، الثقة.","بيانات موثوقة، وتحليلات واضحة المنهجية، وحلول تتكامل مع أنظمة الجهة.","about","تعرّف علينا")}`}
+];
+const nav=document.getElementById("nav"), mb=document.getElementById("menuBtn");
+nav.innerHTML=`<a href="#home" data-g="home">الرئيسية</a>`+MENUS.map(m=>`<div class="item"><button type="button" aria-expanded="false" aria-controls="mm-${m.id}" data-g="${m.id}">${m.label}${chev}</button><div class="mega" id="mm-${m.id}"><div class="wrap">${m.body()}</div></div></div>`).join("")+`<a href="#contact" data-g="contact">تواصل معنا</a>`;
+function closeMenus(except){nav.querySelectorAll(".item > button").forEach(b=>{if(b!==except){b.setAttribute("aria-expanded","false");b.nextElementSibling.classList.remove("open")}})}
+nav.querySelectorAll(".item > button").forEach(b=>{
+  b.addEventListener("click",()=>{const o=b.getAttribute("aria-expanded")!=="true";closeMenus(b);b.setAttribute("aria-expanded",o);b.nextElementSibling.classList.toggle("open",o)});
+});
+document.addEventListener("click",e=>{if(!e.target.closest(".top"))closeMenus()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closeMenus();nav.classList.remove("open");mb.setAttribute("aria-expanded","false")}});
+mb.addEventListener("click",()=>{const o=nav.classList.toggle("open");mb.setAttribute("aria-expanded",o)});
+
+const PAGES={
+home(){
+  const slides=[["city","التفعيل","تطبيقات ومنصات ولوحات معلومات"],["detect","الاستخلاص","استخراج المعالم من الصور الجوية"],["landcover","الرصد","تصنيف الغطاء الأرضي من صور الأقمار الصناعية"],["dunes","الثقة","بيانات محوكمة وموثوقة الجودة"]];
+  const order=["geospatial-data","consulting","gis-solutions","remote-sensing","geoai"];
+  const sect=[0,1,2,3,4].map(i=>D.industries[i]);
+  const simg=["city","blueprint","landcover","network","dunes"];
+  return `<section class="hero">${img("network-wide").replace('<img ','<img class="bg" ')}
+  <div class="wrap">
+    <div>
+      <h1><span>بيانات مكانية موثوقة.</span><span>قرارات أذكى.</span></h1>
+      <p class="lead">نساعد الجهات الحكومية والشركات في السعودية على حوكمة بياناتها الجيومكانية وتحليلها وتحويلها إلى حلول رقمية تدعم القرار.</p>
+      <div class="actions">${btn("احجز استشارة أولية")}<a class="btn light" href="#services">استعرض خدماتنا</a></div>
+    </div>
+    <div class="media" id="media" aria-roledescription="عرض صور" aria-label="من البيانات إلى القرار">
+      ${slides.map((s,i)=>`<figure class="${i?"":"on"}" aria-hidden="${i?"true":"false"}"><img src="img/${s[0]}.jpg" alt="" ${i?'loading="lazy"':''} decoding="async"><figcaption><b>${s[1]}</b>${s[2]}</figcaption></figure>`).join("")}
+      <button class="pause" id="pause" type="button" aria-label="إيقاف العرض"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path id="pIcon" d="M4 2h3v12H4zM9 2h3v12H9z" fill="currentColor"/></svg></button>
+      <div class="dots" aria-hidden="true">${slides.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>
+    </div>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>قبل الخريطة، البيانات. وقبل الذكاء، الثقة.</h2>
+    <p>نقدّم للجهات التي تملك بيانات مكانية ولا تستفيد منها كما ينبغي: بيانات موثوقة، وتحليلات واضحة المنهجية، وحلولًا رقمية تتكامل مع أنظمتها، ومشورة مستقلة.</p></div>
+    <div class="tiles3">
+      ${tile("services","city","","خدماتنا","خمسة مسارات تكمّل بعضها، من البيانات الموثوقة إلى القرار")}
+      ${tile("industries","landcover","","القطاعات","نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها")}
+      ${tile("about","dunes","","من نحن","شركة سعودية مقرها الرياض، تحوّل البيانات المكانية إلى قرار")}
+    </div>
+  </div></section>
+
+  <section class="sec soft"><div class="wrap">
+    <div class="center"><h2>ابدأ من هنا</h2><p>ثلاثة عروض بنطاق ثابت تبدأ بها دون التزام طويل، ثم تبني عليها.</p></div>
+    <div class="tablist" role="tablist" aria-label="عروض البداية">${D.offers.map((o,i)=>`<button type="button" role="tab" id="t${i}" aria-controls="p${i}" aria-selected="${i?"false":"true"}" tabindex="${i?-1:0}"><i>${i+1}</i>${esc(o.short)}</button>`).join("")}</div>
+    ${D.offers.map((o,i)=>`<div class="panel" role="tabpanel" id="p${i}" aria-labelledby="t${i}" ${i?"hidden":""}>
+      <div><span class="k">عرض بنطاق ثابت</span><h3>${esc(o.title)}</h3><p>${esc(o.intro)}</p>
+      <ul>${li(o.receive.slice(0,3))}</ul>
+      <a class="btn go" href="#${o.slug}">${esc(o.cta)}</a></div>
+      ${img(o.slug)}</div>`).join("")}
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>خدماتنا</h2><p>خمسة مسارات تكمّل بعضها. ابدأ بالمسار الذي يخدم سؤالك اليوم، ونربطه بالباقي عند الحاجة.</p></div>
+    <div class="mosaic">${order.map(k=>{const t=TR[k];return tile(k,k,LABEL[k],t.name,t.card)}).join("")}</div>
+  </div></section>
+
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>كيف نعمل</h2></div>
+    <ol class="steps">
+      <li><b>تقييم</b><p>نفهم الوضع الحالي لبياناتك وأنظمتك واحتياجك الفعلي.</p></li>
+      <li><b>تصميم</b><p>نحدد الحل ونطاقه ومعايير قبوله معك.</p></li>
+      <li><b>بناء تجريبي</b><p>نموذج أولي محدود النطاق ترى قيمته قبل أي التزام كبير.</p></li>
+      <li><b>توسيع</b><p>ننقل الحل إلى التشغيل الفعلي بمراحل واضحة.</p></li>
+      <li><b>نقل المعرفة</b><p>نوثّق كل شيء وندرّب فريقك ليدير الحل بنفسه.</p></li>
+    </ol>
+  </div></section>
+
+  <section class="sec night"><div class="wrap">
+    <div class="center"><h2>نعمل مع الجهات التي يصنع المكان فرقًا في قراراتها</h2><p>لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها، وما يمكن أن نبدأ به معك.</p></div>
+    <div class="mosaic dark">${sect.map((r,i)=>tile("industries",simg[i],r[0],r[1],"نبدأ بـ: "+r[2])).join("")}</div>
+    <p class="more"><a class="btn light" href="#industries">استعرض كل القطاعات</a></p>
+  </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="sec-head"><h2>لماذا الذكاء المكاني</h2></div>
+    <ul class="why">
+      <li><b>البيانات قبل التطبيق</b><p>نبدأ بتقييم جودة البيانات قبل أي تطوير.</p></li>
+      <li><b>منهجيات موثقة</b><p>كل تحليل مرفق بمنهجية قابلة للمراجعة.</p></li>
+      <li><b>ذكاء اصطناعي بمعايير معلنة</b><p>نحدد مقاييس القبول قبل تدريب أي نموذج.</p></li>
+      <li><b>حياد تجاه الموردين</b><p>نوصي بما يناسب الجهة، لا بما نعيد بيعه.</p></li>
+      <li><b>نطاقات واضحة وقصيرة</b><p>عروض بنطاق ثابت تبدأ بها دون التزام طويل.</p></li>
+      <li><b>تركيز على البيانات والتطبيقات</b><p>لا نورّد أجهزة ولا ننفّذ بنية تحتية، فتركيزنا كله على قيمة بياناتك.</p></li>
+    </ul>
+  </div></section>
+  ${closing("ابدأ بتقييم سريع لبياناتك المكانية","أخبرنا باحتياجك في ثلاث خانات، ونعود إليك بمقترح للخطوة الأولى.","احجز استشارة أولية")}`;
+},
+
+services(){
+  return phead({img:"network",title:"من البيانات الموثوقة إلى القرار",lead:"ننظّم خدماتنا في خمسة مسارات تكمّل بعضها. ابدأ بالمسار الذي يخدم سؤالك اليوم، ونربطه بالباقي عند الحاجة."})+
+  `<section class="sec"><div class="wrap">
+    <div class="center"><h2>المسارات الخمسة</h2></div>
+    <div class="mosaic">${["geospatial-data","consulting","gis-solutions","remote-sensing","geoai"].map(k=>{const t=TR[k];return tile(k,k,t.services.length+" خدمة",t.name,t.card)}).join("")}</div>
+  </div></section>
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>من أين أبدأ؟</h2><p>اختر السؤال الأقرب لما يشغلك.</p></div>
+    <div class="where">${D.where.map(w=>`<a href="#${w.slug}"><b>${esc(w.q)}</b><span>${esc(w.a)}</span></a>`).join("")}</div>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="center"><h2>عروض البداية</h2><p>نطاق ثابت ومخرجات محددة.</p></div>
+    <div class="tiles3">${D.offers.map(o=>tile(o.slug,o.slug,"عرض بنطاق ثابت",o.short,o.card)).join("")}</div>
+  </div></section>`+
+  closing("لست متأكدًا من البداية؟","صف لنا احتياجك ونقترح الخطوة الأولى.","احجز استشارة أولية");
+},
+
+track(t){
+  let list="",g=null;
+  const row=s=>s.slug?`<a href="#${s.slug}"><b>${esc(s.name)}</b><span>${esc(s.desc)}</span><i>تفاصيل الخدمة</i></a>`:`<div><b>${esc(s.name)}</b><span>${esc(s.desc)}</span><i></i></div>`;
+  if(t.services.some(s=>s.group)){
+    t.services.forEach(s=>{if(s.group!==g){if(g!==null)list+="</div>";g=s.group;list+=`<h3 class="group">${esc(g)}</h3><div class="svcs">`}list+=row(s)});
+    list+="</div>";
+  }else list=`<div class="svcs">${t.services.map(row).join("")}</div>`;
+  return (t.gate?note("معاينة داخلية: تُنشر صفحات هذا المسار بعد التحقق من الترخيص التنظيمي."):"")+
+  phead({img:t.slug,crumbs:[["services","خدماتنا"]],name:t.name,title:t.title,lead:t.intro,cta:t.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>أمثلة على ما نعمله</h2><ul class="ticks">${li(t.examples)}</ul></section>
+      <section><h2>المخرجات</h2><ul class="ticks">${li(t.outputs)}</ul></section>
+    </div>
+    <aside class="side"><div><h3>ما تحصل عليه</h3><ul class="gain">${li(t.benefits)}</ul></div></aside>
+  </div></section>
+  <section class="sec soft"><div class="wrap">
+    <div class="sec-head"><h2>خدمات المسار</h2></div>${list}
+  </div></section>`+closing(t.cta,"",t.cta);
+},
+
+offer(o){
+  return phead({img:o.slug,crumbs:[["services","خدماتنا"]],name:o.name,title:o.title,lead:o.intro,cta:o.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>${esc(o.fitTitle)}</h2><ul class="ticks">${li(o.fit)}</ul></section>
+      <section><h2>كيف يسير</h2><ol class="steps long">${o.steps.map(s=>`<li><p>${esc(s)}</p></li>`).join("")}</ol></section>
+    </div>
+    <aside class="side"><div><h3>ما تستلمه</h3><ul class="gain">${li(o.receive)}</ul></div></aside>
+  </div></section>`+closing(o.short,"نطاق ثابت ومخرجات محددة، ونبدأ بجلسة قصيرة لتحديد المطلوب.",o.cta);
+},
+
+service(s){
+  const t=TR[s.track];
+  const grp=(t.services.find(y=>y.slug===s.slug)||{}).group;
+  const sib=t.services.filter(x=>x.slug&&x.slug!==s.slug&&x.group===grp);
+  return (t.gate?note("معاينة داخلية: تُنشر هذه الصفحة بعد التحقق من الترخيص التنظيمي."):"")+
+  phead({img:t.slug,crumbs:[["services","خدماتنا"],[t.slug,SHORT[t.slug]]],title:s.name,lead:s.intro,cta:s.cta})+
+  `<section class="sec"><div class="wrap cols">
+    <div>
+      <section><h2>ما نقدمه</h2><ul class="ticks">${li(s.offer)}</ul></section>
+      <section><h2>أمثلة</h2><ul class="examples">${li(s.examples)}</ul></section>
+    </div>
+    <aside class="side">
+      <div><h3>ما تحصل عليه</h3><ul class="gain">${li(s.benefits)}</ul></div>
+      <div><h3>المخرجات</h3><ul>${li(s.outputs)}</ul></div>
+    </aside>
+  </div></section>
+  ${sib.length?`<section class="sec soft"><div class="wrap"><div class="sec-head"><h2>خدمات قريبة</h2></div><div class="svcs">${sib.map(x=>`<a href="#${x.slug}"><b>${esc(x.name)}</b><span>${esc(x.desc)}</span><i>تفاصيل الخدمة</i></a>`).join("")}</div></div></section>`:""}`+
+  closing(s.cta,"",s.cta);
+},
+
+industries(){
+  return phead({img:"landcover",title:"حيث يصنع المكان فرقًا في القرار",lead:"لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها، وما يمكن أن نبدأ به معك."})+
+  `<section class="sec"><div class="wrap"><ul class="ind">${D.industries.map(r=>`<li><b>${esc(r[0])}</b><p><em>التحدي</em>${esc(r[1])}</p><p><em>ما نبدأ به</em>${esc(r[2])}</p></li>`).join("")}</ul></div></section>`+
+  closing("لا تجد قطاعك؟","أخبرنا بسؤالك المكاني.","ناقش حالتك");
+},
+
+about(){
+  return phead({img:"dunes",title:"نحوّل البيانات المكانية إلى قرار",lead:"شركة الذكاء المكاني للحلول الرقمية شركة سعودية مقرها الرياض، تعمل حيث تلتقي البيانات الجيومكانية بالتحليلات والذكاء الاصطناعي والتحول الرقمي."})+
+  `<section class="sec"><div class="wrap split">
+    <div class="prose"><h2>من نحن</h2>
+      <p style="margin-top:14px">نساعد الجهات الحكومية والشركات على بناء بيانات مكانية موثوقة ومحوكمة. ثم نستخلص منها المعرفة بالتحليل والاستشعار عن بعد والذكاء الاصطناعي المكاني، ونحوّلها إلى تطبيقات ومنصات تدعم العمل اليومي والقرار.</p>
+      <p>نؤمن أن القيمة انتقلت من امتلاك الخرائط والبرامج إلى موثوقية البيانات وسرعة تحويلها إلى قرار. لذلك نبني عملنا على ثلاث طبقات.</p></div>
+    <ol class="three">
+      <li><b>الثقة</b><span>استراتيجية البيانات وحوكمتها وتصميمها وجودتها، والمشورة المستقلة.</span></li>
+      <li><b>الاستخلاص</b><span>التحليلات المكانية والاستشعار عن بعد والذكاء الاصطناعي المكاني.</span></li>
+      <li><b>التفعيل</b><span>التطبيقات والمنصات ولوحات المعلومات والتكامل.</span></li>
+    </ol>
+  </div></section>
+  <section class="sec soft"><div class="wrap vm">
+    <div><h3>الرؤية</h3><p>أن نكون المرجع الموثوق في تحويل البيانات المكانية إلى قرارات أذكى في المملكة والمنطقة.</p></div>
+    <div><h3>الرسالة</h3><p>نمكّن الجهات من الاعتماد على بيانات مكانية موثوقة، ونقدم تحليلات وحلولًا رقمية مبنية على منهجيات واضحة وقابلة للمراجعة.</p></div>
+  </div></section>
+  <section class="sec"><div class="wrap">
+    <div class="sec-head"><h2>قيمنا</h2></div>
+    <ul class="values">${D.values.map(v=>`<li><b>${esc(v[0])}</b><p>${esc(v[1])}</p></li>`).join("")}</ul>
+  </div></section>
+  <section class="sec soft"><div class="wrap prose">
+    <h2>حدود عملنا</h2>
+    <p style="margin-top:14px">نركّز على البيانات والتحليلات والتطبيقات والاستشارات. نصمم المعمارية المنطقية للحلول ونكتب مواصفات بيئات التشغيل، لكننا لا نورّد الخوادم أو معدات الشبكات، ولا ننشئ مراكز بيانات، ولا نقدّم الاستضافة أو صيانة الأجهزة. هذا التركيز يبقي توصياتنا في مصلحة بياناتك.</p>
+  </div></section>`+closing("لنبدأ من بياناتك","","تواصل معنا");
+},
+
+contact(){
+  return phead({img:"network",title:"لنبدأ بسؤالك",lead:"أخبرنا باحتياجك في ثلاث خانات، ونعود إليك بمقترح للخطوة الأولى."})+
+  `<section class="sec"><div class="wrap contact">
+    <form id="lead" novalidate>
+      <label for="fName">الاسم<input type="text" id="fName" required autocomplete="name" placeholder="الاسم الكامل"></label>
+      <label for="fOrg">الجهة<input type="text" id="fOrg" required autocomplete="organization" placeholder="اسم الجهة أو الشركة"></label>
+      <label for="fReach">البريد أو الجوال<input type="text" id="fReach" required placeholder="لنعود إليك عليه"></label>
+      <label for="fType">نوع الاحتياج <small>(اختياري)</small>
+        <select id="fType"><option value="">اختر</option>${["تقييم بيانات","استراتيجية وحوكمة","تطبيق أو لوحة","تحليل","استشارة أو مواصفات","غير ذلك"].map(x=>`<option>${x}</option>`).join("")}</select></label>
+      <label for="fNeed">الاحتياج<textarea id="fNeed" required placeholder="مثال: نريد تقييم جودة بيانات الأصول قبل بناء لوحة معلومات"></textarea></label>
+      <label class="consent" for="fOk"><input type="checkbox" id="fOk"><span>أوافق على معالجة بياناتي للرد على طلبي حسب <a class="link" href="#privacy">سياسة الخصوصية</a>.</span></label>
+      <button class="btn" type="submit" style="justify-self:start">أرسل طلبك</button>
+      <p class="msg" id="fMsg" role="status" hidden></p>
+    </form>
+    <div class="aside">
+      <div><h3>المقر</h3><p>الرياض، المملكة العربية السعودية</p></div>
+      <div><h3>للجهات الحكومية</h3><p>نتعامل مع المنافسات والمشتريات الحكومية، ونلتزم بسرية بياناتكم من أول تواصل. يمكننا توقيع اتفاقية عدم إفصاح قبل استلام أي بيانات.</p></div>
+    </div>
+  </div></section>`;
+},
+
+privacy(){
+  return note("مسودة للمراجعة القانونية: لا تُنشر قبل مراجعة مختص بنظام حماية البيانات الشخصية، واستكمال الخانات بين الأقواس.")+
+  phead({img:"blueprint",title:"سياسة الخصوصية"})+
+  `<section class="sec"><div class="wrap"><ol class="policy">${D.privacy.map(p=>`<li><div><b>${esc(p[0])}</b><p>${esc(p[1])}</p></div></li>`).join("")}</ol></div></section>`;
+}
+};
+
+const app=document.getElementById("app");
+document.getElementById("footTracks").innerHTML=D.tracks.map(t=>`<li><a href="#${t.slug}">${SHORT[t.slug]}</a></li>`).join("");
+document.getElementById("footOffers").innerHTML=D.offers.map(o=>`<li><a href="#${o.slug}">${esc(o.short)}</a></li>`).join("");
+let timer=null;
+function setupHome(){
+  const m=document.getElementById("media"); if(!m)return;
+  const figs=[...m.querySelectorAll("figure")], dots=[...m.querySelectorAll(".dots i")], pb=document.getElementById("pause");
+  let i=0, playing=!matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const show=n=>{i=(n+figs.length)%figs.length;figs.forEach((f,k)=>{f.classList.toggle("on",k===i);f.setAttribute("aria-hidden",k===i?"false":"true")});dots.forEach((d,k)=>d.classList.toggle("on",k===i))};
+  const icon=()=>{pb.setAttribute("aria-label",playing?"إيقاف العرض":"تشغيل العرض");pb.querySelector("path").setAttribute("d",playing?"M4 2h3v12H4zM9 2h3v12H9z":"M4 2l10 6-10 6z")};
+  const run=()=>{clearInterval(timer);if(playing)timer=setInterval(()=>show(i+1),5000)};
+  pb.addEventListener("click",()=>{playing=!playing;icon();run()});
+  icon();run();
+  const tabs=[...document.querySelectorAll('[role="tab"]')];
+  const sel=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute("aria-controls")).hidden=!on})};
+  tabs.forEach((t,k)=>{t.addEventListener("click",()=>sel(t));t.addEventListener("keydown",e=>{const d=e.key==="ArrowLeft"?1:e.key==="ArrowRight"?-1:0;if(d){const n=tabs[(k+d+tabs.length)%tabs.length];sel(n);n.focus()}})});
+}
+function route(){
+  clearInterval(timer);
+  const k=(location.hash||"#home").slice(1);
+  let html,title,group=k;
+  if(TR[k]){html=PAGES.track(TR[k]);title=TR[k].seo;group="services"}
+  else if(OF[k]){html=PAGES.offer(OF[k]);title=OF[k].seo;group="services"}
+  else if(SV[k]){html=PAGES.service(SV[k]);title=SV[k].seo;group="services"}
+  else if(PAGES[k]&&!["track","offer","service"].includes(k)){html=PAGES[k]();title=D.titles[k]}
+  else{html=PAGES.home();title=D.titles.home;group="home"}
+  app.innerHTML=html;
+  document.title=title;
+  nav.querySelectorAll("[data-g]").forEach(a=>{a.dataset.g===group?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  closeMenus();nav.classList.remove("open");mb.setAttribute("aria-expanded","false");
+  if(group==="home")setupHome();
+  window.scrollTo(0,0);
+}
+addEventListener("hashchange",route);
+app.addEventListener("submit",e=>{
+  if(e.target.id!=="lead")return;
+  e.preventDefault();
+  const m=document.getElementById("fMsg"), v=id=>document.getElementById(id).value.trim();
+  if(!v("fName")||!v("fOrg")||!v("fNeed")){m.className="msg err";m.textContent="لم يُرسَل الطلب. تأكد من تعبئة الاسم والجهة والاحتياج، ثم حاول مرة أخرى.";m.hidden=false;return}
+  if(!v("fReach")){m.className="msg err";m.textContent="لم يُرسَل الطلب. أضف بريدًا أو رقم جوال لنعود إليك عليه.";m.hidden=false;return}
+  if(!document.getElementById("fOk").checked){m.className="msg err";m.textContent="لم يُرسَل الطلب. وافق على سياسة الخصوصية أولًا.";m.hidden=false;return}
+  m.className="msg";m.textContent="هذه نسخة معاينة: النموذج غير مربوط بعد ببريد الشركة، فلم يُرسَل شيء.";m.hidden=false;
+});
+route();
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{# صفحة «خدماتنا» #}
+{% extends "base.html" %}
+{% block title %}خدماتنا | بيانات جيومكانية وGIS واستشعار عن بعد وGeoAI واستشارات{% endblock %}
+{% block main %}
+{{ m.phead("من البيانات الموثوقة إلى القرار", lead="ننظّم خدماتنا في خمسة مسارات متكاملة، يُنفَّذ كل منها منفردًا أو ضمن مشروع واحد.", img="services") }}
+
+<section class="sec"><div class="wrap">
+  <div class="center"><h2>المسارات الخمسة</h2></div>
+  {{ m.tracks_mosaic(show_count=true) }}
+</div></section>
+
+<section class="sec soft"><div class="wrap">
+  <div class="sec-head"><h2>الأسئلة التي نجيب عنها</h2><p>كل مسار يعالج سؤالًا محددًا تواجهه الجهات في عملها.</p></div>
+  <div class="where">
+    {% for w in where %}
+    <a href="{{ root }}services/{{ w.track }}/"><b>{{ w.question }}</b><span>{{ w.answer }}</span></a>
+    {% endfor %}
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="center"><h2>عروض البداية</h2><p>نطاق ثابت ومخرجات محددة.</p></div>
+  {{ m.offers_tiles() }}
+</div></section>
+
+{% endblock %}

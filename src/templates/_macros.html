@@ -1,0 +1,70 @@
+{# قطع متكررة تُستخدم في أكثر من صفحة. الصور في src/assets/img، وربط كل مفتاح بصورته في site.pictures داخل site.json #}
+
+{# صورة من src/assets/img. key: مسار أو عرض أو صفحة، أو اسم الصورة مباشرة #}
+{% macro pic(key, cls="", alt="", lazy=true) %}<img{% if cls %} class="{{ cls }}"{% endif %} src="{{ assets }}img/{{ site.pictures.get(key, key) }}.jpg" alt="{{ alt }}"{% if lazy %} loading="lazy"{% endif %} decoding="async">{% endmacro %}
+
+{# رأس الصفحات الداخلية: شريط داكن بصورة. crumbs: قائمة [رابط، عنوان]. img: مفتاح الصورة #}
+{% macro phead(title, lead="", name="", crumbs=[], img="network") %}
+<section class="phead">{{ pic(img, cls="bg", lazy=false) }}<div class="wrap">
+  {% if crumbs %}
+  <nav class="crumbs" aria-label="مسار الصفحة">
+    {% for href, label in crumbs %}{% if not loop.first %}<span aria-hidden="true">/</span>{% endif %}<a href="{{ root }}{{ href }}">{{ label }}</a>{% endfor %}
+  </nav>
+  {% endif %}
+  {# عند وجود اسم (المسارات والعروض): الاسم هو العنوان الرئيسي، والعنوان التسويقي سطر أصغر تحته #}
+  {% if name %}<h1>{{ name }}</h1><p class="sub">{{ title }}</p>
+  {% else %}<h1>{{ title }}</h1>{% endif %}
+  {% if lead %}<p class="lead">{{ lead }}</p>{% endif %}
+</div></section>
+{% endmacro %}
+
+{# بطاقة صورة عليها النص #}
+{% macro tile(href, img, title, text="", chip="") %}
+<a class="tile" href="{{ root }}{{ href }}">{{ pic(img) }}<span class="cap">{% if chip %}<span class="chip">{{ chip }}</span>{% endif %}{% if title %}<h3>{{ title }}</h3>{% endif %}{% if text %}<p>{{ text }}</p>{% endif %}</span></a>
+{% endmacro %}
+
+{# فسيفساء المسارات الخمسة. show_count: يعرض عدد الخدمات بدل وصف المسار القصير #}
+{% macro tracks_mosaic(show_count=false) %}
+<div class="mosaic">
+  {% for t in tracks %}{{ tile("services/" ~ t.slug ~ "/", t.slug, t.name, t.card, (t.services|length ~ " خدمة") if show_count else site.track_labels[t.slug]) }}{% endfor %}
+</div>
+{% endmacro %}
+
+{# بطاقات العروض الثلاثة #}
+{% macro offers_tiles() %}
+<div class="tiles3">
+  {% for o in offers %}{{ tile("offers/" ~ o.slug ~ "/", o.slug, o.short, o.card, "عرض بنطاق ثابت") }}{% endfor %}
+</div>
+{% endmacro %}
+
+{# شريط تنبيه داخلي أعلى الصفحة #}
+{% macro note(text) %}<div class="note"><div class="wrap">{{ text }}</div></div>{% endmacro %}
+
+{# صف خدمة داخل قائمة: رابط إن كان لها صفحة، ونص فقط إن لم يكن #}
+{% macro service_row(s, track_slug) %}
+{% if s.page %}<a href="{{ root }}services/{{ track_slug }}/{{ s.page }}/"><b>{{ s.name }}</b><span>{{ s.desc }}</span><i>تفاصيل الخدمة</i></a>
+{% else %}<div><b>{{ s.name }}</b><span>{{ s.desc }}</span><i></i></div>
+{% endif %}
+{% endmacro %}
+
+{# بطاقة مميزة داخل القوائم المنسدلة #}
+{% macro feat(kicker, img, title, text, href, go) %}
+<article class="feat"><span class="k">{{ kicker }}</span>{{ pic(img) }}<b>{{ title }}</b><p>{{ text }}</p><a class="go" href="{{ root }}{{ href }}">{{ go }}</a></article>
+{% endmacro %}
+
+{# سهم القوائم المنسدلة #}
+{% macro chev() %}<svg class="chev" viewBox="0 0 10 10" aria-hidden="true"><path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endmacro %}
+
+{# مقال بعناوين فرعية وصورة جانبية. النص: فقرات مفصولة بسطر فارغ، والفقرة التي تبدأ بـ «## » سطرها الأول عنوان فرعي.
+   side: صورة من assets/img، side_svg: رسم من templates/art، back: [رابط، نص] لرابط العودة #}
+{% macro article(title, text, side="", side_svg="", caption="", prefix="", back=none) %}
+<section class="sec"><div class="wrap{% if side or side_svg %} art-wrap{% endif %}">
+  <article class="article">
+    <h2>{{ title }}</h2>
+    {% for para in text.split("\n\n") %}{% if para.startswith("## ") %}{% set parts = para[3:].split("\n", 1) %}<h3>{{ parts[0] }}</h3>{% if parts|length > 1 %}<p>{{ parts[1]|linkify(prefix) }}</p>{% endif %}{% else %}<p>{{ para|linkify(prefix) }}</p>{% endif %}{% endfor %}
+    {% if back %}<p class="back"><a href="{{ root }}{{ back[0] }}">{{ back[1] }}</a></p>{% endif %}
+  </article>
+  {% if side_svg %}<figure class="art-pic art-svg">{% include side_svg %}{% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}</figure>
+  {% elif side %}<figure class="art-pic">{{ pic(side, alt=caption) }}{% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}</figure>{% endif %}
+</div></section>
+{% endmacro %}

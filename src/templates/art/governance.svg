@@ -1,0 +1,41 @@
+{# رسم «الحوكمة الجيومكانية»: نواة في المنتصف وثلاثة أركان حولها (العمليات، الأفراد، التقنية). يُضمَّن في صفحة مجال الاستراتيجية والحوكمة #}
+<svg class="gov" viewBox="0 0 600 600" role="img" aria-labelledby="gov-t gov-d" xmlns="http://www.w3.org/2000/svg">
+  <title id="gov-t">الحوكمة الجيومكانية</title>
+  <desc id="gov-d">تقوم الحوكمة الجيومكانية على ثلاثة أركان: العمليات، والأفراد، والتقنية.</desc>
+  <defs>
+    <linearGradient id="gov-seg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#123a63"/><stop offset="1" stop-color="#0b2545"/></linearGradient>
+    <radialGradient id="gov-core" cx=".5" cy=".4" r=".65"><stop offset="0" stop-color="#0a8fdc"/><stop offset="1" stop-color="#005e95"/></radialGradient>
+  </defs>
+  {# كل ركن قطاع 120°: قوس خارجي نصف قطره 270 وداخلي 108، والحد الأبيض العريض يصنع الفواصل #}
+  <g class="seg">
+    <path d="M300 300 m-233.8 -135 A270 270 0 0 1 533.8 165 L393.5 246 A108 108 0 0 0 206.5 246 Z" transform="translate(0 0)"/>
+    <g transform="translate(300 130)">
+      <g transform="translate(-20 -74) scale(1.7)" class="ic"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 10h7M8.5 14h7M8.5 18h4"/></g>
+      <text y="0" class="h">العمليات</text>
+      <text y="26" class="s">السياسات والمعايير</text>
+      <text y="46" class="s">والإجراءات</text>
+    </g>
+  </g>
+  <g class="seg">
+    <path d="M533.8 165 A270 270 0 0 1 300 570 L300 408 A108 108 0 0 0 393.5 246 Z"/>
+    <g transform="translate(448 380)">
+      <g transform="translate(-20 -74) scale(1.7)" class="ic"><circle cx="12" cy="7" r="3"/><circle cx="5.5" cy="9" r="2.3"/><circle cx="18.5" cy="9" r="2.3"/><path d="M6.5 20v-2a5.5 5.5 0 0 1 11 0v2M1.5 19v-1a4 4 0 0 1 4.5-4M22.5 19v-1a4 4 0 0 0-4.5-4"/></g>
+      <text y="0" class="h">الأفراد</text>
+      <text y="26" class="s">الأدوار والملكية</text>
+      <text y="46" class="s">والصلاحيات</text>
+    </g>
+  </g>
+  <g class="seg">
+    <path d="M300 570 A270 270 0 0 1 66.2 165 L206.5 246 A108 108 0 0 0 300 408 Z"/>
+    <g transform="translate(152 380)">
+      <g transform="translate(-20 -74) scale(1.7)" class="ic"><ellipse cx="12" cy="5.5" rx="7" ry="2.5"/><path d="M5 5.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6M5 11.5v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/></g>
+      <text y="0" class="h">التقنية</text>
+      <text y="26" class="s">المنصات والبيانات</text>
+      <text y="46" class="s">المرجعية والأمن</text>
+    </g>
+  </g>
+  <circle cx="300" cy="300" r="98" fill="url(#gov-core)" stroke="#fff" stroke-width="10"/>
+  <circle cx="300" cy="300" r="84" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+  <text x="300" y="292" class="c">الحوكمة</text>
+  <text x="300" y="324" class="c">الجيومكانية</text>
+</svg>
