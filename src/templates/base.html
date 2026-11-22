@@ -32,6 +32,15 @@
         </div></div>
       </div>
 
+      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-industries"{% if nav == "industries" %} aria-current="page"{% endif %}>القطاعات{{ m.chev() }}</button>
+        <div class="mega" id="mm-industries"><div class="wrap">
+          {# المجموعات الأربع من src/content/industry_groups.json ، كل رابط يذهب إلى قسمه في صفحة القطاعات #}
+          <div class="svc-menu"><ul class="cols-2">
+            {% for g in industry_groups %}<li><a href="{{ root }}industries/#{{ g.id }}"><b>{{ g.name }}</b><span>{{ industries | selectattr("group", "equalto", g.id) | map(attribute="sector") | join("، ") }}</span></a></li>{% endfor %}
+          </ul><a class="all" href="{{ root }}industries/">كل القطاعات</a></div>
+        </div></div>
+      </div>
+
       <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-about"{% if nav == "about" %} aria-current="page"{% endif %}>من نحن{{ m.chev() }}</button>
         <div class="mega" id="mm-about"><div class="wrap">
           <div><ul>

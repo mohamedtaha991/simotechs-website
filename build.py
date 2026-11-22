@@ -63,7 +63,12 @@ def load_content():
         o = load(CONTENT / "offers" / f"{slug}.json")
         o["slug"] = slug
         offers.append(o)
-    extra = {name: load(CONTENT / f"{name}.json") for name in ("industries", "values", "where", "privacy")}
+    extra = {name: load(CONTENT / f"{name}.json") for name in ("industries", "industry_groups", "values", "where", "privacy")}
+    # كل قطاع يتبع مجموعة معرّفة في industry_groups.json، وكل مجموعة فيها قطاع واحد على الأقل
+    gids = {g["id"] for g in extra["industry_groups"]}
+    used = {r["group"] for r in extra["industries"]}
+    if used != gids:
+        sys.exit(f"خطأ في القطاعات: مجموعات غير معرّفة {sorted(used - gids)}، ومجموعات بلا قطاعات {sorted(gids - used)}.")
     return site, tracks, services, offers, extra
 
 

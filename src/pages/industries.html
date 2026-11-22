@@ -1,15 +1,44 @@
-{# صفحة «القطاعات». الجدول من src/content/industries.json #}
+{# صفحة «القطاعات». المجموعات من src/content/industry_groups.json ، والقطاعات من src/content/industries.json (الحقل group) #}
 {% extends "base.html" %}
 {% block title %}القطاعات التي نخدمها | الذكاء المكاني{% endblock %}
 {% block main %}
 {{ m.phead("حيث يصنع المكان فرقًا في القرار", lead="لكل قطاع أسئلته المكانية الخاصة. هذه أبرز التحديات التي نراها، وما يمكن أن نبدأ به معك.", img="industries") }}
 
-<section class="sec"><div class="wrap">
-  <ul class="ind">
-    {% for r in industries %}
-    <li><b>{{ r.sector }}</b><p><em>التحدي</em>{{ r.challenge }}</p><p><em>ما نبدأ به</em>{{ r.start }}</p></li>
+{# تنقّل سريع بين المجموعات الأربع #}
+<nav class="ind-jump" aria-label="مجموعات القطاعات"><div class="wrap">
+  {% for g in industry_groups %}
+  <a href="#{{ g.id }}">{{ g.name }} <span>{{ industries | selectattr("group", "equalto", g.id) | list | length }}</span></a>
+  {% endfor %}
+</div></nav>
+
+{% for g in industry_groups %}
+<section class="sec ind-group{% if loop.index is even %} soft{% endif %}" id="{{ g.id }}"><div class="wrap">
+  <header class="ind-head">
+    {{ m.pic(g.img, cls="ind-pic") }}
+    <div>
+      <p class="ind-num mono">0{{ loop.index }}</p>
+      <h2>{{ g.name }}</h2>
+      <p>{{ g.desc }}</p>
+    </div>
+  </header>
+  <ul class="ind-cards">
+    {% for r in industries if r.group == g.id %}
+    <li>
+      <h3>{{ r.sector }}</h3>
+      <p class="ind-ch"><em>التحدي</em>{{ r.challenge }}</p>
+      <div class="ind-st"><em>ما نبدأ به</em>
+        <ul>{% for x in r.start %}<li>{{ x }}</li>{% endfor %}</ul>
+      </div>
+    </li>
     {% endfor %}
   </ul>
+</div></section>
+{% endfor %}
+
+<section class="sec"><div class="wrap center">
+  <h2>قطاعك ليس في القائمة؟</h2>
+  <p>أخبرنا بسؤالك المكاني، ونقترح عليك نقطة البداية المناسبة.</p>
+  <p class="more"><a class="btn" href="{{ root }}contact/">تواصل معنا</a></p>
 </div></section>
 
 {% endblock %}
