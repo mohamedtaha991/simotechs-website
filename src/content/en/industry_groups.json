@@ -1,0 +1,26 @@
+[
+  {
+    "id": "gov",
+    "name": "Government and municipalities",
+    "desc": "Public services that touch people directly, data spread across many entities, and decisions that need a single spatial picture.",
+    "img": "sector-gov"
+  },
+  {
+    "id": "urban",
+    "name": "Urban development and infrastructure",
+    "desc": "Extensive land, networks, and assets, with planning and maintenance decisions whose impact lasts for years.",
+    "img": "sector-planning"
+  },
+  {
+    "id": "env",
+    "name": "Resources and environment",
+    "desc": "Vast areas that need reliable, recurring monitoring, and resources that sustainability depends on.",
+    "img": "landcover"
+  },
+  {
+    "id": "biz",
+    "name": "Business and operations",
+    "desc": "Location, coverage, and operational decisions where understanding place is a competitive edge.",
+    "img": "network"
+  }
+]

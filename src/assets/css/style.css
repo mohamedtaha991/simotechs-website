@@ -575,3 +575,27 @@ footer::before{content:"";display:block;height:4px;background:linear-gradient(to
 .cases dd{margin:2px 0 0;font-size:15px;line-height:1.8;color:var(--ink-2)}
 @media (max-width:980px){.cases{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.svc-titles li > *{transition:none}.svc-titles a:hover{transform:none}}
+
+/* Language switcher (header) */
+.lang-switch{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:3px;font-size:15px;font-weight:700;color:var(--ink);text-decoration:none;white-space:nowrap;transition:border-color .15s,color .15s}
+.lang-switch:hover{border-color:var(--teal);color:var(--teal)}
+.lang-switch[lang="ar"]{font-family:"Tajawal",Tahoma,sans-serif}
+
+/* English version (LTR): Latin font, and mirrored direction-dependent gradients and arrows.
+   The Arabic rules above were written for RTL; these keep the same look when the page runs left to right. */
+html[lang="en"]{--f-display:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;--f-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif}
+html[lang="en"] body{font-size:17px;line-height:1.7}
+[dir="ltr"] .hero::after{background:linear-gradient(to right,rgba(21,21,21,.94) 0%,rgba(21,21,21,.78) 42%,rgba(21,21,21,.35) 100%)}
+[dir="ltr"] .phead::after{background:linear-gradient(to right,rgba(21,21,21,.95) 0%,rgba(21,21,21,.82) 50%,rgba(21,21,21,.45) 100%)}
+[dir="ltr"] .philo::before{background:linear-gradient(to right,rgba(8,18,32,.88) 0%,rgba(8,18,32,.62) 38%,rgba(8,18,32,.35) 100%),linear-gradient(to top,rgba(8,18,32,.55),rgba(8,18,32,0) 40%)}
+[dir="ltr"] .philo img.bg{transform-origin:40% 50%}
+[dir="ltr"] footer::before{background:linear-gradient(to right,#0079c1,#56c5ff)}
+[dir="ltr"] .method::before{background:linear-gradient(to right,var(--sand-wash),var(--teal) 55%,var(--teal-deep))}
+@media (max-width:1000px){[dir="ltr"] .method::before{background:linear-gradient(to bottom,var(--teal-deep),var(--teal) 50%,var(--sand-wash))}}
+[dir="ltr"] .divider .line{background:linear-gradient(to left,transparent,rgba(0,121,193,.55))}
+[dir="ltr"] .divider .line:last-child{background:linear-gradient(to right,transparent,rgba(0,121,193,.55))}
+[dir="ltr"] .ind-num{text-align:left}
+html[lang="en"] .gov .h{font-size:21px;font-weight:700}
+html[lang="en"] .gov .s{font-size:14px}
+html[lang="en"] .gov .c{font-size:23px;font-weight:700}
+[dir="ltr"] .areas .meta i::after{content:" \2192"}

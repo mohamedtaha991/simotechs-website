@@ -1,59 +1,65 @@
-{# القالب الأساسي: الترويسة بقوائمها المنسدلة والتذييل لكل صفحات الموقع. أي تعديل هنا يظهر في كل الصفحات. #}
+{# القالب الأساسي: الترويسة بقوائمها المنسدلة والتذييل لكل صفحات الموقع. أي تعديل هنا يظهر في كل الصفحات.
+   النصوص الثابتة من src/content/ui.json (العربية) وsrc/content/en/ui.json (الإنجليزية). lang وdir وalt_href من build.py #}
 {% import "_macros.html" as m with context %}
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="{{ lang }}" dir="{{ dir }}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{% block title %}{{ site.full_name }}{% endblock %}</title>
 <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+{% for code in langs %}<link rel="alternate" hreflang="{{ code }}" href="{{ base_url }}{{ code }}/{{ page_path }}">
+{% endfor %}
+<link rel="alternate" hreflang="x-default" href="{{ base_url }}{{ langs[0] }}/{{ page_path }}">
 <link rel="icon" type="image/svg+xml" href="{{ assets }}img/logo.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?{% if lang == 'en' %}family=IBM+Plex+Sans:wght@400;500;600;700&{% endif %}family=Tajawal:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="{{ assets }}css/style.css?v={{ ver('css/style.css') }}">
 </head>
 <body>
 <header class="top">
   <div class="wrap bar">
-    <a class="brand" href="{{ home }}" aria-label="{{ site.name }}، الصفحة الرئيسية">
+    <a class="brand" href="{{ home }}" aria-label="{{ site.name }}{{ ui.home_aria }}">
       <img src="{{ assets }}img/logo.svg" alt="" width="50" height="42">
       <span><b>{{ site.name }}</b><small>{{ site.tagline }}</small></span>
     </a>
-    <nav class="nav" id="nav" aria-label="القائمة الرئيسية">
-      <a href="{{ home }}"{% if nav == "home" %} aria-current="page"{% endif %}>الرئيسية</a>
+    <nav class="nav" id="nav" aria-label="{{ ui.main_menu }}">
+      <a href="{{ home }}"{% if nav == "home" %} aria-current="page"{% endif %}>{{ ui.nav.home }}</a>
 
-      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-services"{% if nav == "services" %} aria-current="page"{% endif %}>خدماتنا{{ m.chev() }}</button>
+      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-services"{% if nav == "services" %} aria-current="page"{% endif %}>{{ ui.nav.services }}{{ m.chev() }}</button>
         <div class="mega" id="mm-services"><div class="wrap">
           {# الخدمات الخمس فقط في شبكة واحدة #}
           <div class="svc-menu"><ul>
             {% for t in tracks %}<li><a href="{{ root }}services/{{ t.slug }}/"><b>{{ t.short }}</b><span>{{ t.title }}</span></a></li>{% endfor %}
-          </ul><a class="all" href="{{ root }}services/">كل الخدمات</a></div>
+          </ul><a class="all" href="{{ root }}services/">{{ ui.nav.all_services }}</a></div>
         </div></div>
       </div>
 
-      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-industries"{% if nav == "industries" %} aria-current="page"{% endif %}>القطاعات{{ m.chev() }}</button>
+      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-industries"{% if nav == "industries" %} aria-current="page"{% endif %}>{{ ui.nav.industries }}{{ m.chev() }}</button>
         <div class="mega" id="mm-industries"><div class="wrap">
           {# المجموعات الأربع من src/content/industry_groups.json ، كل رابط يذهب إلى قسمه في صفحة القطاعات #}
           <div class="svc-menu"><ul class="cols-2">
-            {% for g in industry_groups %}<li><a href="{{ root }}industries/#{{ g.id }}"><b>{{ g.name }}</b><span>{{ industries | selectattr("group", "equalto", g.id) | map(attribute="sector") | join("، ") }}</span></a></li>{% endfor %}
-          </ul><a class="all" href="{{ root }}industries/">كل القطاعات</a></div>
+            {% for g in industry_groups %}<li><a href="{{ root }}industries/#{{ g.id }}"><b>{{ g.name }}</b><span>{{ industries | selectattr("group", "equalto", g.id) | map(attribute="sector") | join(ui.sep) }}</span></a></li>{% endfor %}
+          </ul><a class="all" href="{{ root }}industries/">{{ ui.nav.all_industries }}</a></div>
         </div></div>
       </div>
 
-      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-about"{% if nav == "about" %} aria-current="page"{% endif %}>من نحن{{ m.chev() }}</button>
+      <div class="item"><button type="button" aria-expanded="false" aria-controls="mm-about"{% if nav == "about" %} aria-current="page"{% endif %}>{{ ui.nav.about }}{{ m.chev() }}</button>
         <div class="mega" id="mm-about"><div class="wrap">
           <div><ul>
-            <li><a href="{{ root }}about/"><b>من نحن</b></a></li>
-            <li><a href="{{ root }}privacy/"><b>سياسة الخصوصية</b></a></li>
+            <li><a href="{{ root }}about/"><b>{{ ui.nav.about }}</b></a></li>
+            <li><a href="{{ root }}privacy/"><b>{{ ui.nav.privacy }}</b></a></li>
           </ul></div>
         </div></div>
       </div>
 
-      <a href="{{ root }}contact/"{% if nav == "contact" %} aria-current="page"{% endif %}>تواصل معنا</a>
+      <a href="{{ root }}contact/"{% if nav == "contact" %} aria-current="page"{% endif %}>{{ ui.nav.contact }}</a>
     </nav>
     <div class="end">
-      <button class="menu-btn" id="menuBtn" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav">
+      {# مبدّل اللغة: يفتح الصفحة نفسها باللغة الأخرى #}
+      <a class="lang-switch" href="{{ alt_href }}" hreflang="{{ alt_lang }}" lang="{{ alt_lang }}" aria-label="{{ ui.switch_aria }}">{{ alt_name }}</a>
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="{{ ui.open_menu }}" aria-expanded="false" aria-controls="nav">
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -71,29 +77,29 @@
       <b>{{ site.slogan }}</b>
       <p>{{ site.footer_about }}</p>
     </div>
-    <div><h3>المسارات</h3><ul>
+    <div><h3>{{ ui.footer.tracks }}</h3><ul>
       {% for t in tracks %}<li><a href="{{ root }}services/{{ t.slug }}/">{{ t.short }}</a></li>{% endfor %}
     </ul></div>
-    <div><h3>عروض البداية</h3><ul>
+    <div><h3>{{ ui.footer.offers }}</h3><ul>
       {% for o in offers %}<li><a href="{{ root }}offers/{{ o.slug }}/">{{ o.short }}</a></li>{% endfor %}
     </ul></div>
-    <div><h3>الشركة</h3><ul>
-      <li><a href="{{ root }}about/">من نحن</a></li>
-      <li><a href="{{ root }}industries/">القطاعات</a></li>
-      <li><a href="{{ root }}services/">خدماتنا</a></li>
-      <li><a href="{{ root }}contact/">تواصل معنا</a></li>
+    <div><h3>{{ ui.footer.company }}</h3><ul>
+      <li><a href="{{ root }}about/">{{ ui.nav.about }}</a></li>
+      <li><a href="{{ root }}industries/">{{ ui.nav.industries }}</a></li>
+      <li><a href="{{ root }}services/">{{ ui.nav.services }}</a></li>
+      <li><a href="{{ root }}contact/">{{ ui.nav.contact }}</a></li>
     </ul></div>
-    <div><h3>التواصل</h3><ul>
+    <div><h3>{{ ui.footer.contact }}</h3><ul>
       <li><a href="mailto:{{ site.email }}" dir="ltr">{{ site.email }}</a></li>
       <li><a href="tel:{{ site.phone_intl }}" dir="ltr">{{ site.phone }}</a></li>
       <li>{{ site.hours }}</li>
       <li>{{ site.city }}</li><li class="mono">{{ site.coords }}</li>
-      <li><a href="{{ root }}contact/">تواصل معنا</a></li>
+      <li><a href="{{ root }}contact/">{{ ui.nav.contact }}</a></li>
     </ul></div>
   </div>
   <div class="legal"><div class="wrap">
-    <span>© {{ site.year }} {{ site.full_name }}، {{ site.legal_form }}، سجل تجاري {{ site.cr }}</span>
-    <span><a href="{{ root }}privacy/">سياسة الخصوصية</a></span>
+    <span>© {{ site.year }} {{ site.full_name }}{{ ui.sep }}{{ site.legal_form }}{{ ui.sep }}{{ ui.footer.cr }} {{ site.cr }}</span>
+    <span><a href="{{ root }}privacy/">{{ ui.nav.privacy }}</a></span>
   </div></div>
 </footer>
 <script src="{{ assets }}js/main.js?v={{ ver('js/main.js') }}"></script>

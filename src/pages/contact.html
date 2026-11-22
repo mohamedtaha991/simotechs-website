@@ -1,38 +1,36 @@
 {# صفحة «تواصل معنا». منطق النموذج في src/assets/js/main.js #}
 {% extends "base.html" %}
-{% block title %}تواصل معنا | الذكاء المكاني{% endblock %}
+{% set p = ui.contact_page %}
+{% block title %}{{ p.title }}{% endblock %}
 {% block main %}
-{{ m.phead("تواصل معنا", lead="نستقبل الاستفسارات والمراسلات الرسمية عبر النموذج أدناه.", img="contact") }}
+{{ m.phead(p.head, lead=p.lead, img="contact") }}
 
 <section class="sec"><div class="wrap contact">
   <form id="lead" name="contact" method="POST" action="https://api.web3forms.com/submit" novalidate data-email="{{ site.email }}" data-response="{{ site.response }}">
     <input type="hidden" name="access_key" value="3d7b7408-f96f-46db-a381-85590fb5bc46">
-    <input type="hidden" name="from_name" value="موقع الذكاء المكاني">
-    <p class="hp" hidden><label>لا تملأ هذا الحقل: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
-    <label for="fName">الاسم<input type="text" id="fName" name="name" required autocomplete="name" placeholder="الاسم الكامل"></label>
-    <label for="fOrg">الجهة<input type="text" id="fOrg" name="organization" required autocomplete="organization" placeholder="اسم الجهة أو الشركة"></label>
-    <label for="fReach">البريد أو الجوال<input type="text" id="fReach" name="reach" required placeholder="لنعود إليك عليه"></label>
-    <label for="fType">نوع الاحتياج <small>(اختياري)</small>
+    <input type="hidden" name="from_name" value="{{ p.from_name }}">
+    <p class="hp" hidden><label>{{ p.honeypot }}<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
+    <label for="fName">{{ p.name }}<input type="text" id="fName" name="name" required autocomplete="name" placeholder="{{ p.name_ph }}"></label>
+    <label for="fOrg">{{ p.org }}<input type="text" id="fOrg" name="organization" required autocomplete="organization" placeholder="{{ p.org_ph }}"></label>
+    <label for="fReach">{{ p.reach }}<input type="text" id="fReach" name="reach" required placeholder="{{ p.reach_ph }}"></label>
+    <label for="fType">{{ p.type }} <small>{{ p.optional }}</small>
       <select id="fType" name="type">
-        <option value="">اختر</option>
-        <option>تقييم بيانات</option>
-        <option>استراتيجية وحوكمة</option>
-        <option>تطبيق أو لوحة</option>
-        <option>تحليل</option>
-        <option>استشارة أو مواصفات</option>
-        <option>غير ذلك</option>
+        <option value="">{{ p.choose }}</option>
+        {% for x in p.types %}
+        <option>{{ x }}</option>
+        {% endfor %}
       </select></label>
-    <label for="fNeed">الاحتياج<textarea id="fNeed" name="need" required placeholder="مثال: نريد تقييم جودة بيانات الأصول قبل بناء لوحة معلومات"></textarea></label>
-    <label class="consent" for="fOk"><input type="checkbox" id="fOk" name="consent" value="yes"><span>أوافق على معالجة بياناتي للرد على طلبي حسب <a class="link" href="{{ root }}privacy/">سياسة الخصوصية</a>.</span></label>
-    <button class="btn" type="submit" style="justify-self:start">إرسال</button>
+    <label for="fNeed">{{ p.need }}<textarea id="fNeed" name="need" required placeholder="{{ p.need_ph }}"></textarea></label>
+    <label class="consent" for="fOk"><input type="checkbox" id="fOk" name="consent" value="yes"><span>{{ p.consent[0] }}<a class="link" href="{{ root }}privacy/">{{ p.consent[1] }}</a>{{ p.consent[2] }}</span></label>
+    <button class="btn" type="submit" style="justify-self:start">{{ p.send }}</button>
     <p class="msg" id="fMsg" role="status" hidden></p>
   </form>
   <div class="aside">
-    <div><h3>البريد الإلكتروني</h3><p><a class="link" href="mailto:{{ site.email }}" dir="ltr">{{ site.email }}</a></p></div>
-    <div><h3>الجوال</h3><p><a class="link" href="tel:{{ site.phone_intl }}" dir="ltr">{{ site.phone }}</a></p></div>
-    <div><h3>أوقات العمل</h3><p>{{ site.hours }}</p><p>{{ site.response }}</p></div>
-    <div><h3>المقر</h3><p>{{ site.city }}</p></div>
-    <div><h3>للجهات الحكومية</h3><p>نتعامل مع المنافسات والمشتريات الحكومية، ونلتزم بسرية بياناتكم من أول تواصل. يمكننا توقيع اتفاقية عدم إفصاح قبل استلام أي بيانات.</p></div>
+    <div><h3>{{ p.email }}</h3><p><a class="link" href="mailto:{{ site.email }}" dir="ltr">{{ site.email }}</a></p></div>
+    <div><h3>{{ p.phone }}</h3><p><a class="link" href="tel:{{ site.phone_intl }}" dir="ltr">{{ site.phone }}</a></p></div>
+    <div><h3>{{ p.hours }}</h3><p>{{ site.hours }}</p><p>{{ site.response }}</p></div>
+    <div><h3>{{ p.office }}</h3><p>{{ site.city }}</p></div>
+    <div><h3>{{ p.gov }}</h3><p>{{ p.gov_text }}</p></div>
   </div>
 </div></section>
 {% endblock %}

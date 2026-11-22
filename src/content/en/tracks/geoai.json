@@ -1,0 +1,98 @@
+{
+  "name": "AI and Advanced Analytics",
+  "short": "GeoAI",
+  "seo_title": "Geospatial Artificial Intelligence (GeoAI) | Spatial Intelligence",
+  "title": "AI whose results you can measure",
+  "intro": "We apply machine learning and deep learning to spatial data and imagery to detect features and changes and to predict patterns. We start with a specific use case and a clear accuracy criterion, and we define the limits of each model and how its results are reviewed by people.",
+  "card": "GeoAI models for specific use cases, with accuracy criteria agreed before work begins.",
+  "internal_preview": false,
+  "benefits": [
+    "Less manual effort",
+    "Patterns that are hard to spot by hand",
+    "Proactive decisions"
+  ],
+  "outputs": [
+    "Trained models",
+    "Accuracy reports",
+    "User interfaces",
+    "Model documentation"
+  ],
+  "examples": [
+    "Automated detection of unlicensed buildings",
+    "Predicting fault locations in networks",
+    "An assistant for spatial queries in Arabic"
+  ],
+  "services": [
+    {
+      "name": "GeoAI model development",
+      "desc": "Machine learning and deep learning models built for geospatial data, tested, documented, and ready to deploy.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Feature detection and classification from imagery",
+      "desc": "We extract buildings, roads, and facilities from aerial and satellite imagery using computer vision models with documented accuracy.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Automated spatial change detection",
+      "desc": "Models that detect changes automatically and direct inspections to the highest-priority locations.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Spatial predictive analytics",
+      "desc": "Predictive models that estimate demand, risk, and growth with measurable accuracy, for proactive resource planning.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Geospatial AI assistants and agents",
+      "desc": "Assistants that answer spatial questions in Arabic and run analyses on your organization's data, with clear access controls.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "AI-driven spatial data processing automation",
+      "desc": "We automate address matching, layer classification, and anomaly detection so your analysts can focus on high-value work.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "GeoAI for urban planning, land and assets",
+      "desc": "Solutions for detecting violations, estimating maintenance, and analyzing demand in urban planning and asset management.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Intelligent spatial decision support",
+      "desc": "Systems that compare alternatives and risks and transparently show decision-makers the reasoning behind each recommendation.",
+      "page": null,
+      "group": null
+    }
+  ],
+  "side": "detect",
+  "side_caption": "A real example we produced on a Landsat satellite image of the farms of Wadi As-Sirhan: automatically detecting center-pivot irrigation fields and classifying their status as active crop, early growth, or fallow land.",
+  "article": "## Definition\nGeospatial artificial intelligence (GeoAI) is the application of AI techniques, especially machine learning and deep learning, to spatial data, aerial photography, and satellite imagery in order to detect and classify features, monitor change, and predict spatial patterns. The field brings together data science, geographic information systems, and remote sensing.\n\n## Categories\nGeoAI applications span several main tasks: object detection, such as locating buildings, vehicles, and irrigation fields with a bounding box around each; semantic segmentation, which classifies every pixel in an image as road, vegetation, building, or water; change detection between two images taken on different dates; predictive analytics, which estimates demand, risk, or faults at different locations; and natural language processing, which makes it possible to query spatial data with written questions.\n\n## Methodology\nA sound methodology starts by defining a clear use case and a measurable success criterion, such as precision, recall, the F1 score, or intersection over union (IoU), before a single line of code is written. Carefully labeled training data is then prepared and a suitable model chosen, such as convolutional neural networks (CNNs) and architectures like U-Net, introduced in 2015 for precise image segmentation. The model is trained and then tested on separate data it has never seen, its limits and the human review process for its results are defined, and its performance is monitored after deployment, because data changing over time can erode its accuracy.\n\n## A brief history\nIn 2012, the AlexNet neural network achieved a major leap in image classification accuracy in the ImageNet competition, launching the era of deep learning in computer vision. These techniques soon moved to satellite imagery, and open data initiatives such as the SpaceNet dataset, launched in 2016, helped develop models for extracting buildings and roads automatically at scale: tasks that used to take months of manual digitizing.\n\n## Business impact\nGeoAI cuts the manual effort in repetitive tasks such as digitizing buildings from imagery, makes it possible to cover wide areas quickly and consistently, reveals patterns that are hard for people to spot in huge volumes of data, and moves an organization from reacting to deciding proactively. Human oversight and published accuracy criteria remain a precondition for reliable results.\n\n## Use cases\nA building detection model can compare recent imagery with permit records to identify unregistered buildings. A predictive model can identify the network segments most prone to failure based on their age, maintenance history, and site conditions. An intelligent assistant can answer questions such as \"How many schools are more than two kilometers from the nearest health center?\" directly in Arabic.\n\n## Why it matters\nAs the volume of available spatial data and imagery multiplies, manual analysis alone is no longer enough. When built on a clear use case and a published accuracy criterion, GeoAI becomes a tool that multiplies an organization's ability to monitor, understand, and predict.",
+  "cases": [
+    {
+      "title": "Automated detection of unlicensed buildings",
+      "challenge": "Difficulty detecting unlicensed construction across wide areas through field patrols.",
+      "approach": "A deep learning model that extracts buildings from recent imagery and compares them with permit records, with human review of detected cases.",
+      "result": "A prioritized list of locations for field verification, and far less survey effort."
+    },
+    {
+      "title": "Predicting fault locations in networks",
+      "challenge": "Maintenance that reacts only after a fault occurs.",
+      "approach": "A predictive model that combines component age, maintenance history, and site characteristics to estimate the probability of failure for each segment.",
+      "result": "Preventive maintenance directed at the highest-risk segments, and fewer unexpected faults."
+    },
+    {
+      "title": "An assistant for spatial queries in Arabic",
+      "challenge": "Non-specialist users depending on the GIS team to answer every spatial question.",
+      "approach": "An intelligent assistant that turns a question written in Arabic into a spatial query on the database and shows the result on the map.",
+      "result": "Faster access to information, and a GIS team freed up for specialist tasks."
+    }
+  ]
+}

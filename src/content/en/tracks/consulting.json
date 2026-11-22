@@ -1,0 +1,98 @@
+{
+  "name": "Consulting and Digital Transformation",
+  "short": "Consulting",
+  "seo_title": "Geospatial, Data and Digital Transformation Consulting | Spatial Intelligence",
+  "title": "A considered decision before you spend",
+  "intro": "We provide an independent opinion ahead of investment: we assess the current situation, define the requirements, build the business case and specifications, then provide technical oversight of delivery. We rank our recommendations by priority and impact so they are easy to act on.",
+  "card": "Independent advice and clear documents that support decisions: feasibility studies, requirements, and technical specifications.",
+  "internal_preview": false,
+  "benefits": [
+    "Considered decisions before spending",
+    "Vendor-neutral recommendations",
+    "Controlled delivery"
+  ],
+  "outputs": [
+    "Studies and reports",
+    "Roadmaps",
+    "Requirements documents",
+    "Tender documents and specifications"
+  ],
+  "examples": [
+    "GIS maturity assessment for an organization",
+    "Specifications for a geospatial platform tender",
+    "Technical management of a data migration project"
+  ],
+  "services": [
+    {
+      "name": "Geospatial and enterprise GIS consulting",
+      "desc": "Independent advice that assesses your capabilities, compares options, and sets a practical path linking investment to results.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Independent review of data, architecture and interoperability",
+      "desc": "A neutral technical review of your databases, architecture, and integrations that uncovers risks before acceptance or after delivery.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Digital transformation consulting",
+      "desc": "We design a digital transformation path centered on spatial data, with priorities, initiatives, and governance whose impact and cost are clear.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Business analysis and requirements management",
+      "desc": "We turn business needs into clear, traceable, testable requirements so the organization builds what it actually needs.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Process re-engineering",
+      "desc": "We redesign processes to remove unnecessary steps and measure the impact on time, effort, and quality.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Technical feasibility studies",
+      "desc": "Technical feasibility studies that compare alternatives and estimate cost, return, and risk, for a justified investment decision before delivery.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Technical specifications, scopes of work and RFPs",
+      "desc": "We prepare clear technical specifications, scopes of work, and tender documents with fair evaluation criteria for your geospatial and digital projects.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Project management and technical oversight",
+      "desc": "We manage your geospatial projects and oversee vendors technically, for delivery on quality, time, and budget.",
+      "page": null,
+      "group": null
+    }
+  ],
+  "side": "team",
+  "side_caption": "",
+  "article": "## Definition\nGeospatial and digital transformation consulting means providing an independent professional opinion that helps an organization make its technology decisions before and during investment: what it actually needs, which alternative fits best, and how to implement it and measure its success. An independent consultant differs from a vendor in that they do not sell a product, so their recommendations are based on the organization's needs rather than on the solutions they happen to offer.\n\n## Objectives\nA consulting engagement aims to reduce technology investment risk through decisions based on analysis rather than assumptions; to translate business needs into clear requirements and specifications that can be contracted and measured; to align technology projects with the organization's strategy and priorities; and to ensure that delivery matches what was agreed.\n\n## Methodology\nA consulting engagement usually moves through successive stages: understanding the current state through interviews, workshops, and reviews of systems and documents; analyzing the gaps between the current and target states; evaluating alternatives against published criteria such as total cost of ownership, scalability, integration, and risk; drafting recommendations and a roadmap; and finally turning them into delivery documents such as requirements, specifications, and tender documents, together with technical oversight of implementation. This draws on well-established professional frameworks such as maturity assessment models, the business analysis practices of the BABOK Guide, and the project management practices of the PMBOK Guide.\n\n## Business impact\nPoorly defined requirements are one of the most common reasons technology projects fail: a project that starts with vague requirements usually ends with repeated change orders, budget and schedule overruns, and a system that does not meet the need. Good consulting work therefore feeds directly into the organization's results: investment directed at what creates impact, clear contracts whose fulfilment can be measured, vendor proposals that can be compared fairly, and delivery that is technically monitored before acceptance.\n\n## Use cases\nA GIS maturity assessment may reveal that an organization's problem lies in data quality and governance rather than software, changing the investment path entirely before a new system is purchased. A good set of specifications can define measurable acceptance criteria, so proposals become comparable and easier to evaluate. In migration projects, technical oversight ensures the completeness and accuracy of the data are verified before the old system is switched off.\n\n## Why it matters\nIn an environment where technology moves fast and options multiply, the value of an independent opinion lies in its ability to protect the organization from costly decisions, and to turn digital transformation from scattered technology purchases into an organized path that serves its goals.",
+  "cases": [
+    {
+      "title": "GIS maturity assessment for a government entity",
+      "challenge": "Scattered investment in spatial systems and data, with no clear impact or agreed priorities.",
+      "approach": "Interviews with departments, a review of data and systems, and a maturity assessment across strategy, data, technology, people, and governance.",
+      "result": "A prioritized roadmap that directs the budget towards what creates real impact."
+    },
+    {
+      "title": "Specifications for a geospatial platform tender",
+      "challenge": "The need for a new platform, with the risk of receiving uneven proposals that are hard to compare.",
+      "approach": "Analysis of functional and non-functional requirements, definition of measurable acceptance criteria, and drafting of the scope of work and evaluation criteria.",
+      "result": "Proposals that can be compared fairly, and a clear contract whose fulfilment can be measured."
+    },
+    {
+      "title": "Technical management of a data migration project",
+      "challenge": "A move to a new system, with the risk of data loss or business disruption.",
+      "approach": "A phased migration plan, rules for verifying completeness and accuracy, and a technical review of the vendor's deliverables at each stage.",
+      "result": "A safe, documented transition, and acceptance based on evidence rather than assumptions."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "Prototype of a Spatial Application or Dashboard",
+  "short": "Spatial application or dashboard prototype",
+  "seo_title": "GIS Application or Spatial Dashboard Prototype | Spatial Intelligence",
+  "title": "See the value on your own data first",
+  "intro": "Instead of a long project with uncertain results, we build a limited-scope prototype that answers a single business question. You see it working, your team tries it out, and then you decide whether to scale based on what you have seen.",
+  "card": "A web application or dashboard running on your real data within weeks, so you can test the value before scaling up.",
+  "fit_title": "Example prototypes",
+  "fit": [
+    "A dashboard tracking reports and response times by neighborhood.",
+    "A web application for viewing land parcels and land uses and looking up regulations.",
+    "A dashboard for tracking development projects in space and time."
+  ],
+  "steps": [
+    "Together we define the decision question, the indicators, and the users.",
+    "We prepare the necessary data and design its model.",
+    "We build the application or dashboard and present the first version.",
+    "We test it with users and refine it.",
+    "We hand over the prototype along with recommendations for scaling."
+  ],
+  "receive": [
+    "A working prototype on your data",
+    "Indicator dictionary",
+    "Integration and update documentation",
+    "Recommendations for moving to the full version"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "name": "Remote Sensing and Space Services",
+  "short": "Remote Sensing",
+  "seo_title": "Remote Sensing and Satellite Imagery Analysis | Spatial Intelligence",
+  "title": "What has changed on the ground?",
+  "intro": "We extract measurable information from satellite imagery. Organizations receive recurring maps and reports covering wide areas at a lower cost than field surveys, with a documented methodology that keeps results comparable over the years.",
+  "card": "Measurable information from satellite imagery, covering land cover and urban and environmental change.",
+  "internal_preview": true,
+  "benefits": [
+    "Recurring, wide-area monitoring",
+    "Early detection of change",
+    "Reference maps with a documented methodology"
+  ],
+  "outputs": [
+    "Classification maps",
+    "Change reports",
+    "Indicator layers",
+    "Documented methodologies"
+  ],
+  "examples": [
+    "Annual urban sprawl monitoring",
+    "Estimating vegetation cover for a site",
+    "Mapping flood-affected areas"
+  ],
+  "services": [
+    {
+      "name": "Satellite image processing and product preparation",
+      "desc": "We turn raw imagery into consistent, analysis-ready products for monitoring, with documented quality.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Land cover and land use classification",
+      "desc": "Land cover and land use maps from satellite imagery, with a documented methodology and verifiable accuracy.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Urban and environmental change monitoring",
+      "desc": "Recurring monitoring of urban and environmental change from satellite imagery, with change maps, alerts, and documented reports.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Spectral indices and natural and environmental hazard analysis",
+      "desc": "Environmental indicators from satellite imagery and natural hazard assessment that support sustainability and response.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Analytical map production and database integration",
+      "desc": "We produce map products from satellite imagery and load them into your databases for your teams to use every day.",
+      "page": null,
+      "group": null
+    }
+  ],
+  "side": "landcover",
+  "side_caption": "A real photograph taken by astronauts aboard the International Space Station of center-pivot irrigation fields in Wadi As-Sirhan in the north of the Kingdom, a phenomenon whose expansion has been tracked by satellite over decades. Source: NASA.",
+  "article": "## Definition\nRemote sensing is the science of obtaining information about the Earth's surface without direct contact with it, by measuring the electromagnetic energy reflected or emitted from it using sensors carried on satellites or aircraft. These measurements are turned into images, maps, and indicators that can be analyzed and compared over time.\n\n## Categories\nBy energy source, sensing is either passive, relying on reflected sunlight, as with optical and multispectral imagery; or active, sending out its own signal, as with synthetic aperture radar (SAR) and lidar. Radar stands out for its ability to work day and night and through cloud. Imagery is measured by four types of resolution: spatial, which sets the size of the smallest distinguishable element; spectral, which sets the number of spectral bands; temporal, which sets how often the same location is imaged; and radiometric, which sets the sensor's sensitivity to differences in brightness.\n\n## Methodology\nProcessing moves through successive stages: selecting imagery suited to the objective in terms of resolution and date; pre-processing with radiometric, atmospheric, and geometric correction; then extracting information through spectral indices such as the Normalized Difference Vegetation Index (NDVI), through land cover classification with supervised and unsupervised algorithms, or through change detection by comparing images from different dates. The methodology ends with an accuracy assessment using a confusion matrix and the kappa coefficient against reliable reference samples.\n\n## A brief history\nLandsat 1 was launched in 1972, starting the longest continuous record of images of the Earth from space. In 2008, the US Geological Survey made its archive freely available, making it possible to measure change on the Earth's surface over decades. In 2014, the European Copernicus programme began launching the Sentinel satellites, which provide free imagery at resolutions of up to 10 meters and revisit times of a few days, putting recurring monitoring within reach of organizations of every size.\n\n## Business impact\nRemote sensing makes it possible to cover wide areas at a far lower cost than field surveys, to reach remote or hazardous areas, and to monitor regularly with a consistent methodology that keeps results comparable over the years. The historical image archive also gives an organization a documented baseline against which to measure the impact of its policies and projects.\n\n## Use cases\nImage classification over several years is used to measure urban sprawl, its rate, and its direction. Spectral indices are used to estimate the density and health of vegetation in farms, parks, and protected areas. Radar imagery is combined with digital elevation models to identify areas exposed to and affected by flooding, even in cloudy conditions.\n\n## Why it matters\nIn a country the size of the Kingdom, with such varied terrain, remote sensing is the most practical way to know what is happening on the ground on a regular basis, and to turn observation into the numbers and maps on which organizations base their decisions.",
+  "cases": [
+    {
+      "title": "Annual urban sprawl monitoring",
+      "challenge": "Difficulty tracking a city's growth and expansion beyond planned areas using field methods.",
+      "approach": "Classifying satellite imagery for multiple years with a consistent methodology, then detecting change and calculating areas and directions.",
+      "result": "Annual maps and reports showing where and by how much the city has grown, comparable over the years."
+    },
+    {
+      "title": "Estimating vegetation cover for a site",
+      "challenge": "The need to measure the condition of vegetation over a wide area regularly, without costly field surveys.",
+      "approach": "Calculating the vegetation index (NDVI) from multispectral imagery across seasons, and validating with field samples.",
+      "result": "Recurring maps of vegetation density and health that reveal decline early."
+    },
+    {
+      "title": "Mapping flood-affected areas",
+      "challenge": "The need to identify affected areas quickly after rainfall, despite clouds obscuring optical imagery.",
+      "approach": "Combining cloud-penetrating radar imagery with digital elevation models to identify runoff paths and accumulation zones.",
+      "result": "Maps of affected and at-risk areas that support response and preventive planning."
+    }
+  ]
+}

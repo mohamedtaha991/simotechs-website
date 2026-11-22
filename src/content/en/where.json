@@ -1,0 +1,27 @@
+[
+  {
+    "question": "Is our spatial data reliable?",
+    "answer": "Enterprise Geospatial Data",
+    "track": "geospatial-data"
+  },
+  {
+    "question": "Which platform should we choose, and how do we write the specifications?",
+    "answer": "Consulting and Digital Transformation",
+    "track": "consulting"
+  },
+  {
+    "question": "How does the data reach field teams and decision-makers?",
+    "answer": "Geospatial Systems and Digital Solutions",
+    "track": "gis-solutions"
+  },
+  {
+    "question": "What has changed on the ground?",
+    "answer": "Remote Sensing",
+    "track": "remote-sensing"
+  },
+  {
+    "question": "Can the work be automated, or outcomes predicted?",
+    "answer": "AI and Advanced Analytics",
+    "track": "geoai"
+  }
+]

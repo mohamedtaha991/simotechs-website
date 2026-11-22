@@ -1,0 +1,196 @@
+{
+  "lang_name": "English",
+  "sep": ", ",
+  "home_aria": ", home page",
+  "main_menu": "Main menu",
+  "open_menu": "Open menu",
+  "switch_aria": "اقرأ هذه الصفحة بالعربية",
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "industries": "Industries",
+    "about": "About Us",
+    "privacy": "Privacy Policy",
+    "contact": "Contact Us",
+    "all_services": "All services",
+    "all_industries": "All industries"
+  },
+  "footer": {
+    "tracks": "Service Tracks",
+    "offers": "Starter Offers",
+    "company": "Company",
+    "contact": "Contact",
+    "cr": "CR No."
+  },
+  "crumbs_aria": "Breadcrumb",
+  "n_services": "%d services",
+  "offer_chip": "Fixed-scope offer",
+  "service_details": "Service details",
+  "arrow": "→",
+  "preview_track": "Internal preview: the pages of this track will be published once regulatory licensing has been verified.",
+  "preview_service": "Internal preview: this page will be published once regulatory licensing has been verified.",
+  "track": {
+    "domains": "Service Areas",
+    "cases": "Use Cases",
+    "cases_lead": "Common problems and how this track solves them in practice.",
+    "challenge": "Challenge",
+    "approach": "Approach",
+    "result": "Result",
+    "examples": "Examples of our work",
+    "outputs": "Deliverables",
+    "benefits": "What you gain",
+    "areas_eyebrow": "Service areas",
+    "areas_title": "Five areas we work in",
+    "areas_lead": "Each area has a documented methodology and defined deliverables, and can be delivered on its own or as part of an integrated project.",
+    "browse": "Explore",
+    "services": "Track services",
+    "back": "Back to "
+  },
+  "offer": {
+    "how": "How it works",
+    "duration": "Duration",
+    "receive": "What you receive"
+  },
+  "service": {
+    "offer": "What we offer",
+    "examples": "Examples",
+    "benefits": "What you gain",
+    "outputs": "Deliverables",
+    "related": "Related services"
+  },
+  "gov": {
+    "title": "Geospatial governance",
+    "desc": "Geospatial governance rests on three pillars: processes, people, and technology.",
+    "pillars": [
+      ["Processes", "Policies, standards", "and procedures"],
+      ["People", "Roles, ownership", "and permissions"],
+      ["Technology", "Platforms, reference", "data and security"]
+    ],
+    "core": ["Geospatial", "Governance"]
+  },
+  "index": {
+    "title": "Spatial Intelligence for Modern Technologies | Geospatial Data, Analytics and GIS in Saudi Arabia",
+    "hero": ["Trusted spatial data.", "Smarter decisions."],
+    "lead": "Your partner in spatial intelligence: we turn geospatial data into reliable knowledge, and knowledge into well-informed decisions.",
+    "cta": "Explore our services",
+    "slides_role": "slideshow",
+    "slides_aria": "Our five services",
+    "pause": "Pause slideshow",
+    "intro_title": "Before the map, the data. Before the intelligence, trust.",
+    "intro": "We work with organizations that hold spatial data and want to get the most out of it. We give them reliable data, analytics with a clear methodology, digital solutions that integrate with their systems, and independent advice.",
+    "tiles": [
+      ["Services", "From reliable data to decisions, across tracks that complement one another"],
+      ["Industries", "Public and private sectors, each with its own spatial questions"],
+      ["About Us", "A Saudi company based in Riyadh, turning spatial data into decisions"]
+    ],
+    "services_title": "Our Services",
+    "services_lead": "Five integrated tracks, each delivered on its own or combined in a single project.",
+    "method_eyebrow": "How we deliver",
+    "method_title": "Our Methodology",
+    "method_lead": "Five clear stages that take you from understanding where you stand today to a solution running in your environment and managed by your team.",
+    "method": [
+      ["Assess", "We study the current state of your data and systems and pin down what you actually need."],
+      ["Design", "Together we define the solution, its scope, and its acceptance criteria."],
+      ["Pilot", "We build a limited-scope prototype so you can see its value before any major commitment."],
+      ["Scale", "We move the solution into live operation in clear stages."],
+      ["Transfer knowledge", "We document the solution in full and train your team to run it themselves."]
+    ],
+    "sectors_title": "We work with organizations where location makes a difference to decisions",
+    "sectors_lead": "Every sector has its own spatial questions, and we start with each organization from the challenge it actually faces. These are the main sectors we serve.",
+    "sectors_cta": "Explore all industries",
+    "philo_title": "Philosophy and Principles",
+    "philo_motto": "Data first. Decisions are the goal.",
+    "philo_text": "We believe every spatial solution starts with reliable data, is built on a transparent methodology, and is measured by its impact on decisions, not by the volume of what we deliver.",
+    "why": [
+      ["data", "Data before applications", "We assess data quality before any development."],
+      ["doc", "Documented methodologies", "Every analysis comes with its methodology, so it can be reviewed and verified."],
+      ["target", "AI with published criteria", "We set acceptance metrics before training any model."],
+      ["scale", "Vendor-neutral", "We recommend what suits the organization, not what we resell."],
+      ["scope", "Clear, short scopes", "Fixed-scope offers you can start with, without a long-term commitment."],
+      ["layers", "Focused on data and applications", "We don't supply hardware or build infrastructure, so our focus stays entirely on the value of your data."]
+    ]
+  },
+  "services_page": {
+    "title": "Our Services | Geospatial Data, GIS, Remote Sensing, GeoAI and Consulting",
+    "head": "From reliable data to decisions",
+    "lead": "We organize our services into five integrated tracks, each delivered on its own or as part of a single project.",
+    "tracks": "The Five Tracks",
+    "questions": "The questions we answer",
+    "questions_lead": "Each track addresses a specific question organizations face in their work.",
+    "offers": "Starter Offers",
+    "offers_lead": "Fixed scope, defined deliverables."
+  },
+  "industries_page": {
+    "title": "Industries We Serve | Spatial Intelligence",
+    "head": "Where location makes a difference to decisions",
+    "lead": "Every sector has its own spatial questions. These are the main challenges we see, and where we can start with you.",
+    "jump_aria": "Industry groups",
+    "challenge": "Challenge",
+    "start": "Where we start",
+    "missing": "Don't see your sector?",
+    "missing_lead": "Tell us your spatial question, and we will suggest the right place to start."
+  },
+  "about_page": {
+    "title": "About Us | Spatial Intelligence for Modern Technologies",
+    "head": "Geospatial professionalism, and innovation that makes a difference",
+    "lead": "A Saudi company specializing in spatial intelligence. We provide geospatial services, solutions, and products that turn data into decisions.",
+    "eyebrow": "About the company",
+    "story_title": "Specialized expertise that turns place into value",
+    "story": [
+      "Spatial Intelligence for Modern Technologies is a Saudi company based in Riyadh, specializing in the geospatial field. We combine deep expertise with innovation to deliver services, solutions, and products that help government entities and businesses understand place and make better decisions.",
+      "We work with clear methodologies and professional standards, and we build what we deliver to be reliable, scalable, and to create measurable impact."
+    ],
+    "photo_alt": "A specialist team discussing geospatial data and maps",
+    "vm_alt": "A city connected by data and spatial technologies",
+    "vision": "Vision",
+    "vision_text": "To be the trusted name in spatial intelligence, with leading geospatial services and products that enable better decisions and lasting value in the Kingdom and the region.",
+    "mission": "Mission",
+    "mission_text": "To innovate and deliver geospatial solutions, services, and products with a high degree of professionalism, turning spatial data into knowledge and decisions that serve our clients and support development.",
+    "values_eyebrow": "Our values",
+    "values_title": "What we commit to in everything we deliver",
+    "close_title": "Every geospatial project has a right starting point",
+    "close_lead": "We get to know your needs, identify the right track, and then build the solution."
+  },
+  "contact_page": {
+    "title": "Contact Us | Spatial Intelligence",
+    "head": "Contact Us",
+    "lead": "We receive inquiries and official correspondence through the form below.",
+    "from_name": "Spatial Intelligence website (English)",
+    "honeypot": "Leave this field empty: ",
+    "name": "Name",
+    "name_ph": "Full name",
+    "org": "Organization",
+    "org_ph": "Organization or company name",
+    "reach": "Email or mobile",
+    "reach_ph": "So we can get back to you",
+    "type": "Type of need",
+    "optional": "(optional)",
+    "choose": "Select",
+    "types": ["Data assessment", "Strategy and governance", "Application or dashboard", "Analysis", "Consulting or specifications", "Other"],
+    "need": "Your need",
+    "need_ph": "Example: we want to assess the quality of our asset data before building a dashboard",
+    "consent": ["I agree to the processing of my data to respond to my request, in line with the ", "Privacy Policy", "."],
+    "send": "Send",
+    "email": "Email",
+    "phone": "Mobile",
+    "hours": "Working hours",
+    "office": "Office",
+    "gov": "For government entities",
+    "gov_text": "We work with government tenders and procurement, and we keep your data confidential from the first contact. We can sign a non-disclosure agreement before receiving any data."
+  },
+  "privacy_page": {
+    "title": "Privacy Policy | Spatial Intelligence",
+    "note": "Draft for legal review: not to be published until reviewed by a specialist in the Personal Data Protection Law.",
+    "head": "Privacy Policy",
+    "lead": "We are committed to protecting your personal data in accordance with the Personal Data Protection Law of the Kingdom of Saudi Arabia. This policy explains what data we collect, how we use and protect it, and your rights regarding it.",
+    "facts_aria": "Quick summary",
+    "facts": [
+      ["We don't sell your data", "and we don't use it beyond the stated purposes."],
+      ["No tracking, no ads", "The site currently uses no tracking or analytics cookies."],
+      ["Limited retention", "We delete contact data two months after the last correspondence."],
+      ["Your rights are protected", "Request access, correction, or deletion at any time."]
+    ],
+    "toc": "Policy contents",
+    "updated": "Last updated: 20 November 2026"
+  }
+}

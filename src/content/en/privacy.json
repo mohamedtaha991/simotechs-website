@@ -1,0 +1,125 @@
+[
+  {
+    "id": "scope",
+    "title": "Introduction and scope",
+    "paras": [
+      "We value your trust and are committed to protecting your personal data and respecting your privacy. This policy explains how Spatial Intelligence for Modern Technologies Co. collects your personal data when you visit this website or contact us through it, how we use and protect that data, and your rights regarding it.",
+      "We process personal data in accordance with the Personal Data Protection Law of the Kingdom of Saudi Arabia, issued by Royal Decree No. (M/19) dated 9/2/1443 AH, together with its amendments and implementing regulations. This policy applies to this website only and does not cover other websites or services you may reach through links on it. By using the website or submitting a request through it, you acknowledge that you have read this policy.",
+      "The controller of your personal data is Spatial Intelligence for Modern Technologies Co., a limited liability company headquartered in Riyadh, Kingdom of Saudi Arabia, Commercial Registration No. 7055496306."
+    ]
+  },
+  {
+    "id": "data",
+    "title": "The data we collect and how we collect it",
+    "paras": [
+      "We collect the minimum data needed to serve you, namely:"
+    ],
+    "items": [
+      "Data you provide to us yourself through the contact form: your name, organization, contact method (email address or mobile number), type of need, and the content of your message.",
+      "Basic technical data recorded automatically by our hosting and font providers when you browse the website, such as your Internet Protocol (IP) address, browser and device type, and the date and time of the request. This data is used only to operate and protect the website.",
+      "Your messages and correspondence with us when you contact us by email or phone."
+    ],
+    "after": [
+      "We do not request any sensitive data through the website, such as health, financial, or national ID data, and we ask that you do not include it in your messages. We do not currently use any analytics, tracking, or advertising tools on the website.",
+      "When you complete and submit the contact form, your data is sent to the Web3Forms form-handling service and from there to the company's email. We ask only for the fields shown on the form. If direct submission fails, we offer to open your email program with a ready-made message that you send yourself, in which case your email provider's policies apply."
+    ]
+  },
+  {
+    "id": "purposes",
+    "title": "Purposes of use and legal basis",
+    "paras": [
+      "We use your personal data only for the following legitimate purposes:"
+    ],
+    "items": [
+      "Responding to your inquiries and requests, studying your needs, and providing appropriate advice and proposals.",
+      "Communicating with you about the services you requested, and managing our relationship with you if it becomes a contractual one.",
+      "Operating and securing the website, preventing its misuse, and improving the user experience.",
+      "Complying with laws, regulations, and requests from competent authorities."
+    ],
+    "after": [
+      "We do not sell or rent your personal data, nor use it for purposes other than those stated without your consent.",
+      "We process your data on the basis of the consent you give when you send us your request; or the need to fulfil your request or a contract with you, or to take steps at your request before entering into a contract; or a legitimate interest that does not harm your rights; or the fulfilment of a legal obligation. You may withdraw your consent at any time."
+    ]
+  },
+  {
+    "id": "sharing",
+    "title": "Sharing and transferring data",
+    "paras": [
+      "We do not share your personal data with any party except in the following cases, and only to the extent necessary:"
+    ],
+    "items": [
+      "Service providers that support the operation of the website and email, namely: GitHub Pages for website hosting, Web3Forms for receiving contact form submissions, Microsoft 365 for email, and Google Fonts for serving fonts. We require them to protect the data and not to use it for anything other than providing the service.",
+      "Competent government or judicial authorities, where required by law or under an order issued by them.",
+      "Other parties, after obtaining your explicit consent."
+    ],
+    "after": [
+      "Some of these providers may process data in data centers outside the Kingdom of Saudi Arabia. In that case, we ensure the transfer is carried out in line with the controls set by the Law and that the provider maintains an appropriate level of data protection."
+    ]
+  },
+  {
+    "id": "retention",
+    "title": "Retention period and information security",
+    "paras": [
+      "We retain contact data for two months from the date of the last correspondence and then delete it securely, unless the correspondence becomes a contractual relationship, in which case we retain the data for as long as needed to perform the contract, or unless the Law requires us to keep it longer. Technical logs held by hosting providers are subject to their own retention policies.",
+      "We apply reasonable technical and organizational measures to protect your data from unauthorized access, loss, disclosure, or tampering, including:"
+    ],
+    "items": [
+      "Using an encrypted connection to the website.",
+      "Restricting access to contact data to staff who need it to do their work, and binding them to confidentiality.",
+      "Using enterprise email and computing services from well-known providers."
+    ],
+    "after": [
+      "Nevertheless, no method of transmission over the internet is completely secure, so we cannot absolutely guarantee the security of any information you send to us. If a personal data breach occurs that requires notification, we will take the measures prescribed by the Law."
+    ]
+  },
+  {
+    "id": "cookies",
+    "title": "Cookies and third-party services",
+    "paras": [
+      "The website does not currently use cookies for tracking, analytics, or marketing. If we add tools of this kind in the future, we will ask for your consent before enabling them and update this policy to explain what we use and why.",
+      "The website may contain links to websites or services operated by third parties, and it loads fonts from an external service. We do not control the privacy practices of these parties and are not responsible for them, and we recommend that you review their policies."
+    ]
+  },
+  {
+    "id": "rights",
+    "title": "Your rights",
+    "paras": [
+      "The Personal Data Protection Law grants you the following rights regarding your data:"
+    ],
+    "items": [
+      "The right to be informed: to know how and why we collect your data, as explained in this policy.",
+      "The right to access the personal data we hold about you and to obtain a copy of it.",
+      "The right to request correction or completion of your data if it is inaccurate or incomplete.",
+      "The right to request the destruction of your data once it is no longer needed, unless the Law requires us to retain it.",
+      "The right to withdraw your consent at any time, without affecting the lawfulness of processing carried out before the withdrawal."
+    ],
+    "after": [
+      "To exercise any of these rights, email us at info@simotechs.com stating your request. We may ask you for proof of identity to protect your data, and we will respond to your request within 10 business days."
+    ]
+  },
+  {
+    "id": "minors",
+    "title": "Minors and complaints",
+    "paras": [
+      "This website is intended for organizations, companies, and professionals, and we do not knowingly collect personal data from minors. If we learn that we have collected a minor's data without the consent of their guardian, we will delete it.",
+      "If you have a comment or complaint about how your data is processed, please contact us first so we can try to resolve it. You also have the right to file a complaint with the competent personal data protection authority in the Kingdom, the Saudi Data and Artificial Intelligence Authority (SDAIA)."
+    ]
+  },
+  {
+    "id": "updates",
+    "title": "Updates to this policy",
+    "paras": [
+      "We may update this policy from time to time to reflect changes in our services or in applicable laws. We publish the updated version on this page with the date of the last update, and we recommend that you review it periodically. Your continued use of the website after publication means you have seen the changes."
+    ]
+  },
+  {
+    "id": "contact",
+    "title": "Contact us",
+    "paras": [
+      "If you have any questions about this policy or our data protection practices, please contact us:",
+      "Email: info@simotechs.com",
+      "Phone: +966 54 322 0558",
+      "Address: Riyadh, Kingdom of Saudi Arabia"
+    ]
+  }
+]

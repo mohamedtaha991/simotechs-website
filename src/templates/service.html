@@ -3,26 +3,26 @@
 {% block title %}{{ s.seo_title }}{% endblock %}
 {% block description %}{{ s.desc }}{% endblock %}
 {% block main %}
-{% if t.internal_preview %}{{ m.note("معاينة داخلية: تُنشر هذه الصفحة بعد التحقق من الترخيص التنظيمي.") }}{% endif %}
+{% if t.internal_preview %}{{ m.note(ui.preview_service) }}{% endif %}
 {% set grp = t.groups|selectattr("name", "equalto", s.group)|first %}
-{% set crumbs = [["services/", "خدماتنا"], ["services/" ~ t.slug ~ "/", t.short]] %}
+{% set crumbs = [["services/", ui.nav.services], ["services/" ~ t.slug ~ "/", t.short]] %}
 {% if grp.slug %}{% set crumbs = crumbs + [["services/" ~ t.slug ~ "/" ~ grp.slug ~ "/", grp.name]] %}{% endif %}
 {{ m.phead(s.name, lead=s.intro, crumbs=crumbs, img=t.slug) }}
 
 <section class="sec"><div class="wrap cols">
   <div>
-    <section><h2>ما نقدمه</h2><ul class="ticks">{% for x in s.offer %}<li>{{ x }}</li>{% endfor %}</ul></section>
-    <section><h2>أمثلة</h2><ul class="examples">{% for x in s.examples %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h2>{{ ui.service.offer }}</h2><ul class="ticks">{% for x in s.offer %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h2>{{ ui.service.examples }}</h2><ul class="examples">{% for x in s.examples %}<li>{{ x }}</li>{% endfor %}</ul></section>
   </div>
   <aside class="side">
-    <div><h3>ما تحصل عليه</h3><ul class="gain">{% for x in s.benefits %}<li>{{ x }}</li>{% endfor %}</ul></div>
-    <div><h3>المخرجات</h3><ul>{% for x in s.outputs %}<li>{{ x }}</li>{% endfor %}</ul></div>
+    <div><h3>{{ ui.service.benefits }}</h3><ul class="gain">{% for x in s.benefits %}<li>{{ x }}</li>{% endfor %}</ul></div>
+    <div><h3>{{ ui.service.outputs }}</h3><ul>{% for x in s.outputs %}<li>{{ x }}</li>{% endfor %}</ul></div>
   </aside>
 </div></section>
 
 {% if related %}
 <section class="sec soft"><div class="wrap">
-  <div class="sec-head"><h2>خدمات قريبة</h2></div>
+  <div class="sec-head"><h2>{{ ui.service.related }}</h2></div>
   <div class="svcs">
     {% for x in related %}{{ m.service_row(x, t.slug) }}{% endfor %}
   </div>

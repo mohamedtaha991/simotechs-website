@@ -1,0 +1,132 @@
+[
+  {
+    "sector": "Municipalities",
+    "group": "gov",
+    "challenge": "Scattered service requests, uneven asset data, and constant field follow-up",
+    "start": [
+      "Spatial request portal",
+      "Neighborhood-level reports dashboard",
+      "Service distribution analysis"
+    ]
+  },
+  {
+    "sector": "Government and digital transformation",
+    "group": "gov",
+    "challenge": "Many entities and sources, with weak interoperability",
+    "start": [
+      "Spatial data governance framework",
+      "Shared data platform",
+      "Alignment with national standards"
+    ]
+  },
+  {
+    "sector": "Urban planning and development",
+    "group": "urban",
+    "challenge": "Fragmented, outdated urban data, and difficulty measuring the impact of decisions",
+    "start": [
+      "Land suitability analysis",
+      "Urban sprawl monitoring",
+      "Density scenarios"
+    ]
+  },
+  {
+    "sector": "Infrastructure and public utilities",
+    "group": "urban",
+    "challenge": "Dispersed assets, incomplete network data, and unclear maintenance priorities",
+    "start": [
+      "Asset data quality assessment",
+      "Network modeling",
+      "Linking GIS to maintenance systems"
+    ]
+  },
+  {
+    "sector": "Real estate and land management",
+    "group": "urban",
+    "challenge": "Duplicate or conflicting land records, and manual site evaluation",
+    "start": [
+      "Development site selection",
+      "Land-use conflict review",
+      "Unified land database"
+    ]
+  },
+  {
+    "sector": "Transport and logistics",
+    "group": "urban",
+    "challenge": "Multiple mobility data sources, and the need to optimize routes and coverage",
+    "start": [
+      "Service area and accessibility analysis",
+      "Hub locations",
+      "Spatial operations dashboards"
+    ]
+  },
+  {
+    "sector": "Environment and sustainability",
+    "group": "env",
+    "challenge": "The need for wide-area, recurring monitoring, and poorly documented methodologies",
+    "start": [
+      "Vegetation cover monitoring",
+      "Recurring environmental indicators",
+      "Natural hazard analysis"
+    ]
+  },
+  {
+    "sector": "Energy and mining",
+    "group": "env",
+    "challenge": "Vast, remote sites, and data scattered across departments",
+    "start": [
+      "Unified data warehouse",
+      "Change monitoring around facilities",
+      "Spatial asset dashboard"
+    ]
+  },
+  {
+    "sector": "Agriculture and water",
+    "group": "env",
+    "challenge": "Monitoring agricultural and water use at scale",
+    "start": [
+      "Agricultural land classification",
+      "Vegetation cover analysis",
+      "Water stress modeling"
+    ]
+  },
+  {
+    "sector": "Tourism and regional development",
+    "group": "biz",
+    "challenge": "Analyzing the regional distribution of destinations and services",
+    "start": [
+      "Destination accessibility",
+      "Regional indicators dashboard",
+      "Site suitability"
+    ]
+  },
+  {
+    "sector": "Telecommunications",
+    "group": "biz",
+    "challenge": "Rollout planning and spatial demand analysis",
+    "start": [
+      "Coverage gap analysis",
+      "Automated data updates",
+      "APIs"
+    ]
+  },
+  {
+    "sector": "Security, safety and emergency management",
+    "group": "gov",
+    "challenge": "A shared spatial picture across multiple entities, with sensitive data",
+    "start": [
+      "Operational spatial dashboard",
+      "Access policies for sensitive layers",
+      "Secure data exchange"
+    ]
+  },
+  {
+    "sector": "Large enterprises",
+    "group": "biz",
+    "challenge": "Untapped spatial data, and location decisions based on intuition",
+    "start": [
+      "Branch location analysis",
+      "Spatial operations dashboards",
+      "Integrating GIS with enterprise systems"
+    ]
+  }
+]

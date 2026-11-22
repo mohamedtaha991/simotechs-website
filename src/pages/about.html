@@ -1,32 +1,34 @@
 {# صفحة «من نحن». القيم من src/content/values.json #}
 {% extends "base.html" %}
-{% block title %}من نحن | الذكاء المكاني للحلول الرقمية{% endblock %}
+{% set p = ui.about_page %}
+{% block title %}{{ p.title }}{% endblock %}
 {% block main %}
-{{ m.phead("احترافية في المجال الجيومكاني، وابتكار يصنع الفرق", lead="شركة سعودية متخصصة في الذكاء المكاني، نقدّم خدمات وحلولًا ومنتجات جيومكانية تحوّل البيانات إلى قرار.", img="about") }}
+{{ m.phead(p.head, lead=p.lead, img="about") }}
 
 <section class="sec"><div class="wrap about-story">
   <div class="prose about-intro">
-    <span class="eyebrow">عن الشركة</span>
-    <h2>خبرة متخصصة تحوّل المكان إلى قيمة</h2>
-    <p>الذكاء المكاني للحلول الرقمية شركة سعودية مقرها الرياض، متخصصة في المجال الجيومكاني. نجمع بين الخبرة العميقة والابتكار لنقدّم خدمات وحلولًا ومنتجات تساعد الجهات الحكومية والشركات على فهم المكان واتخاذ قرارات أدق.</p>
-    <p>نعمل بمنهجيات واضحة ومعايير احترافية، ونبني ما نقدّمه ليكون موثوقًا وقابلًا للتطوير ويحقق أثرًا يمكن قياسه.</p>
+    <span class="eyebrow">{{ p.eyebrow }}</span>
+    <h2>{{ p.story_title }}</h2>
+    {% for x in p.story %}
+    <p>{{ x }}</p>
+    {% endfor %}
   </div>
   <figure class="about-photo">
-    {{ m.pic("about", alt="فريق متخصص يناقش البيانات والخرائط الجيومكانية", lazy=false) }}
+    {{ m.pic("about", alt=p.photo_alt, lazy=false) }}
   </figure>
 </div></section>
 
 <section class="vision-mission">
-  {{ m.pic("sector-gov", cls="bg", alt="مدينة مترابطة بالبيانات والتقنيات المكانية") }}
+  {{ m.pic("sector-gov", cls="bg", alt=p.vm_alt) }}
   <div class="wrap">
     <div class="vm">
       <article>
-        <h3>الرؤية</h3>
-        <p>أن نكون الاسم الموثوق في الذكاء المكاني، بخدمات ومنتجات جيومكانية رائدة تصنع قرارات أدق وقيمة مستدامة في المملكة والمنطقة.</p>
+        <h3>{{ p.vision }}</h3>
+        <p>{{ p.vision_text }}</p>
       </article>
       <article>
-        <h3>الرسالة</h3>
-        <p>نبتكر ونقدّم حلولًا وخدمات ومنتجات جيومكانية باحترافية عالية، تحوّل البيانات المكانية إلى معرفة وقرارات تخدم عملاءنا وتدعم التنمية.</p>
+        <h3>{{ p.mission }}</h3>
+        <p>{{ p.mission_text }}</p>
       </article>
     </div>
   </div>
@@ -34,8 +36,8 @@
 
 <section class="sec"><div class="wrap">
   <div class="center values-head">
-    <span class="eyebrow">قيمنا</span>
-    <h2>ما نلتزم به في كل ما نقدّمه</h2>
+    <span class="eyebrow">{{ p.values_eyebrow }}</span>
+    <h2>{{ p.values_title }}</h2>
   </div>
   <ul class="values">
     {% for v in values %}
@@ -54,8 +56,8 @@
 </div></section>
 
 <section class="close"><div class="wrap">
-  <div><h2>لكل مشروع جيومكاني نقطة بداية صحيحة</h2><p>نتعرف على احتياجك، ونحدد المسار المناسب، ثم نبني الحل.</p></div>
-  <a class="btn" href="{{ root }}contact/">تواصل معنا</a>
+  <div><h2>{{ p.close_title }}</h2><p>{{ p.close_lead }}</p></div>
+  <a class="btn" href="{{ root }}contact/">{{ ui.nav.contact }}</a>
 </div></section>
 
 {% endblock %}

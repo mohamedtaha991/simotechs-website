@@ -3,26 +3,26 @@
 {% block title %}{{ t.seo_title }}{% endblock %}
 {% block description %}{{ t.card }}{% endblock %}
 {% block main %}
-{% if t.internal_preview %}{{ m.note("معاينة داخلية: تُنشر صفحات هذا المسار بعد التحقق من الترخيص التنظيمي.") }}{% endif %}
-{{ m.phead(t.title, lead=t.intro, name=t.name, crumbs=[["services/", "خدماتنا"]], img=t.slug) }}
+{% if t.internal_preview %}{{ m.note(ui.preview_track) }}{% endif %}
+{{ m.phead(t.title, lead=t.intro, name=t.name, crumbs=[["services/", ui.nav.services]], img=t.slug) }}
 
 {% if t.get("article") %}
 {# مسار بمقال: المقال، ثم عناوين خدمات المسار، ثم الأمثلة التطبيقية #}
 {{ m.article(t.name, t.article, side=t.get("side", ""), side_svg=t.get("side_svg", ""), caption=t.get("side_caption", ""), prefix=root ~ "services/" ~ t.slug ~ "/") }}
 
 <section class="sec soft"><div class="wrap">
-  <div class="sec-head"><h2>المجالات</h2></div>
+  <div class="sec-head"><h2>{{ ui.track.domains }}</h2></div>
   <ul class="svc-titles">
-    {% for s in t.services %}<li>{% if s.page %}<a href="{{ root }}services/{{ t.slug }}/{{ s.page }}/">{% else %}<div>{% endif %}<b>{{ s.name }}</b>{% if s.page %}<i aria-hidden="true">←</i></a>{% else %}</div>{% endif %}</li>{% endfor %}
+    {% for s in t.services %}<li>{% if s.page %}<a href="{{ root }}services/{{ t.slug }}/{{ s.page }}/">{% else %}<div>{% endif %}<b>{{ s.name }}</b>{% if s.page %}<i aria-hidden="true">{{ ui.arrow }}</i></a>{% else %}</div>{% endif %}</li>{% endfor %}
   </ul>
 </div></section>
 
 {% if t.get("cases") %}
 <section class="sec"><div class="wrap">
-  <div class="sec-head"><h2>أمثلة تطبيقية</h2><p>نماذج لمشكلات شائعة وكيف يعالجها هذا المسار عمليًا.</p></div>
+  <div class="sec-head"><h2>{{ ui.track.cases }}</h2><p>{{ ui.track.cases_lead }}</p></div>
   <ol class="cases">
     {% for c in t.cases %}<li><h3>{{ c.title }}</h3>
-      <dl><dt>التحدي</dt><dd>{{ c.challenge }}</dd><dt>المنهجية</dt><dd>{{ c.approach }}</dd><dt>النتيجة</dt><dd>{{ c.result }}</dd></dl></li>{% endfor %}
+      <dl><dt>{{ ui.track.challenge }}</dt><dd>{{ c.challenge }}</dd><dt>{{ ui.track.approach }}</dt><dd>{{ c.approach }}</dd><dt>{{ ui.track.result }}</dt><dd>{{ c.result }}</dd></dl></li>{% endfor %}
   </ol>
 </div></section>
 {% endif %}
@@ -31,10 +31,10 @@
 {# المسارات القديمة: الأمثلة والمخرجات وما تحصل عليه #}
 <section class="sec"><div class="wrap cols">
   <div>
-    <section><h2>أمثلة على ما نعمله</h2><ul class="ticks">{% for x in t.examples %}<li>{{ x }}</li>{% endfor %}</ul></section>
-    <section><h2>المخرجات</h2><ul class="ticks">{% for x in t.outputs %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h2>{{ ui.track.examples }}</h2><ul class="ticks">{% for x in t.examples %}<li>{{ x }}</li>{% endfor %}</ul></section>
+    <section><h2>{{ ui.track.outputs }}</h2><ul class="ticks">{% for x in t.outputs %}<li>{{ x }}</li>{% endfor %}</ul></section>
   </div>
-  <aside class="side"><div><h3>ما تحصل عليه</h3><ul class="gain">{% for x in t.benefits %}<li>{{ x }}</li>{% endfor %}</ul></div></aside>
+  <aside class="side"><div><h3>{{ ui.track.benefits }}</h3><ul class="gain">{% for x in t.benefits %}<li>{{ x }}</li>{% endfor %}</ul></div></aside>
 </div></section>
 {% endif %}
 
@@ -42,20 +42,20 @@
 {% elif t.get("group_info") %}
 {# المجموعات فقط: عنوان ووصف عام، وكل مجموعة تفتح صفحتها بخدماتها #}
 <section class="sec soft"><div class="wrap">
-  <div class="center"><span class="eyebrow">مجالات الخدمة</span><h2>خمسة مجالات نعمل فيها</h2><p>لكل مجال منهجية موثقة ومخرجات محددة، ويُنفَّذ كل منها بشكل مستقل أو ضمن مشروع متكامل.</p></div>
+  <div class="center"><span class="eyebrow">{{ ui.track.areas_eyebrow }}</span><h2>{{ ui.track.areas_title }}</h2><p>{{ ui.track.areas_lead }}</p></div>
   <ul class="areas">
     {% for g in t.groups %}
     <li><a class="card" href="{{ root }}services/{{ t.slug }}/{{ g.slug }}/">
       <span class="pic">{{ m.pic(g.img) }}</span>
       <span class="body"><h3>{{ g.name }}</h3><p>{{ g.desc }}</p>
-        <span class="meta"><i>استعرض</i></span></span>
+        <span class="meta"><i>{{ ui.track.browse }}</i></span></span>
     </a></li>
     {% endfor %}
   </ul>
 </div></section>
 {% else %}
 <section class="sec soft"><div class="wrap">
-  <div class="sec-head"><h2>خدمات المسار</h2></div>
+  <div class="sec-head"><h2>{{ ui.track.services }}</h2></div>
   {% for g in t.groups %}
   {% if g.name %}<h3 class="group">{{ g.name }}</h3>{% endif %}
   <div class="svcs">

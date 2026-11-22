@@ -4,12 +4,12 @@
 {% block title %}{{ g.name }} | {{ t.short }} | {{ site.name }}{% endblock %}
 {% block description %}{{ g.desc }}{% endblock %}
 {% block main %}
-{{ m.phead(g.name, lead=g.desc, crumbs=[["services/", "خدماتنا"], ["services/" ~ t.slug ~ "/", t.short]], img=(g.img or t.slug)) }}
+{{ m.phead(g.name, lead=g.desc, crumbs=[["services/", ui.nav.services], ["services/" ~ t.slug ~ "/", t.short]], img=(g.img or t.slug)) }}
 
-{{ m.article(g.name, g.article or g.long, side=g.side, side_svg=g.side_svg, caption=g.side_caption, prefix=root ~ "services/" ~ t.slug ~ "/", back=["services/" ~ t.slug ~ "/", "العودة إلى " ~ t.short]) }}
+{{ m.article(g.name, g.article or g.long, side=g.side, side_svg=g.side_svg, caption=g.side_caption, prefix=root ~ "services/" ~ t.slug ~ "/", back=["services/" ~ t.slug ~ "/", ui.track.back ~ t.short]) }}
 
 <section class="sec soft"><div class="wrap">
-  <div class="sec-head"><h2>المجالات</h2></div>
+  <div class="sec-head"><h2>{{ ui.track.domains }}</h2></div>
   <ul class="svc-titles">
     {% for s in g.services %}<li><div><b>{{ s.name }}</b></div></li>{% endfor %}
   </ul>

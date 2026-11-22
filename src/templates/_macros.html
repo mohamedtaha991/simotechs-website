@@ -7,7 +7,7 @@
 {% macro phead(title, lead="", name="", crumbs=[], img="network") %}
 <section class="phead">{{ pic(img, cls="bg", lazy=false) }}<div class="wrap">
   {% if crumbs %}
-  <nav class="crumbs" aria-label="مسار الصفحة">
+  <nav class="crumbs" aria-label="{{ ui.crumbs_aria }}">
     {% for href, label in crumbs %}{% if not loop.first %}<span aria-hidden="true">/</span>{% endif %}<a href="{{ root }}{{ href }}">{{ label }}</a>{% endfor %}
   </nav>
   {% endif %}
@@ -26,14 +26,14 @@
 {# فسيفساء المسارات الخمسة. show_count: يعرض عدد الخدمات بدل وصف المسار القصير #}
 {% macro tracks_mosaic(show_count=false) %}
 <div class="mosaic">
-  {% for t in tracks %}{{ tile("services/" ~ t.slug ~ "/", t.slug, t.name, t.card, (t.services|length ~ " خدمة") if show_count else site.track_labels[t.slug]) }}{% endfor %}
+  {% for t in tracks %}{{ tile("services/" ~ t.slug ~ "/", t.slug, t.name, t.card, (ui.n_services|format(t.services|length)) if show_count else site.track_labels[t.slug]) }}{% endfor %}
 </div>
 {% endmacro %}
 
 {# بطاقات العروض الثلاثة #}
 {% macro offers_tiles() %}
 <div class="tiles3">
-  {% for o in offers %}{{ tile("offers/" ~ o.slug ~ "/", o.slug, o.short, o.card, "عرض بنطاق ثابت") }}{% endfor %}
+  {% for o in offers %}{{ tile("offers/" ~ o.slug ~ "/", o.slug, o.short, o.card, ui.offer_chip) }}{% endfor %}
 </div>
 {% endmacro %}
 
@@ -42,7 +42,7 @@
 
 {# صف خدمة داخل قائمة: رابط إن كان لها صفحة، ونص فقط إن لم يكن #}
 {% macro service_row(s, track_slug) %}
-{% if s.page %}<a href="{{ root }}services/{{ track_slug }}/{{ s.page }}/"><b>{{ s.name }}</b><span>{{ s.desc }}</span><i>تفاصيل الخدمة</i></a>
+{% if s.page %}<a href="{{ root }}services/{{ track_slug }}/{{ s.page }}/"><b>{{ s.name }}</b><span>{{ s.desc }}</span><i>{{ ui.service_details }}</i></a>
 {% else %}<div><b>{{ s.name }}</b><span>{{ s.desc }}</span><i></i></div>
 {% endif %}
 {% endmacro %}

@@ -1,0 +1,105 @@
+{
+  "name": "Geospatial Systems and Digital Solutions",
+  "short": "Digital Solutions",
+  "seo_title": "GIS Applications, Solutions and Spatial Dashboards | Spatial Intelligence",
+  "title": "Spatial data in the hands of those who need it",
+  "intro": "We turn spatial data into applications, platforms, and dashboards that staff and decision-makers use every day. We analyze workflows, design the solution around the organization's needs, and connect it to its existing systems, without being tied to a single product.",
+  "card": "Applications and dashboards that put spatial data in the hands of field teams and decision-makers.",
+  "internal_preview": false,
+  "benefits": [
+    "Spatial data used in day-to-day work",
+    "Less reliance on files and paper maps",
+    "A unified view of assets and services"
+  ],
+  "outputs": [
+    "Applications and platforms",
+    "Design and architecture documents",
+    "Dashboards",
+    "Integration interfaces",
+    "User guides"
+  ],
+  "examples": [
+    "A spatial services portal for a municipality",
+    "A field app for asset inventory",
+    "An executive dashboard for tracking spatial indicators"
+  ],
+  "services": [
+    {
+      "name": "Geospatial web applications",
+      "desc": "We design and develop secure Web GIS applications that turn your spatial data into everyday working tools for your teams and leadership.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Mobile and field GIS applications",
+      "desc": "Field apps for collecting and updating spatial data offline and syncing it with the organization's database.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Enterprise geospatial platforms and portals",
+      "desc": "Geospatial portals and platforms with clear permissions and governance that unify access to the organization's data, maps, and services.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Interactive maps and spatial dashboards",
+      "desc": "Dashboards and interactive maps that show performance and risk spatially to decision-makers, turning your indicators into a single, up-to-date view.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Spatial asset and facility management solutions",
+      "desc": "Solutions that link an asset's location to its condition, maintenance, and cost, for better planning and preventive maintenance.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Urban planning and land management solutions",
+      "desc": "Spatial digital solutions for reviewing applications, tracking land uses and ownership, and reading urban growth.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Spatial tracking and monitoring solutions",
+      "desc": "Real-time tracking of vehicles and teams, with geofence alerts and performance reports that support operational decisions.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Integrating GIS with enterprise systems",
+      "desc": "We embed maps and spatial data in your enterprise systems so location appears inside everyday workflows, without duplicating data.",
+      "page": null,
+      "group": null
+    },
+    {
+      "name": "Digital twins and 3D models",
+      "desc": "Digital twins and 3D models that link the physical environment to operational data and let you test scenarios before implementation.",
+      "page": null,
+      "group": null
+    }
+  ],
+  "side": "sector-municipal",
+  "side_caption": "",
+  "article": "## Definition\nGeospatial digital solutions are the applications and platforms that deliver spatial data to the people who need it in their daily work, in a form suited to their role: interactive maps and dashboards for decision-makers, web applications for staff and the public, field apps for operational teams, and enterprise portals and platforms that bring all of this together. Their value lies in moving spatial data off specialists' computers and into users' hands.\n\n## Categories\nBy user, these solutions fall into desktop solutions for specialists, web applications for staff and the public, field apps that run on mobile devices even without a connection, and dashboards for senior management. By architecture, they fall into on-premises solutions, cloud solutions, and hybrid solutions that combine the two. One of the newest patterns is the digital twin: a 3D digital model of a city or facility linked to its operational data.\n\n## Methodology\nBuilding a solution starts by analyzing workflows and users before any technology: who will use the solution, for which task, and what data they need. Then comes user experience design, the solution architecture and its integration with the organization's existing systems, followed by iterative development through prototypes that users test early, and finally deployment, training, and support. Throughout, the solution follows open interoperability standards, such as those of the OGC, to avoid lock-in to a single product.\n\n## A brief history\nIn the 1980s and 1990s, geographic information systems remained desktop tools used only by specialists, and they began moving to the web at the turn of the millennium. In 2005, the launch of Google Maps changed what users expected from online maps, making ease of use a core requirement. With the spread of smart devices equipped with GPS, field data collection moved from paper to apps, and updates began reaching the database the moment they were entered.\n\n## Business impact\nWhen spatial data reaches users at the right time and in the right form, it turns from a stockpile into a working tool: the need for files and paper maps falls, data is updated directly from the field, departments share a single view of assets and services, and decision-makers follow indicators in real time instead of waiting for periodic reports.\n\n## Use cases\nA spatial services portal lets residents submit a request, mark its location on the map, and follow it up. A field app enables maintenance teams to inventory assets and update their condition with photos and coordinates. An executive dashboard brings performance indicators together on a single map that reveals where problems are concentrated.\n\n## Why it matters\nThe value of spatial data is realized only when it is used, and digital solutions are the bridge that turns an organization's investment in data into daily work, faster decisions, and better services.",
+  "cases": [
+    {
+      "title": "A spatial services portal for a municipality",
+      "challenge": "Requests and reports arriving through multiple channels without a precise location, making them hard to route and follow up.",
+      "approach": "A web portal where users mark the location on a map, linked to the request management system and neighborhood data.",
+      "result": "Requests with precise locations, faster dispatch of teams, and a spatial view of how requests are distributed."
+    },
+    {
+      "title": "A field app for asset inventory",
+      "challenge": "A paper-based asset inventory that is entered late and full of errors.",
+      "approach": "An offline-capable mobile app that records location, photos, and condition, and syncs with the database.",
+      "result": "An asset register updated directly from the field, with fewer data entry errors."
+    },
+    {
+      "title": "An executive dashboard for tracking spatial indicators",
+      "challenge": "Late periodic reports that don't show where problems are concentrated.",
+      "approach": "A dashboard that links indicators to the map and updates automatically from the data sources.",
+      "result": "Real-time tracking of indicators, and decisions based on a clear spatial picture."
+    }
+  ]
+}

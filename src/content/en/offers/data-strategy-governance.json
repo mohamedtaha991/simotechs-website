@@ -1,0 +1,30 @@
+{
+  "name": "Spatial Data Strategy and Governance",
+  "short": "Data strategy and governance",
+  "seo_title": "Geospatial Data Strategy and Governance | Spatial Intelligence",
+  "title": "Who owns the data? Which version is authoritative?",
+  "intro": "When several departments produce spatial layers without a single point of reference, effort is duplicated and the numbers conflict. We build with you a strategy that sets priorities, and a governance framework that defines who owns each dataset, who updates it, and who can access it.",
+  "card": "A roadmap that ties your data to your organization's goals, and a framework that defines ownership, roles, and access.",
+  "fit_title": "This is for you if",
+  "fit": [
+    "More than one department produces or uses spatial data.",
+    "You are planning investments in platforms or AI and want a clear foundation.",
+    "You need to align your data with national requirements and standards."
+  ],
+  "steps": [
+    "We assess the state of your data, current maturity, and usage gaps.",
+    "We run workshops with the departments involved.",
+    "We define the core data, its owners, the roles, and the access policies.",
+    "We design the roadmap, initiatives, and success indicators.",
+    "We present the strategy and framework to leadership for approval."
+  ],
+  "receive": [
+    "Strategy document",
+    "Maturity assessment",
+    "Roadmap and initiatives",
+    "Governance framework and roles matrix",
+    "Access classification policy",
+    "Performance indicators",
+    "Executive presentation for leadership"
+  ]
+}

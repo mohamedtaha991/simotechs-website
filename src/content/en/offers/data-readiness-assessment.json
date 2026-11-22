@@ -1,0 +1,28 @@
+{
+  "name": "Spatial Data Readiness and Quality Assessment",
+  "short": "Data readiness and quality assessment",
+  "seo_title": "Spatial Data Readiness and Quality Assessment | Spatial Intelligence",
+  "title": "Before you build on your data, know its condition",
+  "intro": "Most platform, dashboard, and AI projects stumble because of the data, not the technology. This assessment measures the quality of your data with a documented methodology and tells you where to focus improvement effort first.",
+  "card": "Know where your spatial data stands: accuracy, completeness, consistency, and currency, with a prioritized improvement plan.",
+  "fit_title": "This is for you if",
+  "fit": [
+    "You are preparing to launch an e-service or platform that depends on spatial data.",
+    "You are about to migrate your data to a new system.",
+    "You keep hearing complaints about errors or conflicts between layers."
+  ],
+  "steps": [
+    "Together we define the datasets in scope, the quality dimensions, and the measurement rules.",
+    "We sample the data and run spatial, attribute, and temporal checks.",
+    "We compare the data against reference sources where available.",
+    "We calculate the indicators and analyze the root causes of the gaps.",
+    "We present the results and the improvement plan to your team."
+  ],
+  "receive": [
+    "Quality assessment report",
+    "Quality indicators and dashboard",
+    "Issue log",
+    "Prioritized improvement plan",
+    "A measurement methodology you can reapply yourself"
+  ]
+}

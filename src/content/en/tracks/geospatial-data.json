@@ -1,0 +1,240 @@
+{
+  "name": "Enterprise Geospatial Data",
+  "short": "Geospatial Data",
+  "seo_title": "Enterprise Geospatial Data Management and Governance | Spatial Intelligence",
+  "title": "Spatial data you can rely on",
+  "intro": "We build the foundation on which every spatial intelligence solution rests: reliable, well-governed, well-designed data. Errors and duplication fall, and the decisions built on that data become more accurate and faster. We deliver the results with documentation and indicators the organization can track itself.",
+  "card": "Strategy, governance, design, quality, and analytics: the foundation every spatial solution is built on.",
+  "internal_preview": false,
+  "benefits": [
+    "More reliable data",
+    "Less duplication and conflict",
+    "An AI-ready environment"
+  ],
+  "outputs": [
+    "Strategies and policies",
+    "Data models and databases",
+    "Automated processing pipelines",
+    "Quality reports",
+    "Analytical products"
+  ],
+  "examples": [
+    "Quality assessment of multi-source land data",
+    "A spatial data governance framework across several departments",
+    "Migration of a legacy geospatial database"
+  ],
+  "services": [
+    {
+      "name": "Geospatial data strategy",
+      "desc": "We build a geospatial data strategy with a roadmap and success indicators that tie your spatial data to your organization's goals and priorities.",
+      "page": null,
+      "group": "Strategy and Governance"
+    },
+    {
+      "name": "Policies, standards and procedures",
+      "desc": "Policies, standards, and operating guides that regulate how geospatial data is produced and exchanged and keep it consistent across departments.",
+      "page": null,
+      "group": "Strategy and Governance"
+    },
+    {
+      "name": "Governance frameworks, master and reference data",
+      "desc": "We design governance frameworks that define ownership, roles, and access, and establish a single, authoritative spatial reference.",
+      "page": null,
+      "group": "Strategy and Governance"
+    },
+    {
+      "name": "Geospatial database and data model design",
+      "desc": "We design scalable enterprise geospatial databases and 2D and 3D data models that support your applications and analytics.",
+      "page": null,
+      "group": "Design and Enterprise Architecture"
+    },
+    {
+      "name": "Geospatial data warehouse and reference architecture design",
+      "desc": "We design data warehouses and a reference architecture that bring the organization's sources together in a single layer ready for analytics and applications.",
+      "page": null,
+      "group": "Design and Enterprise Architecture"
+    },
+    {
+      "name": "GIS solution architecture and integration design",
+      "desc": "We design GIS solution architecture and integration and produce clear specifications for operating environments, so you can contract with confidence and avoid rework.",
+      "page": null,
+      "group": "Design and Enterprise Architecture"
+    },
+    {
+      "name": "Geospatial data conversion and migration",
+      "desc": "We convert and migrate your geospatial data between formats, reference systems, and platforms with documented accuracy and no loss of information.",
+      "page": null,
+      "group": "Integration and Migration"
+    },
+    {
+      "name": "ETL/ELT automation, processing and data updates",
+      "desc": "We automate the extraction, transformation, and loading of geospatial data with documented pipelines that keep your data current without manual work.",
+      "page": null,
+      "group": "Integration and Migration"
+    },
+    {
+      "name": "Data exchange services and geospatial APIs",
+      "desc": "We develop secure geospatial APIs and data exchange services built on open standards, with clear permissions and usage logs.",
+      "page": null,
+      "group": "Integration and Migration"
+    },
+    {
+      "name": "Geospatial data quality assessment and indicators",
+      "desc": "We measure the accuracy, completeness, consistency, and currency of your geospatial data and provide indicators and a prioritized improvement plan.",
+      "page": null,
+      "group": "Quality Control and Updates"
+    },
+    {
+      "name": "Automated validation rules and error correction",
+      "desc": "Automated validation rules that catch topological errors, duplicates, and conflicts early and correct them, keeping your data clean.",
+      "page": null,
+      "group": "Quality Control and Updates"
+    },
+    {
+      "name": "Updates, versioning, change management and QA frameworks",
+      "desc": "We organize data updates, versioning, and change tracking, and put lasting quality assurance frameworks in place that keep your data auditable.",
+      "page": null,
+      "group": "Quality Control and Updates"
+    },
+    {
+      "name": "Spatial, urban, network and accessibility analysis",
+      "desc": "Spatial, urban, and network analysis that measures accessibility, reveals service gaps, and guides location decisions with evidence.",
+      "page": null,
+      "group": "Geospatial Analytics"
+    },
+    {
+      "name": "Environmental, demographic and economic spatial analysis",
+      "desc": "We bring environmental, demographic, and economic data together in a single spatial analysis that supports policy, investment, and planning.",
+      "page": null,
+      "group": "Geospatial Analytics"
+    },
+    {
+      "name": "Suitability analysis, multi-criteria analysis and spatial simulation",
+      "desc": "Transparent comparison of sites and alternatives through multi-criteria suitability analysis and spatial simulation models.",
+      "page": null,
+      "group": "Geospatial Analytics"
+    },
+    {
+      "name": "Geostatistical and spatio-temporal analysis",
+      "desc": "Spatial and temporal statistical analyses that reveal hotspots and trends and measure impact.",
+      "page": null,
+      "group": "Geospatial Analytics"
+    },
+    {
+      "name": "Geospatial indicator and analytical product development",
+      "desc": "We design authoritative, regularly updated spatial indicators and analytical products that measure performance and support decisions over time.",
+      "page": null,
+      "group": "Geospatial Analytics"
+    }
+  ],
+  "group_info": [
+    {
+      "name": "Strategy and Governance",
+      "slug": "strategy-governance",
+      "desc": "We set the framework that defines what spatial data your organization needs, who owns it, and how it is managed and exchanged in line with national standards.",
+      "img": "group-strategy",
+      "long": "The value of spatial data starts with a clear vision. We help your organization identify the data it actually needs, prioritize investment in it, and link it to its goals and performance indicators. We then put in place the policies, standards, and governance frameworks that clearly define ownership, roles, and permissions, establishing a single, authoritative spatial reference that complies with national standards and ends duplicated effort and conflicting data between departments.",
+      "need": [
+        "Spatial data sources are spread across departments with no single reference",
+        "There are no clear priorities for investment in data and systems",
+        "Projects are duplicated, or their outputs conflict, across departments",
+        "You need to align your data with national standards and requirements"
+      ],
+      "gain": [
+        "A clear vision and a roadmap linked to the organization's goals",
+        "Defined ownership, roles, and permissions for each dataset",
+        "A single, authoritative spatial reference",
+        "Compliance with national standards and audit readiness"
+      ],
+      "article": "## Definition\nA geospatial strategy is a plan that sets out what spatial data an organization needs, for what purpose, with what priority, and how it will build and use it. Geospatial data governance is the system of rules, roles, and responsibilities that governs how this data is produced, managed, and shared throughout its life cycle. The two concepts come together in what is known as a spatial data infrastructure (SDI): the framework that brings policies, standards, technologies, and people together so that spatial data is available, reliable, and shareable.\n\n## Categories\nGovernance is usually organized around several areas: ownership and stewardship (who owns each dataset and who looks after it); standards (data formats, models, and coordinate reference systems); metadata, which documents the source, accuracy, and currency of the data; master and reference data, such as neighborhood boundaries, addresses, and the road network, on which all other data depends; and the policies that govern access, privacy, and sharing.\n\n## Approaches\nA strategy is usually built in successive steps: assessing current data maturity, identifying the gaps between the current state and the need, ranking initiatives by value and effort, and then setting a roadmap and performance indicators to measure progress. Governance draws on international standards, most notably the ISO 19100 series issued by technical committee ISO/TC 211 since its founding in 1994, and the open OGC standards for exchange and interoperability.\n\n## A brief history\nThe concept emerged at the national level in 1994, when the United States established the National Spatial Data Infrastructure (NSDI) by executive order, after it became clear that multiple government agencies were producing the same data at duplicated cost and in conflicting formats. In 2007, the European Union issued the INSPIRE Directive to harmonize spatial data across its member states. In 2018, the United Nations Committee of Experts on Global Geospatial Information Management (UN-GGIM) adopted the Integrated Geospatial Information Framework (IGIF) as a guide for countries building their national systems.\n\n## Why it matters\nWithout strategy and governance, spatial data turns into scattered effort: duplicated datasets, conflicts between departments, and investments not tied to clear goals. With them, data becomes a unified, reliable enterprise asset that serves many entities and uses and complies with national requirements.",
+      "side": "",
+      "side_svg": "art/governance.svg",
+      "side_caption": "Geospatial governance rests on three complementary pillars: clear processes, people with defined roles and permissions, and technology that preserves and protects reference data."
+    },
+    {
+      "name": "Design and Enterprise Architecture",
+      "slug": "design-architecture",
+      "desc": "We design the databases, warehouses, and solution architecture on which your applications and analytics run, scalable and clearly specified.",
+      "img": "group-design",
+      "long": "Good architecture is what lets your data grow without losing its coherence. We design geospatial databases and their 2D and 3D models to serve your applications and analytics today and tomorrow, and we build data warehouses and a reference architecture that bring the organization's scattered sources together in a single, consistent layer. We define the GIS solution architecture, its integration, and the specifications of its operating environments precisely, so you can contract with confidence and avoid rework and its costs.",
+      "need": [
+        "You are building a new GIS platform or expanding an existing one",
+        "Your data is spread across unconnected databases or is hard to scale",
+        "You need precise technical specifications before tendering and contracting",
+        "You are planning 3D applications or advanced analytics"
+      ],
+      "gain": [
+        "Scalable data models that serve applications and analytics",
+        "A unified data layer that brings the organization's sources together",
+        "Clear solution architecture and operating specifications",
+        "More precise contracting and lower rework costs"
+      ],
+      "article": "## Definition\nGeospatial data design is the definition of how geographic phenomena are represented in a database: which entities there are, what their attributes are, and how they relate to one another spatially and descriptively. Enterprise architecture is the broader structure that defines where this data is stored, how it moves between systems, and how it reaches applications and users.\n\n## Categories\nSpatial data is represented by two main models: the vector model, which describes phenomena as points, lines, and polygons, such as buildings, roads, and boundaries; and the raster model, which divides space into regular cells, as with aerial imagery and elevation models. Data models range from two-dimensional to three-dimensional, such as CityGML, adopted by the OGC as a standard for representing cities in 2008. At the architecture level, a distinction is made between operational databases that serve daily work and data warehouses that bring different sources together for analysis.\n\n## Approaches\nDesign usually passes through three stages: a conceptual model that defines entities and relationships in business language; a logical model that translates them into tables, layers, and topological rules; and a physical model that defines how data is stored and indexed in the database system. Spatial databases rely on special indexes such as the R-tree, introduced by Antonin Guttman in 1984, which allow fast location-based searches across millions of features.\n\n## A brief history\nIn 1970, Edgar Codd introduced the relational model for databases, which became the basis for storing attribute data. For many years spatial data was kept in files separate from databases, until databases that support spatial types directly appeared. The OGC Simple Features standard then unified how geometries are represented and stored, making it possible to exchange data between different systems without rebuilding it.\n\n## Why it matters\nGood design determines the data's ability to serve the organization for years: the right model keeps data consistent, makes querying and analysis easier, and accommodates growth without rebuilding. The effects of poor design show up later in duplicated data, slow systems, difficult integration, and rising maintenance and development costs.",
+      "side": "side-design"
+    },
+    {
+      "name": "Integration and Migration",
+      "slug": "integration-migration",
+      "desc": "We move your data between systems and formats without loss, automate its updates, and make it available for exchange through secure services and APIs.",
+      "img": "group-integration",
+      "long": "When your data is spread across different systems and formats, accessing it becomes a burden rather than an advantage. We move your data between formats, reference systems, and platforms with documented accuracy, without loss of information or business disruption, and we build automated processing pipelines that keep it continuously up to date without manual work. We make it available to other entities and applications through secure services and APIs built on open standards, with clear permissions and traceable usage logs.",
+      "need": [
+        "You are moving to a new GIS and are worried about losing data",
+        "You update your data manually from multiple sources",
+        "You need to share data with other entities or applications",
+        "Formats and coordinate reference systems differ across your systems"
+      ],
+      "gain": [
+        "Documented migration without loss of information or business disruption",
+        "Automated, regular data updates",
+        "Secure services and APIs built on open standards",
+        "Clear permissions and traceable usage logs"
+      ],
+      "article": "## Definition\nGeospatial data migration is moving data from one system, format, or coordinate reference system to another while preserving its accuracy, attributes, and relationships. Integration is connecting systems so that they exchange data and update it regularly, rather than each dataset remaining isolated in its own system.\n\n## Categories\nIntegration is usually classified into three levels: data-level integration, in which data is moved and transformed through extract, transform, and load (ETL/ELT) processes; service-level integration, in which data is made available through services and APIs without being copied; and application-level integration, in which systems share the same processes. In migration, a distinction is made between converting between formats, transforming between coordinate reference systems, and a full move from one platform to another.\n\n## Approaches\nEstablished approaches include mapping data models between source and target before the move, transforming coordinate reference systems with documented parameters, verifying after migration by comparing counts, lengths, areas, and topological relationships, and automating updates with scheduled processing pipelines. For data exchange, open OGC standards such as the Web Map Service (WMS) and Web Feature Service (WFS) are used, alongside open formats such as GeoJSON.\n\n## A brief history\nFrom the start, this field has been bound up with the problem of differing coordinate reference systems. Many countries and regions have historical local geodetic datums, and the position of the same point in two different datums can differ by tens or even hundreds of meters: enough to put a building in the wrong place or one land parcel on top of another. Accurate transformation between datums, and unifying them in modern datums compatible with global systems, has therefore become an essential step in any migration project. With the spread of web-based data exchange at the turn of the millennium, integration shifted from copying files by hand to services that serve data directly from its source.\n\n## Why it matters\nWith multiple systems inside a single organization, integration becomes a condition for getting value from data. Without it, data stays isolated, outdated, and duplicated, and updating it depends on error-prone manual effort. Disciplined migration and good integration ensure that data moves without loss, stays current, and is securely available to everyone who needs it.",
+      "side": "side-integration"
+    },
+    {
+      "name": "Quality Control and Updates",
+      "slug": "quality-updates",
+      "desc": "We measure the quality of your data, detect its errors automatically, and organize its updates and versions so it stays reliable and auditable.",
+      "img": "group-quality",
+      "long": "Analysis built on data you don't trust has no value. We measure the quality of your data with clear indicators for accuracy, completeness, consistency, and currency, and provide an improvement plan prioritized by urgency and impact. We then put in place automated validation rules that catch topological errors, duplicates, and conflicts before they reach users, and we organize updates, versioning, and change tracking with lasting quality assurance frameworks, so your data stays reliable and auditable at all times.",
+      "need": [
+        "Departments don't trust the accuracy or currency of the data",
+        "Errors and duplicates appear that affect analyses and decisions",
+        "There is no clear record of changes and versions",
+        "You are preparing for an audit or a project that depends on data quality"
+      ],
+      "gain": [
+        "Clear quality indicators and a prioritized improvement plan",
+        "Automated checks that catch errors early",
+        "Organized management of updates and versions",
+        "Data that is reliable and auditable at all times"
+      ],
+      "article": "## Definition\nGeospatial data quality is the degree to which spatial data is fit for the purpose for which it is used. Data is not good or bad in absolute terms, but only to the extent that it meets the requirements of its use: a map suitable for city-level planning may not be suitable for defining property boundaries. Quality control covers measuring quality, improving it, and maintaining it with every update.\n\n## Categories\nThe international standard ISO 19157 defines the elements of geographic data quality, most notably: completeness (whether all features are present, with nothing missing or extra); logical consistency (whether the data follows the rules of the model and its topological relationships); positional accuracy (how close the coordinates are to the true location); thematic accuracy (the correctness of classifications and attributes); and temporal quality (how current the data is and whether its dates are correct).\n\n## Approaches\nQuality is controlled through several approaches: automated topological checks to detect overlapping polygons, gaps, and disconnected lines; comparing a sample of the data with a more accurate source to measure positional error; validation rules for attribute values; documenting metadata that records the source, accuracy, and date of each dataset; and version management that keeps a record of every change and who made it.\n\n## A brief history\nOne of the oldest quality standards in this field is the National Map Accuracy Standards adopted by the United States in 1947, which required at least 90% of tested points to fall within a specified error limit depending on the map scale. With the shift to digital data, positional accuracy alone was no longer enough, and the need arose to measure completeness, consistency, and currency as well, which ISO brought together in the ISO 19157 standard, published in 2013.\n\n## Why it matters\nQuality is a precondition for any use of spatial data, because analyses, applications, and decisions can be no more accurate than the data they rest on. Low-quality data leads to misleading results and extra rework costs, while reliable, current data builds confidence in the outputs and makes them auditable and reviewable.",
+      "side": "side-quality"
+    },
+    {
+      "name": "Geospatial Analytics",
+      "slug": "spatial-analytics",
+      "desc": "We turn data into answers: spatial, urban, and environmental analyses and indicators that support location, planning, and investment decisions.",
+      "img": "group-analytics",
+      "long": "This is where data turns into answers that drive decisions. We analyze accessibility and networks and reveal service gaps, bring environmental, demographic, and economic data together in a single spatial picture, and compare sites and alternatives through multi-criteria suitability analysis and transparent simulation models. We design regularly updated indicators and analytical products that measure performance over time, so the organization bases its planning, investment, and service delivery decisions on evidence rather than estimates.",
+      "need": [
+        "You are choosing locations for new projects or services",
+        "You want to measure access to services and reveal their gaps",
+        "You need spatial evidence to support policy and investment",
+        "You track the performance of spatial indicators over time"
+      ],
+      "gain": [
+        "Evidence-based location decisions",
+        "A unified spatial picture of environmental, demographic, and economic factors",
+        "Transparent comparison of alternatives",
+        "Regularly updated indicators and analytical products"
+      ],
+      "article": "## Definition\nGeospatial analytics is a branch of geographic information science concerned with studying phenomena through their locations and spatial relationships. It rests on a principle formulated by the geographer Waldo Tobler in 1970, known as the First Law of Geography: \"Everything is related to everything else, but near things are more related than distant things.\" Spatial data is therefore not treated as independent numbers, but as values whose meaning is shaped by their location.\n\n## Categories\nSpatial analysis is usually classified into four levels: descriptive analysis, which shows the distribution and density of a phenomenon; exploratory analysis, which reveals clusters, hotspots, and unexpected patterns; inferential analysis, which tests statistically whether a pattern is real or random; and predictive and prescriptive analysis, which estimates what will happen and suggests the best location, route, or scenario.\n\n## Approaches\nKey approaches include overlay analysis, which combines multiple layers to identify suitable locations; proximity and buffer analysis; network analysis to calculate shortest routes and service areas; spatial interpolation such as kriging to estimate values at unmeasured locations; measures of spatial autocorrelation such as Moran's I, introduced by Patrick Moran in 1950; and multi-criteria analysis, which balances different factors with defined weights.\n\n## A brief history\nThe work of the physician John Snow in 1854 is the best-known early example of the power of spatial analysis. He mapped cholera deaths in London's Soho district, noticed that they clustered around a water pump on Broad Street, and so provided early evidence that the disease spread through water, at a time when the prevailing view was that it spread through foul air. In the 1960s, Roger Tomlinson developed in Canada the first computerized geographic information system, for land inventory and classification. In 1969, the planner Ian McHarg published his book Design with Nature, which established the layer overlay method in land suitability analysis. Kriging originated in the 1950s with the mining engineer Danie Krige, who used it to estimate gold reserves in South Africa, and it went on to become a core tool in the earth and environmental sciences.\n\n## Why it matters\nBecause most planning and operational decisions are tied to place, geospatial analysis provides them with an objective basis: it reveals what tables and raw numbers do not show, such as distribution, concentration, and proximity; it turns the comparison of alternatives from judgment into measurement; and it makes it possible to track the impact of decisions over time.",
+      "side": "side-analytics-map",
+      "side_caption": "A real analysis of accessibility to hospitals in Riyadh: the colors show the straight-line distance from each point to the nearest hospital, and the dark lines mark the boundary of each hospital's service area. Data: OpenStreetMap."
+    }
+  ]
+}

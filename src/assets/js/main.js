@@ -1,3 +1,24 @@
+// نصوص الواجهة حسب لغة الصفحة (<html lang>)
+const EN = document.documentElement.lang === "en";
+const RTL = document.documentElement.dir === "rtl";
+const T = EN ? {
+  pause: "Pause slideshow", play: "Play slideshow",
+  missing: "Your request was not sent. Please fill in your name, organization, and need, then try again.",
+  noReach: "Your request was not sent. Please add an email or mobile number so we can get back to you.",
+  noConsent: "Your request was not sent. Please agree to the Privacy Policy first.",
+  subject: "Contact request from ", ok: "We have received your request. Thank you for getting in touch. ",
+  name: "Name: ", org: "Organization: ", reach: "Contact: ", type: "Type of need: ",
+  fallback: (email) => "We couldn't send your request directly, so we opened your email program with a ready-made message. Please send it from there, or email us directly at " + email + ".",
+} : {
+  pause: "إيقاف العرض", play: "تشغيل العرض",
+  missing: "لم يُرسَل الطلب. تأكد من تعبئة الاسم والجهة والاحتياج، ثم حاول مرة أخرى.",
+  noReach: "لم يُرسَل الطلب. أضف بريدًا أو رقم جوال لنعود إليك عليه.",
+  noConsent: "لم يُرسَل الطلب. وافق على سياسة الخصوصية أولًا.",
+  subject: "طلب تواصل من ", ok: "وصلنا طلبك، شكرًا لتواصلك. ",
+  name: "الاسم: ", org: "الجهة: ", reach: "للتواصل: ", type: "نوع الاحتياج: ",
+  fallback: (email) => "تعذّر الإرسال المباشر الآن، فتحنا لك برنامج البريد برسالة جاهزة. أكمل الإرسال منه، أو راسلنا مباشرة على " + email + ".",
+};
+
 // القائمة: الجوال والقوائم المنسدلة
 const nav = document.getElementById("nav");
 const menuBtn = document.getElementById("menuBtn");
@@ -43,7 +64,7 @@ if (media) {
     dots.forEach((d, k) => d.classList.toggle("on", k === i));
   };
   const icon = () => {
-    pause.setAttribute("aria-label", playing ? "إيقاف العرض" : "تشغيل العرض");
+    pause.setAttribute("aria-label", playing ? T.pause : T.play);
     pause.querySelector("path").setAttribute("d", playing ? "M4 2h3v12H4zM9 2h3v12H9z" : "M4 2l10 6-10 6z");
   };
   const run = () => { clearInterval(timer); if (playing) timer = setInterval(() => show(i + 1), 5000); };
@@ -62,7 +83,9 @@ const selectTab = (t) => tabs.forEach((x) => {
 tabs.forEach((t, k) => {
   t.addEventListener("click", () => selectTab(t));
   t.addEventListener("keydown", (e) => {
-    const d = e.key === "ArrowLeft" ? 1 : e.key === "ArrowRight" ? -1 : 0;
+    // السهم باتجاه القراءة ينتقل إلى التبويب التالي: يسار في العربية، يمين في الإنجليزية
+    const next = RTL ? "ArrowLeft" : "ArrowRight", prev = RTL ? "ArrowRight" : "ArrowLeft";
+    const d = e.key === next ? 1 : e.key === prev ? -1 : 0;
     if (!d) return;
     const n = tabs[(k + d + tabs.length) % tabs.length];
     selectTab(n); n.focus();
@@ -84,14 +107,14 @@ if (lead) {
       msg.textContent = text;
       msg.hidden = false;
     };
-    if (!val("fName") || !val("fOrg") || !val("fNeed")) return show("لم يُرسَل الطلب. تأكد من تعبئة الاسم والجهة والاحتياج، ثم حاول مرة أخرى.", true);
-    if (!val("fReach")) return show("لم يُرسَل الطلب. أضف بريدًا أو رقم جوال لنعود إليك عليه.", true);
-    if (!document.getElementById("fOk").checked) return show("لم يُرسَل الطلب. وافق على سياسة الخصوصية أولًا.", true);
+    if (!val("fName") || !val("fOrg") || !val("fNeed")) return show(T.missing, true);
+    if (!val("fReach")) return show(T.noReach, true);
+    if (!document.getElementById("fOk").checked) return show(T.noConsent, true);
 
     submitBtn.disabled = true;
     try {
       const data = Object.fromEntries(new FormData(lead));
-      data.subject = "طلب تواصل من " + val("fOrg");
+      data.subject = T.subject + val("fOrg");
       const res = await fetch(lead.action, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
@@ -100,14 +123,14 @@ if (lead) {
       const out = await res.json().catch(() => ({}));
       if (!res.ok || !out.success) throw new Error(out.message || "HTTP " + res.status);
       lead.reset();
-      show("وصلنا طلبك، شكرًا لتواصلك. " + (lead.dataset.response || ""), false);
+      show(T.ok + (lead.dataset.response || ""), false);
     } catch (err) {
       const type = val("fType");
-      const subject = "طلب تواصل من " + val("fOrg");
-      const body = ["الاسم: " + val("fName"), "الجهة: " + val("fOrg"), "للتواصل: " + val("fReach"),
-        type ? "نوع الاحتياج: " + type : "", "", val("fNeed")].filter((x, i) => x || i === 4).join("\n");
+      const subject = T.subject + val("fOrg");
+      const body = [T.name + val("fName"), T.org + val("fOrg"), T.reach + val("fReach"),
+        type ? T.type + type : "", "", val("fNeed")].filter((x, i) => x || i === 4).join("\n");
       window.location.href = "mailto:" + lead.dataset.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-      show("تعذّر الإرسال المباشر الآن، فتحنا لك برنامج البريد برسالة جاهزة. أكمل الإرسال منه، أو راسلنا مباشرة على " + lead.dataset.email + ".", true);
+      show(T.fallback(lead.dataset.email), true);
     } finally {
       submitBtn.disabled = false;
     }

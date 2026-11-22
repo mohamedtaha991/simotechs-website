@@ -1,0 +1,91 @@
+{
+  "name": "Spatial Intelligence",
+  "tagline": "for Modern Technologies",
+  "full_name": "Spatial Intelligence for Modern Technologies Co.",
+  "legal_form": "a limited liability company",
+  "description": "We help government entities and businesses in Saudi Arabia govern, analyze, and turn their geospatial data into applications and dashboards that support decisions.",
+  "footer_about": "A Saudi company specializing in spatial intelligence, turning geospatial data into information and digital solutions that support planning, management, and decision-making.",
+  "slogan": "Spatial intelligence for sharper decisions",
+  "email": "info@simotechs.com",
+  "phone": "+966 54 322 0558",
+  "phone_intl": "+966543220558",
+  "cr": "7055496306",
+  "hours": "Sunday to Thursday, 8:00 AM to 4:00 PM",
+  "response": "We reply to all correspondence within 10 business days.",
+  "offer_duration": "30 days",
+  "city": "Riyadh, Kingdom of Saudi Arabia",
+  "coords": "24.7136° N · 46.6753° E",
+  "year": 2026,
+  "nav": [
+    {
+      "key": "home",
+      "label": "Home",
+      "href": "./"
+    },
+    {
+      "key": "services",
+      "label": "Services",
+      "href": "services/"
+    },
+    {
+      "key": "industries",
+      "label": "Industries",
+      "href": "industries/"
+    },
+    {
+      "key": "about",
+      "label": "About Us",
+      "href": "about/"
+    },
+    {
+      "key": "contact",
+      "label": "Contact Us",
+      "href": "contact/"
+    }
+  ],
+  "tracks_order": [
+    "geospatial-data",
+    "consulting",
+    "gis-solutions",
+    "remote-sensing",
+    "geoai"
+  ],
+  "offers_order": [
+    "data-readiness-assessment",
+    "data-strategy-governance",
+    "spatial-prototype"
+  ],
+  "sectors": [
+    "Urban planning",
+    "Municipalities",
+    "Real estate and land management",
+    "Infrastructure and utilities",
+    "Transport and logistics",
+    "Environment and sustainability",
+    "Government and digital transformation",
+    "Large enterprises"
+  ],
+  "pictures": {
+    "geospatial-data": "datacenter",
+    "gis-solutions": "city",
+    "consulting": "consulting",
+    "remote-sensing": "satellite",
+    "geoai": "geoai-lab",
+    "data-readiness-assessment": "detect",
+    "data-strategy-governance": "blueprint",
+    "spatial-prototype": "city",
+    "about": "team",
+    "services": "network",
+    "industries": "sectors",
+    "contact": "network",
+    "privacy": "blueprint",
+    "principles": "sector-gov"
+  },
+  "track_labels": {
+    "geospatial-data": "The foundation",
+    "consulting": "Before you invest",
+    "gis-solutions": "Activation",
+    "remote-sensing": "Monitoring",
+    "geoai": "Extraction"
+  }
+}
