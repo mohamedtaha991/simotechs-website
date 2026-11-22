@@ -70,8 +70,8 @@ tabs.forEach((t, k) => {
 });
 
 // نموذج التواصل (صفحة contact.html فقط)
-// يُرسَل الطلب إلى Netlify Forms (يظهر في لوحة Netlify ويصل بالبريد حسب إعداد الإشعارات).
-// إن تعذّر الإرسال المباشر (مثل فتح الصفحة محليًا) يفتح برنامج البريد برسالة جاهزة إلى data-email.
+// يُرسَل الطلب إلى Web3Forms (action في النموذج) فيصل إلى بريد الشركة المسجّل بمفتاح access_key.
+// إن تعذّر الإرسال المباشر يفتح برنامج البريد برسالة جاهزة إلى data-email.
 const lead = document.getElementById("lead");
 if (lead) {
   const submitBtn = lead.querySelector('button[type="submit"]');
@@ -90,12 +90,15 @@ if (lead) {
 
     submitBtn.disabled = true;
     try {
-      const res = await fetch(window.location.pathname, {
+      const data = Object.fromEntries(new FormData(lead));
+      data.subject = "طلب تواصل من " + val("fOrg");
+      const res = await fetch(lead.action, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(lead)).toString(),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("HTTP " + res.status);
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || !out.success) throw new Error(out.message || "HTTP " + res.status);
       lead.reset();
       show("وصلنا طلبك، شكرًا لتواصلك. " + (lead.dataset.response || ""), false);
     } catch (err) {

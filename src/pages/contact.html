@@ -5,9 +5,10 @@
 {{ m.phead("تواصل معنا", lead="نستقبل الاستفسارات والمراسلات الرسمية عبر النموذج أدناه.", img="contact") }}
 
 <section class="sec"><div class="wrap contact">
-  <form id="lead" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-email="{{ site.email }}" data-response="{{ site.response }}">
-    <input type="hidden" name="form-name" value="contact">
-    <p class="hp" hidden><label>لا تملأ هذا الحقل: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+  <form id="lead" name="contact" method="POST" action="https://api.web3forms.com/submit" novalidate data-email="{{ site.email }}" data-response="{{ site.response }}">
+    <input type="hidden" name="access_key" value="3d7b7408-f96f-46db-a381-85590fb5bc46">
+    <input type="hidden" name="from_name" value="موقع الذكاء المكاني">
+    <p class="hp" hidden><label>لا تملأ هذا الحقل: <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></p>
     <label for="fName">الاسم<input type="text" id="fName" name="name" required autocomplete="name" placeholder="الاسم الكامل"></label>
     <label for="fOrg">الجهة<input type="text" id="fOrg" name="organization" required autocomplete="organization" placeholder="اسم الجهة أو الشركة"></label>
     <label for="fReach">البريد أو الجوال<input type="text" id="fReach" name="reach" required placeholder="لنعود إليك عليه"></label>
