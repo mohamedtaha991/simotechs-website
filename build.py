@@ -4,6 +4,7 @@
 التشغيل:   python build.py
 المتطلبات: Python 3.9+ ومكتبة Jinja2  (pip install jinja2)
 """
+import hashlib
 import json
 import shutil
 import re
@@ -71,6 +72,8 @@ def main():
     env = Environment(loader=FileSystemLoader([SRC / "templates", SRC / "pages"]), autoescape=True,
                       undefined=StrictUndefined, trim_blocks=True, lstrip_blocks=True)
     env.globals.update(site=site, tracks=tracks, offers=offers, **extra)
+    # رقم إصدار لكل ملف ثابت (من محتواه) يُلحق برابطه، فيجلب المتصفح النسخة الجديدة بعد كل تعديل
+    env.globals["ver"] = lambda rel: hashlib.md5((SRC / "assets" / rel).read_bytes()).hexdigest()[:8]
 
     # [[صفحة-الخدمة|النص]] داخل نص المقال تصبح رابطًا إلى صفحة الخدمة. يتحقق البناء من وجود الصفحة.
     def linkify(text, prefix):
