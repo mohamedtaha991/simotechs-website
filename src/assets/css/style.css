@@ -92,7 +92,9 @@ button{font-family:inherit}
 }
 
 /* hero */
-.hero{position:relative;background:var(--night);color:#fff;overflow:hidden}
+/* الهيرو يملأ الشاشة تحت الترويسة (69px) على كل المقاسات، والمحتوى في منتصفه رأسيًا */
+.hero{position:relative;background:var(--night);color:#fff;overflow:hidden;display:flex;align-items:center;min-height:calc(100vh - 69px);min-height:calc(100svh - 69px)}
+.hero > .wrap{width:100%}
 .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(21,21,21,.94) 0%,rgba(21,21,21,.78) 42%,rgba(21,21,21,.35) 100%)}
 .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;padding-block:56px}
@@ -101,7 +103,7 @@ button{font-family:inherit}
 .hero h1 span + span{color:var(--teal-glow)}
 .hero p.lead{margin-top:16px;font-size:clamp(15px,1.25vw,17px);color:rgba(255,255,255,.82);max-width:32em}
 .hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
-.media{position:relative;aspect-ratio:1/1;max-height:560px;width:100%;justify-self:end;background:#000;overflow:hidden;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.media{position:relative;aspect-ratio:1/1;max-height:min(600px,calc(100vh - 181px));max-height:min(600px,calc(100svh - 181px));width:100%;justify-self:end;background:#000;overflow:hidden;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
 .media figure{position:absolute;inset:0;margin:0;opacity:0;transition:opacity 1s ease}
 .media figure.on{opacity:1}
 .media figure:not(.on){pointer-events:none}
