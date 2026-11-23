@@ -10,7 +10,7 @@
     ]
   },
   {
-    "sector": "Government and digital transformation",
+    "sector": "Digital transformation",
     "group": "gov",
     "challenge": "Many entities and sources, with weak interoperability",
     "start": [
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "sector": "Infrastructure and public utilities",
+    "sector": "Public utilities",
     "group": "urban",
     "challenge": "Dispersed assets, incomplete network data, and unclear maintenance priorities",
     "start": [

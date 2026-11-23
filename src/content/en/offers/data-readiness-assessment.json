@@ -3,7 +3,7 @@
   "short": "Data readiness and quality assessment",
   "seo_title": "Spatial Data Readiness and Quality Assessment | Spatial Intelligence",
   "title": "Before you build on your data, know its condition",
-  "intro": "Most platform, dashboard, and AI projects stumble because of the data, not the technology. This assessment measures the quality of your data with a documented methodology and tells you where to focus improvement effort first.",
+  "intro": "Many platform, dashboard, and AI projects run into problems because of data quality. This assessment measures the quality of your data with a documented methodology and tells you where to focus improvement effort first.",
   "card": "Know where your spatial data stands: accuracy, completeness, consistency, and currency, with a prioritized improvement plan.",
   "fit_title": "This is for you if",
   "fit": [

@@ -177,7 +177,7 @@
       "slug": "integration-migration",
       "desc": "We move your data between systems and formats without loss, automate its updates, and make it available for exchange through secure services and APIs.",
       "img": "group-integration",
-      "long": "When your data is spread across different systems and formats, accessing it becomes a burden rather than an advantage. We move your data between formats, reference systems, and platforms with documented accuracy, without loss of information or business disruption, and we build automated processing pipelines that keep it continuously up to date without manual work. We make it available to other entities and applications through secure services and APIs built on open standards, with clear permissions and traceable usage logs.",
+      "long": "When your data is spread across different systems and formats, it becomes hard to access and keep up to date. We move your data between formats, reference systems, and platforms with documented accuracy, without loss of information or business disruption, and we build automated processing pipelines that keep it continuously up to date without manual work. We make it available to other entities and applications through secure services and APIs built on open standards, with clear permissions and traceable usage logs.",
       "need": [
         "You are moving to a new GIS and are worried about losing data",
         "You update your data manually from multiple sources",
@@ -198,7 +198,7 @@
       "slug": "quality-updates",
       "desc": "We measure the quality of your data, detect its errors automatically, and organize its updates and versions so it stays reliable and auditable.",
       "img": "group-quality",
-      "long": "Analysis built on data you don't trust has no value. We measure the quality of your data with clear indicators for accuracy, completeness, consistency, and currency, and provide an improvement plan prioritized by urgency and impact. We then put in place automated validation rules that catch topological errors, duplicates, and conflicts before they reach users, and we organize updates, versioning, and change tracking with lasting quality assurance frameworks, so your data stays reliable and auditable at all times.",
+      "long": "Any analysis is only as accurate as the data it is built on. We measure the quality of your data with clear indicators for accuracy, completeness, consistency, and currency, and provide an improvement plan prioritized by urgency and impact. We then put in place automated validation rules that catch topological errors, duplicates, and conflicts before they reach users, and we organize updates, versioning, and change tracking with lasting quality assurance frameworks, so your data stays reliable and auditable at all times.",
       "need": [
         "Departments don't trust the accuracy or currency of the data",
         "Errors and duplicates appear that affect analyses and decisions",
@@ -219,7 +219,7 @@
       "slug": "spatial-analytics",
       "desc": "We turn data into answers: spatial, urban, and environmental analyses and indicators that support location, planning, and investment decisions.",
       "img": "group-analytics",
-      "long": "This is where data turns into answers that drive decisions. We analyze accessibility and networks and reveal service gaps, bring environmental, demographic, and economic data together in a single spatial picture, and compare sites and alternatives through multi-criteria suitability analysis and transparent simulation models. We design regularly updated indicators and analytical products that measure performance over time, so the organization bases its planning, investment, and service delivery decisions on evidence rather than estimates.",
+      "long": "We turn data into analytical results that support decisions. We analyze accessibility and networks and reveal service gaps, bring environmental, demographic, and economic data together in a single spatial picture, and compare sites and alternatives through multi-criteria suitability analysis and transparent simulation models. We design regularly updated indicators and analytical products that measure performance over time, so the organization bases its planning, investment, and service delivery decisions on evidence rather than estimates.",
       "need": [
         "You are choosing locations for new projects or services",
         "You want to measure access to services and reveal their gaps",

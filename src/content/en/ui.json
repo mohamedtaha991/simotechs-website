@@ -70,8 +70,8 @@
   },
   "index": {
     "title": "Spatial Intelligence for Modern Technologies | Geospatial Data, Analytics and GIS in Saudi Arabia",
-    "hero": ["Trusted spatial data.", "Smarter decisions."],
-    "lead": "Your partner in spatial intelligence: we turn geospatial data into reliable knowledge, and knowledge into well-informed decisions.",
+    "hero": ["Integrated geospatial solutions", "for government and business"],
+    "lead": "We provide geospatial data services, spatial analysis, GIS, remote sensing, and AI to support planning and decision-making.",
     "cta": "Explore our services",
     "slides_role": "slideshow",
     "slides_aria": "Our five services",
@@ -84,23 +84,20 @@
     "method": [
       ["Assess", "We study the current state of your data and systems and pin down what you actually need."],
       ["Design", "Together we define the solution, its scope, and its acceptance criteria."],
-      ["Pilot", "We build a limited-scope prototype so you can see its value before any major commitment."],
+      ["Pilot", "We build a limited-scope prototype to test the solution before rolling it out."],
       ["Scale", "We move the solution into live operation in clear stages."],
       ["Transfer knowledge", "We document the solution in full and train your team to run it themselves."]
     ],
-    "sectors_title": "We work with organizations where location makes a difference to decisions",
-    "sectors_lead": "Every sector has its own spatial questions, and we start with each organization from the challenge it actually faces. These are the main sectors we serve.",
+    "sectors_title": "Industries we serve",
+    "sectors_lead": "We work with government entities and companies across four industry groups.",
     "sectors_cta": "Explore all industries",
     "philo_title": "Philosophy and Principles",
-    "philo_motto": "Data first. Decisions are the goal.",
-    "philo_text": "We believe every spatial solution starts with reliable data, is built on a transparent methodology, and is measured by its impact on decisions, not by the volume of what we deliver.",
+    "philo_text": "Principles we follow on every project, from data assessment to solution handover.",
     "why": [
-      ["data", "Data before applications", "We assess data quality before any development."],
-      ["doc", "Documented methodologies", "Every analysis comes with its methodology, so it can be reviewed and verified."],
-      ["target", "AI with published criteria", "We set acceptance metrics before training any model."],
-      ["scale", "Vendor-neutral", "We recommend what suits the organization, not what we resell."],
-      ["scope", "Clear, short scopes", "Fixed-scope offers you can start with, without a long-term commitment."],
-      ["layers", "Focused on data and applications", "We don't supply hardware or build infrastructure, so our focus stays entirely on the value of your data."]
+      ["data", "Data assessment first", "We assess data quality and fix issues before building any application or analysis."],
+      ["doc", "Documented methodologies", "We document the methodology of every analysis so its results can be reviewed and verified."],
+      ["target", "Defined accuracy criteria for AI", "We agree acceptance criteria with the client before training any model."],
+      ["scope", "Fixed-scope offers", "Short engagements with clear deliverables that you can start without a long-term commitment."]
     ]
   },
   "services_page": {
@@ -115,7 +112,7 @@
   },
   "industries_page": {
     "title": "Industries We Serve | Spatial Intelligence",
-    "head": "Where location makes a difference to decisions",
+    "head": "Industries we serve",
     "lead": "Every sector has its own spatial questions. These are the main challenges we see, and where we can start with you.",
     "jump_aria": "Industry groups",
     "challenge": "Challenge",
@@ -125,7 +122,7 @@
   },
   "about_page": {
     "title": "About Us | Spatial Intelligence for Modern Technologies",
-    "head": "Geospatial professionalism, and innovation that makes a difference",
+    "head": "About Us",
     "lead": "A Saudi company specializing in spatial intelligence. We provide geospatial services, solutions, and products that turn data into decisions.",
     "eyebrow": "About the company",
     "story_title": "Specialized expertise that turns place into value",
@@ -136,7 +133,7 @@
     "photo_alt": "A specialist team discussing geospatial data and maps",
     "vm_alt": "A city connected by data and spatial technologies",
     "vision": "Vision",
-    "vision_text": "To be the trusted name in spatial intelligence, with leading geospatial services and products that enable better decisions and lasting value in the Kingdom and the region.",
+    "vision_text": "To be a leading geospatial solutions company in the Kingdom and the region, with reliable services and products that support planning and decision-making.",
     "mission": "Mission",
     "mission_text": "To innovate and deliver geospatial solutions, services, and products with a high degree of professionalism, turning spatial data into knowledge and decisions that serve our clients and support development.",
     "values_eyebrow": "Our values",

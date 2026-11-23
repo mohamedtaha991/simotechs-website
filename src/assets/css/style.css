@@ -143,6 +143,11 @@ button{font-family:inherit}
 .tile h3{font-size:21px;line-height:1.4}
 .tile p{font-size:15px;color:rgba(255,255,255,.82);line-height:1.6}
 .tiles3 .tile{aspect-ratio:16/11}
+/* مجموعات القطاعات الأربع في الرئيسية */
+.tiles4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.tiles4 .tile{aspect-ratio:4/5}
+@media (max-width:980px){.tiles4{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.tiles4{grid-template-columns:1fr}.tiles4 .tile{aspect-ratio:16/11}}
 @media (max-width:900px){.tiles3{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
 
@@ -456,16 +461,16 @@ footer::before{content:"";display:block;height:4px;background:linear-gradient(to
 .philo-intro .motto{margin-top:12px;font-size:clamp(17px,1.5vw,20px);font-weight:700;color:var(--teal-glow)}
 .philo-intro p:not(.motto){color:rgba(255,255,255,.8);margin-top:14px;font-size:16px}
 .philo-intro .btn{margin-top:26px}
-.glass{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.glass{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
 .glass li{position:relative;padding:22px 20px 20px;border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.05));border:1px solid rgba(255,255,255,.2);box-shadow:0 20px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.25);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);transition:background .25s,border-color .25s}
-.glass li:nth-child(3n+2){margin-top:36px;margin-bottom:-36px}
+.glass li:nth-child(2n){margin-top:36px;margin-bottom:-36px}
 .glass .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(86,197,255,.16);color:var(--teal-glow);border:1px solid rgba(86,197,255,.28);margin-bottom:14px}
 .glass h3{font-size:16.5px;font-weight:800;line-height:1.5}
 .glass p{color:rgba(255,255,255,.75);font-size:14.5px;line-height:1.7;margin-top:6px}
 .glass li:hover{background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.08));border-color:rgba(86,197,255,.55)}
 @keyframes drift{0%{transform:scale(1.06) translate(0,0)}50%{transform:scale(1.14) translate(-1.5%,-1%)}100%{transform:scale(1.08) translate(1.5%,.8%)}}
 @media (max-width:1100px){.philo-in{grid-template-columns:1fr;gap:36px}.philo::before{background:rgba(8,18,32,.72)}}
-@media (max-width:760px){.glass{grid-template-columns:1fr 1fr}.glass li:nth-child(3n+2){margin:0}}
+@media (max-width:760px){.glass li:nth-child(2n){margin:0}}
 @media (max-width:480px){.glass{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.philo img.bg{animation:none;transform:scale(1.06)}}
 

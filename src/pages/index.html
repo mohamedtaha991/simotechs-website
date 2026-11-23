@@ -41,14 +41,13 @@
   </ol>
 </div></section>
 
-{# القسم الداكن: أول خمسة قطاعات من src/content/industries.json #}
-{% set sector_pics = ["sector-municipal", "sector-gov", "sector-planning", "sector-infra", "sector-land"] %}
+{# القطاعات: المجموعات الأربع نفسها التي في القائمة العلوية وصفحة القطاعات (src/content/industry_groups.json) #}
 {# فاصل بين منهجية العمل والقطاعات: خط متدرج وفي منتصفه شعار الشركة، يقع على حد القسمين #}
 <div class="divider" aria-hidden="true"><span class="line"></span><span class="badge"><img src="{{ assets }}img/logo.svg" alt="" width="34" height="28"></span><span class="line"></span></div>
 <section class="sec soft"><div class="wrap">
   <div class="center"><h2>{{ p.sectors_title }}</h2><p>{{ p.sectors_lead }}</p></div>
-  <div class="mosaic dark">
-    {% for r in industries[:5] %}{{ m.tile("industries/", sector_pics[loop.index0], "", "", r.sector) }}{% endfor %}
+  <div class="tiles4">
+    {% for g in industry_groups %}{{ m.tile("industries/#" ~ g.id, g.img, g.name, industries | selectattr("group", "equalto", g.id) | map(attribute="sector") | join(ui.sep)) }}{% endfor %}
   </div>
   <p class="more"><a class="btn" href="{{ root }}industries/">{{ p.sectors_cta }}</a></p>
 </div></section>
@@ -66,7 +65,6 @@
 <section class="philo">{{ m.pic("principles", cls="bg") }}<div class="wrap philo-in">
   <div class="philo-intro">
     <h2>{{ p.philo_title }}</h2>
-    <p class="motto">{{ p.philo_motto }}</p>
     <p>{{ p.philo_text }}</p>
   </div>
   <ul class="glass">
