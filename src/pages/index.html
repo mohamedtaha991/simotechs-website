@@ -24,15 +24,6 @@
   </div>
 </section>
 
-<section class="sec"><div class="wrap">
-  <div class="center"><p>{{ p.intro }}</p></div>
-  <div class="tiles3">
-    {% for href, img in [["services/", "city"], ["industries/", "industries"], ["about/", "about"]] %}
-    {{ m.tile(href, img, p.tiles[loop.index0][0], p.tiles[loop.index0][1]) }}
-    {% endfor %}
-  </div>
-</div></section>
-
 <section class="sec soft"><div class="wrap">
   <div class="center"><h2>{{ p.services_title }}</h2><p>{{ p.services_lead }}</p></div>
   {{ m.tracks_mosaic() }}
