@@ -92,12 +92,12 @@
     "sectors_lead": "We work with government entities and companies across four industry groups.",
     "sectors_cta": "Explore all industries",
     "philo_title": "Philosophy and Principles",
-    "philo_text": "Principles we follow on every project, from data assessment to solution handover.",
+    "philo_text": "We work with our clients as partners, and every project rests on four principles:",
     "why": [
-      ["data", "Data assessment first", "We assess data quality and fix issues before building any application or analysis."],
-      ["doc", "Documented methodologies", "We document the methodology of every analysis so its results can be reviewed and verified."],
-      ["target", "Defined accuracy criteria for AI", "We agree acceptance criteria with the client before training any model."],
-      ["scope", "Fixed-scope offers", "Short engagements with clear deliverables that you can start without a long-term commitment."]
+      ["target", "Achieving strategic goals", "We start by understanding the organization's goals and priorities, and align every solution we deliver with them."],
+      ["layers", "Best practices", "We apply international standards and geospatial best practices to deliver practical solutions that last and grow with the organization."],
+      ["idea", "Innovative problem-solving", "We look for new approaches to each challenge and use modern technologies where they add real value."],
+      ["doc", "Reliable methodology", "We work with clear, documented methodologies whose steps can be reviewed and whose results can be verified."]
     ]
   },
   "services_page": {
