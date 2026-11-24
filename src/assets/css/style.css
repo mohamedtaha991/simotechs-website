@@ -565,7 +565,8 @@ footer::before{content:"";display:block;height:4px;background:linear-gradient(to
 .art-pic{margin:0;border-radius:18px;overflow:hidden;box-shadow:0 24px 50px rgba(0,40,70,.16)}
 .art-pic img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .art-pic figcaption{background:var(--bg);padding:14px 16px;font-size:13.5px;line-height:1.75;color:var(--ink-2);border-top:1px solid var(--line)}
-@media (max-width:900px){.art-wrap{grid-template-columns:1fr;gap:32px}.art-pic{max-width:440px}}
+/* على الشاشات الصغيرة: الصورة فوق المقال، بعرض كامل وارتفاع أقل */
+@media (max-width:900px){.art-wrap{grid-template-columns:1fr;gap:28px}.art-wrap .art-pic{order:-1;position:static}.art-pic img{aspect-ratio:16/10}.art-svg{max-width:440px;margin-inline:auto}}
 
 /* رسم الحوكمة الجيومكانية بجانب المقال */
 .art-svg{background:linear-gradient(160deg,#f5f9fd,#e8f1f9)}
