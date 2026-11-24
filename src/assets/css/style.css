@@ -118,6 +118,23 @@ button{font-family:inherit}
 .dots{position:absolute;bottom:18px;inset-inline-end:18px;z-index:3;display:flex;gap:6px}
 .dots i{width:26px;height:3px;background:rgba(255,255,255,.35)}
 .dots i.on{background:var(--teal-glow)}
+
+/* الشاشات الكبيرة: عرض الموقع يكبر مع الشاشة، والهيرو (السلايدر والعنوان والوصف) يكبر تدريجيًا معه */
+@media (min-width:1500px){:root{--max:1440px}}
+@media (min-width:1800px){:root{--max:1640px}}
+@media (min-width:2300px){:root{--max:2000px}}
+@media (min-width:1300px){
+  .hero .wrap{gap:clamp(48px,4vw,96px)}
+  .hero h1{font-size:clamp(42px,2.75vw,76px)}
+  .hero p.lead{font-size:clamp(17px,1.05vw,26px);margin-top:clamp(16px,1.1vw,28px)}
+  .hero .actions{margin-top:clamp(30px,2vw,48px)}
+  .hero .actions .btn{font-size:clamp(16px,.9vw,21px);padding:clamp(11px,.7vw,16px) clamp(22px,1.4vw,34px)}
+  .media{max-height:min(900px,calc(100vh - 181px));max-height:min(900px,calc(100svh - 181px));border-radius:clamp(16px,1vw,24px)}
+  .media figcaption{font-size:clamp(15px,.85vw,20px);padding:clamp(10px,.65vw,16px) clamp(14px,.9vw,22px);inset-inline-start:clamp(18px,1.1vw,28px);bottom:clamp(18px,1.1vw,28px)}
+  .media figcaption b{font-size:clamp(13px,.72vw,17px)}
+  .pause{width:clamp(44px,2.6vw,60px);height:clamp(44px,2.6vw,60px)}
+  .dots i{width:clamp(26px,1.5vw,40px)}
+}
 @media (max-width:900px){.hero .wrap{grid-template-columns:1fr;gap:32px;padding-block:44px}.media{aspect-ratio:16/10;justify-self:stretch}.hero::after{background:rgba(21,21,21,.8)}}
 @media (prefers-reduced-motion:reduce){.media img,.media figure.on img{transition:none;transform:none}.media figure{transition:none}}
 
