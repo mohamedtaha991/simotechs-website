@@ -434,15 +434,14 @@ footer::before{content:"";display:block;height:4px;background:linear-gradient(to
 .method p{font-size:15.5px;color:var(--ink-2);line-height:1.75;margin-top:8px;flex:1}
 .method li:hover .card{transform:translateY(-4px);border-color:var(--teal);box-shadow:0 18px 40px rgba(0,60,100,.10)}
 .method li:hover .n{background:var(--teal);color:#fff}
-/* الشاشات الأصغر: المراحل في صف أفقي يُسحب بالإصبع (بطاقة ظاهرة وطرف التالية)، بدل عمود طويل.
-   الخط الواصل بين الأرقام مرسوم لكل مرحلة على حدة (li::after) لأن الصف يتحرك */
+/* الشاشات الأصغر: المراحل في صف أفقي يُسحب بالإصبع (بطاقة ظاهرة وطرف التالية)، بدل عمود طويل، ورقم المرحلة داخل ركن البطاقة */
 @media (max-width:1000px){
   .method{display:flex;gap:16px;margin:36px -24px 0;padding:6px 24px 14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:24px;scrollbar-width:none;overscroll-behavior-x:contain}
   .method::-webkit-scrollbar{display:none}
   .method::before{display:none}
   .method li{flex:0 0 min(78%,320px);scroll-snap-align:start}
-  .method li:not(:last-child)::after{content:"";position:absolute;top:28px;inset-inline-start:50%;width:calc(100% + 16px);height:2px;background:var(--teal)}
-  .method .card{margin-top:18px}
+  .method .n{position:absolute;z-index:2;top:14px;inset-inline-start:14px;width:42px;height:42px;font-size:14.5px;background:rgba(255,255,255,.92);box-shadow:0 4px 12px rgba(0,60,100,.12)}
+  .method .card{margin-top:0}
   .method li:hover .card{transform:none}
 }
 @media (prefers-reduced-motion:reduce){.method .card,.method .n{transition:none}.method li:hover .card{transform:none}}
